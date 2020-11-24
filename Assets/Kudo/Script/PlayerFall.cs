@@ -54,9 +54,7 @@ public class PlayerFall : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (transform.position.y < m_playerTransformLimit)
-        {
-            transform.position =new Vector3(transform.position.x, m_playerTransformLimit,transform.position.z);
-        }
+        if (transform.position.y < m_playerTransformLimit)transform.position =new Vector3(transform.position.x, m_playerTransformLimit,transform.position.z);
+        
     }
 }
