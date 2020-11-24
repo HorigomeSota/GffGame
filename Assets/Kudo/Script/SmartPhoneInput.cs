@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmartPhoneInput :MonoBehaviour,Input
+public class SmartPhoneInput :MonoBehaviour,IInput
 {
     /// <summary>
     /// trueの時、ジャンプする
@@ -14,17 +14,17 @@ public class SmartPhoneInput :MonoBehaviour,Input
     private bool m_colorCheck = true;
 
 
-    bool Input.JumpCheck()
+    bool IInput.JumpCheck()
     {
         return m_jumpCheck;
     }
 
-    bool Input.ColorCheck()
+    bool IInput.ColorCheck()
     {
         return m_colorCheck;
     }
 
-    void Input.Reset()
+    void IInput.Reset()
     {
         m_colorCheck = false;
         m_jumpCheck = false;

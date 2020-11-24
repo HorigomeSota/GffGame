@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Input
+public interface IInput
 {
     bool JumpCheck();
     bool ColorCheck();
