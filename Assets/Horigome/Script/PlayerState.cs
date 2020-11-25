@@ -24,11 +24,24 @@ public class PlayerState : MonoBehaviour
     /// <returns>スピード</returns>
     public float GetSpeed() { return speed; }
 
+    //触れているゲームオブジェクト
+    private GameObject g_triggerObject;
+    /// <summary>プレイヤーに触れているゲームオブジェクトを渡す</summary>
+    /// <param name="triggerObj">触れているゲームオブジェクト</param>
+    public void SetTriggerObj(GameObject triggerObj) { g_triggerObject = triggerObj; }
+    /// <summary>プレイヤーに触れているゲームオブジェクトを取得</summary>
+    /// <returns>触れているゲームオブジェクト</returns>
+    public GameObject GetTriggerObj() { return g_triggerObject; }
+
     #region フラグ
     //死フラグ
     private bool g_death = false;
     /// <summary>プレイヤーの死んだフラグをオンにする</summary>
-    public void DeathFlagOn() { g_death = true; }
+    public void DeathFlagOn()
+    {
+        //ブースト中は死なない
+        if (!g_boost) { g_death = true; }
+    }
     /// <summary>プレイヤーの死んだフラグ取得</summary>
     /// <returns>true=死んでる false=生きてる</returns>
     public bool GetDeathFlag() { return g_death; }
@@ -36,7 +49,13 @@ public class PlayerState : MonoBehaviour
     //ジャンプフラグ
     private bool g_jump = false;
     /// <summary>プレイヤーのジャンプフラグをオンにする</summary>
-    public void JumpFlagOn() { g_jump = true; }
+    public void JumpFlagOn()
+    {
+        if (!g_boost &&
+            g_playerStatus != PlayerStatus.fall &&
+            g_playerStatus != PlayerStatus.cSpeeddown)
+        { g_jump = true; }
+    }
     /// <summary>プレイヤーのジャンプフラグをオフにする</summary>
     public void JumpFlagOff() { g_jump = false; }
     /// <summary>プレイヤーのジャンプフラグ取得</summary>
@@ -56,7 +75,7 @@ public class PlayerState : MonoBehaviour
     //パネルスピードアップフラグ
     private bool g_pSpeedUp = false;
     /// <summary>プレイヤーのパネルスピードアップフラグをオンにする</summary>
-    public void PanelSpeedUpFlagOn() { g_pSpeedUp = true; }
+    public void PanelSpeedUpFlagOn() { if (!g_boost) { g_pSpeedUp = true; } }
     /// <summary>プレイヤーのパネルスピードアップフラグをオフにする</summary>
     public void PanelSpeedUpFlagOff() { g_pSpeedUp = false; }
     /// <summary>プレイヤーのパネルスピードアップフラグ取得</summary>
@@ -87,20 +106,23 @@ public class PlayerState : MonoBehaviour
         move,
         fall,
         cSpeedup,
-        cSpeeddown
+        cSpeeddown,
+        none
     }
 
-    PlayerStatus g_playerStatus = PlayerStatus.fall;
+    PlayerStatus g_playerStatus = PlayerStatus.none;
     /// <summary>プレイヤーステータスをmoveにする</summary>
-    public void Move() { g_playerStatus = PlayerStatus.move; }
+    public void Move() { if (!g_boost) g_playerStatus = PlayerStatus.move; }
     /// <summary>プレイヤーステータスをfallにする</summary>
-    public void Fall() { g_playerStatus = PlayerStatus.fall; }
+    public void Fall() { if (!g_boost) g_playerStatus = PlayerStatus.fall; }
     /// <summary>プレイヤーステータスをcSpeedupにする</summary>
-    public void ColorSpeedUp() { g_playerStatus = PlayerStatus.cSpeedup; }
+    public void ColorSpeedUp() { if (!g_boost) g_playerStatus = PlayerStatus.cSpeedup; }
     /// <summary>プレイヤーステータスをcSpeeddownにする</summary>
-    public void ColorSpeedDown() { g_playerStatus = PlayerStatus.cSpeeddown; }
+    public void ColorSpeedDown() { if (!g_boost) g_playerStatus = PlayerStatus.cSpeeddown; }
+    /// <summary>プレイヤーステータスをnoneにする</summary>
+    public void None() { g_playerStatus = PlayerStatus.none; }
     /// <summary>プレイヤーステータス取得</summary>
-    /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown</returns>
+    /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown,4=none</returns>
     public int GetPlayerStatus() { return (int)g_playerStatus; }
     #endregion
 
