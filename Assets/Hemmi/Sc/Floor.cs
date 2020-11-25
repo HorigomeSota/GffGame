@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Floor : MonoBehaviour
+public class Floor : Gimmick
 {
+    private float g_floorPositionY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        g_floorPositionY = transform.position.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float  GetPositionY()
     {
-        
+        //g_floorPositionYをプレイヤーに渡す
+        return g_floorPositionY;
     }
+
+
 }

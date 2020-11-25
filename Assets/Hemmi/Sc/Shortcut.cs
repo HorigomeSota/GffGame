@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shortcut : MonoBehaviour
+public class Shortcut : Gimmick
 {
-    // Start is called before the first frame update
-    void Start()
+    /*
+    public override void GetColor()
     {
-        
+        //カラーをプレイヤーに渡す
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    */
 }
