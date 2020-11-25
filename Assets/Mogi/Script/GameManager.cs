@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
     GameObject m_InputObject;
 
     /// <summary>
+    /// PlayerStateが入っているゲームオブジェクト
+    /// </summary>
+    [SerializeField]
+    GameObject m_PlayreState;
+
+    /// <summary>
     /// ゲームがスタートするとTRUEになる
     /// </summary>
     private bool m_gamestarting = false;
@@ -49,13 +55,29 @@ public class GameManager : MonoBehaviour
     {
         if (m_gamestarting)
         {
-            //Input呼び出し
+
+
+            //Inputのジャンプ呼び出し
             m_jumpinput= m_InputObject.GetComponent<SmartPhoneInput>().JumpCheck();
 
-            //Input呼び出し
+            //Inputのカラーチェンジ呼び出し
             m_colorcheckinput = m_InputObject.GetComponent<SmartPhoneInput>().ColorCheck();
 
-            //m_InputObject.GetComponent<SmartPhoneInput>().LeftScreenTap();
+            //ジャンプとカラーチェンジの条件判定
+            if (m_jumpinput)
+            {
+                m_PlayreState.GetComponent<PlayerState>().JumpFlagOn();
+                m_jumpinput = false;
+            }
+            if (m_colorcheckinput)
+            {
+                m_PlayreState.GetComponent<PlayerState>().ColorChangeFlagOn();
+                m_colorcheckinput = false;
+            }
+            //リセット
+            m_InputObject.GetComponent<SmartPhoneInput>().Reset();
+
+
             //タイマーカウント呼び出し
             m_time =tim.TimerCount(Time.deltaTime);
 
