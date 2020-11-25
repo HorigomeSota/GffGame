@@ -34,7 +34,7 @@ public class Triggers : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //プレイヤーのゲームオブジェクト受け取るやつ呼び出すm_player.GetComponent<プレイヤーステイト>().呼び出すやつ(g_mostPriority);
+        GetComponent<PlayerState>().SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出すm_player.GetComponent<プレイヤーステイト>().呼び出すやつ(g_mostPriority);
 
     }
 

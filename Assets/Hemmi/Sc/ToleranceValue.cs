@@ -13,10 +13,7 @@ public class ToleranceValue : Gimmick
 
     public  float GetPosition()
     {
-        //カラーをプレイヤーに渡す
         //g_floorPositionYをプレイヤーに渡す
         return g_tolerancePositionY;
-
-
     }
 }

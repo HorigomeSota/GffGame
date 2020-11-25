@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerTriggerColorCheck : MonoBehaviour
 {
     GameObject m_triggerObj;
+
     int m_playerColor;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public void GetTriggerObj(GameObject trigger,int color)//触れているオブジェクトとプレイヤーの色取得
@@ -29,7 +30,9 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                 {
 
                 }
-                else { }//ステイトをデスにする
+                else {
+                    GetComponent<PlayerState>().DeathFlagOn();
+                }//ステイトをデスにする
 
                 break;
 
@@ -37,7 +40,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                 if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
                 {
-                    //ステイトをショートカットのやつにする
+                    GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
                 }
 
                 break;
@@ -46,7 +49,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                 if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
                 {
-                    //ステイトをパネルスピードアップにする
+                    GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
                 }
 
                 break;
@@ -64,11 +67,11 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                 if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
                 {
-                    //ステイトをmoveに変更
+                    GetComponent<PlayerState>().Move();//ステイトをmoveに変更
                 }
                 else
                 {
-                    //ステイトをスピードダウンに変更
+                    GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
                 }
 
                 break;
