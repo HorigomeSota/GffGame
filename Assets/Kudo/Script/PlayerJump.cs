@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     /// <summary>
+    /// プレイヤーのステータス
+    /// </summary>
+    PlayerState m_playerState;
+
+    /// <summary>
     /// ジャンプの向き
     /// </summary>
     private Vector3 m_jumpForce;
@@ -20,6 +25,8 @@ public class PlayerJump : MonoBehaviour
 
     private void Start()
     {
+        m_playerState = GetComponent<PlayerState>();
+
         m_PlayerRigidbody = GetComponent<Rigidbody>();
 
         if(m_jumpForce== new Vector3(0,0,0))
@@ -32,12 +39,23 @@ public class PlayerJump : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown) Jump();
+        if (m_playerState.GetJumpFlag() == true) 
+        {
+            Jump();
+        }
+        
     }
 
     private void Jump()
     {
+        //上に力を加える
         m_PlayerRigidbody.AddForce(m_jumpForce * m_jumpPower, ForceMode.Impulse);
+
+        //fallに変える
+        m_playerState.Fall();
+
+        //JumpFlagをoff
+        m_playerState.JumpFlagOff();
     }
 
 

@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerBoost : MonoBehaviour
 {
     /// <summary>
+    /// プレイヤーのステータスClass
+    /// </summary>
+    PlayerState m_playerState;
+
+    /// <summary>
     /// プレイヤーのRigidbody
     /// </summary>
     private Rigidbody m_PlayerRigidbody;
@@ -27,6 +32,7 @@ public class PlayerBoost : MonoBehaviour
     {
         m_PlayerRigidbody = GetComponent<Rigidbody>();
 
+        m_playerState = GetComponent<PlayerState>();
 
         if (m_speed == 0)
             m_speed = 11;
@@ -35,7 +41,9 @@ public class PlayerBoost : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown)
+        
+
+        if (m_playerState.GetBoostFlag())
         {
             
             boostSwich = true;
@@ -62,7 +70,7 @@ public class PlayerBoost : MonoBehaviour
         yield return new WaitForSeconds(boostTime);
 
         boostSwich = false;
-
+        m_playerState.BoostFlagOff();
 
         yield break;
     }
