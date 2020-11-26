@@ -24,9 +24,8 @@ public class PlayerFall : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_playerTransformLimit;
 
-    private bool fallSwich = false;
 
-
+    private bool landingOnce=true;
 
     private void Start()
     {
@@ -60,18 +59,36 @@ public class PlayerFall : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, m_playerTransformLimit, transform.position.z);
 
-               
+                m_playerRigidbody.velocity = new Vector3(m_playerRigidbody.velocity.x, 0, m_playerRigidbody.velocity.z);
+
+                Debug.Log("moveに変ええる");
+                m_playerState.Move();
             }
-            
 
 
             //moveに戻す
-            m_playerState.Move();
+            //Invoke("Landing", 0.2f);
+            
+
+
         }
+        else
+        {
+            m_playerState.Fall();
+            Debug.Log("fallに変ええる");
+        }
+        
 
        
 
        
 
     }
+    //着地時の処理
+    private void Landing()
+    {
+        m_playerState.Move();
+        landingOnce = true;
+    }
+
 }

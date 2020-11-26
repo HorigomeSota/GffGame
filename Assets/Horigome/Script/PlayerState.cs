@@ -25,7 +25,7 @@ public class PlayerState : MonoBehaviour
     public float GetSpeed() { return speed; }
 
     //触れているゲームオブジェクト
-    private GameObject g_triggerObject;
+    [SerializeField] private GameObject g_triggerObject;
     /// <summary>プレイヤーに触れているゲームオブジェクトを渡す</summary>
     /// <param name="triggerObj">触れているゲームオブジェクト</param>
     public void SetTriggerObj(GameObject triggerObj) { g_triggerObject = triggerObj; }
@@ -91,7 +91,7 @@ public class PlayerState : MonoBehaviour
     public bool GetColorChangeFlag() { return g_colorChange; }
 
     //カラーチェンジ中フラグ
-    private bool g_colorChangeNow = false;
+    [SerializeField] private bool g_colorChangeNow = false;
 
     /// <summary>プレイヤーのカラーチェンジnowフラグをオフにする</summary>
     public void ColorChangeNowFlagOff() { g_colorChangeNow = false; }
