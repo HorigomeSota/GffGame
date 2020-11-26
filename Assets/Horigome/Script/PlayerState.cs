@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
     //現在の色
-    private int color;
+    [SerializeField]　private int color=1;
     /// <summary>Colorを変える</summary>
     public void ColorChange()
     {
@@ -91,7 +91,7 @@ public class PlayerState : MonoBehaviour
     public bool GetColorChangeFlag() { return g_colorChange; }
 
     //カラーチェンジ中フラグ
-    private bool g_colorChangeNow = false;
+    [SerializeField] private bool g_colorChangeNow = false;
 
     /// <summary>プレイヤーのカラーチェンジnowフラグをオフにする</summary>
     public void ColorChangeNowFlagOff() { g_colorChangeNow = false; }
@@ -129,5 +129,6 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         speed = GetComponent<Rigidbody>().velocity.x;
+
     }
 }

@@ -11,7 +11,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
     /// <summary>
     /// trueの時、色を変える
     /// </summary>
-   [SerializeField] private bool m_colorCheck = true;
+    private bool m_colorCheck = false;
 
 
     public bool JumpCheck()
@@ -33,14 +33,13 @@ public class SmartPhoneInput :MonoBehaviour,IInput
     //右側がタップされたとき　m_jumpCheck　をtrue
     public void RightScreenTap()
     {
-        Debug.Log("右");
         m_jumpCheck = true;
     }
 
     //左側がタップされたとき　m_colorCheck　をtrue
     public void LeftScreenTap()
     {
-        Debug.Log("左");
+
         m_colorCheck = true;
      }
 

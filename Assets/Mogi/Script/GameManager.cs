@@ -72,11 +72,12 @@ public class GameManager : MonoBehaviour
             }
             if (m_colorcheckinput)
             {
+                Debug.Log("最初に呼ばれてますけど何か");
                 m_PlayreState.GetComponent<PlayerState>().ColorChangeFlagOn();
                 m_colorcheckinput = false;
             }
             //リセット
-            m_InputObject.GetComponent<SmartPhoneInput>().Reset();
+            m_InputObject.GetComponent<IInput>().Reset();
 
 
             //タイマーカウント呼び出し
