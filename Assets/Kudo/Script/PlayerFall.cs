@@ -27,6 +27,9 @@ public class PlayerFall : MonoBehaviour
 
     private bool landingOnce=true;
 
+
+    private float addGravity=0;
+
     private void Start()
     {
         m_playerRigidbody = GetComponent<Rigidbody>();
@@ -38,8 +41,12 @@ public class PlayerFall : MonoBehaviour
         
         if (m_playerState.GetPlayerStatus() == 1)
         {
+            addGravity += 2f;
+
+
+
             //下方向に力を加える
-            m_playerRigidbody.AddForce(Vector3.down * gravity);
+            m_playerRigidbody.AddForce(Vector3.down * (gravity+addGravity));
 
             
         }
@@ -61,8 +68,9 @@ public class PlayerFall : MonoBehaviour
 
                 m_playerRigidbody.velocity = new Vector3(m_playerRigidbody.velocity.x, 0, m_playerRigidbody.velocity.z);
 
-                Debug.Log("moveに変ええる");
+                
                 m_playerState.Move();
+                addGravity = 0;
             }
 
 
@@ -75,7 +83,7 @@ public class PlayerFall : MonoBehaviour
         else
         {
             m_playerState.Fall();
-            Debug.Log("fallに変ええる");
+
         }
         
 

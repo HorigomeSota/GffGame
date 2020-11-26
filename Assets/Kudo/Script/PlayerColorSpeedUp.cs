@@ -55,13 +55,19 @@ public class PlayerColorSpeedUp : MonoBehaviour
         {
             //許容範囲の計算
             m_judgment = Mathf.Abs(m_playerState.GetTriggerObj().transform.position.x - transform.position.x);
-            //範囲内ならtrueを返す
-            if (m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment) return true;
-            else return false;
+            //範囲内　かつ　前の色と今の色が同じとき、trueを返す
+            if ( m_playerState.GetTriggerObj().tag == "ToleranceValue" && m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment && m_playerState.GetColor() != m_playerState.GetTriggerObj().GetComponent<ToleranceValue>().GetColor()) return true;
+            else 
+            {
+                m_playerState.ColorChangeNowFlagOff();
+                return false;
+            }
+            
 
         }
 
         else return false;
+
 
     }
 
@@ -71,12 +77,27 @@ public class PlayerColorSpeedUp : MonoBehaviour
         
         m_playerState.ColorChangeNowFlagOff();
 
+
+        if (m_judgment < m_justTolerance * m_playerState.GetTriggerObj().transform.localScale.x)
+        {
+            Debug.Log("Just");
+            m_speed = 50;
+        }
+
+
+        else if (m_judgment < m_goodTolerance * m_playerState.GetTriggerObj().transform.localScale.x) 
+        {
+            Debug.Log("Good");
+            m_speed = 40;
+        }
         
-        if (m_judgment <= m_justTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 12;
 
-        else if (m_judgment < m_goodTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 11;
-
-        else if (m_judgment < m_okTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 10;
+        else if (m_judgment < m_okTolerance * m_playerState.GetTriggerObj().transform.localScale.x) 
+        {
+            Debug.Log("Ok");
+            m_speed = 30;
+        }
+        
 
 
         m_PlayerRigidbody.AddForce(Vector3.right * m_speed, ForceMode.Impulse);

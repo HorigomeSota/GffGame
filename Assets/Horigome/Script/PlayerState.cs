@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
     //現在の色
-    private int color;
+    [SerializeField]　private int color=1;
     /// <summary>Colorを変える</summary>
     public void ColorChange()
     {
@@ -25,7 +25,7 @@ public class PlayerState : MonoBehaviour
     public float GetSpeed() { return speed; }
 
     //触れているゲームオブジェクト
-    [SerializeField] private GameObject g_triggerObject;
+    private GameObject g_triggerObject;
     /// <summary>プレイヤーに触れているゲームオブジェクトを渡す</summary>
     /// <param name="triggerObj">触れているゲームオブジェクト</param>
     public void SetTriggerObj(GameObject triggerObj) { g_triggerObject = triggerObj; }
@@ -129,5 +129,6 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         speed = GetComponent<Rigidbody>().velocity.x;
+
     }
 }
