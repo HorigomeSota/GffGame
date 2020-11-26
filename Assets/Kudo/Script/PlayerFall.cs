@@ -34,21 +34,15 @@ public class PlayerFall : MonoBehaviour
         m_playerState = GetComponent<PlayerState>();
     }
 
-    private void Update()
-    {
-        //ステータスがfallの時true
-        if (m_playerState.GetPlayerStatus() == 1) fallSwich=true;
-    }
-
     private void FixedUpdate()
     {
         
-        if (fallSwich)
+        if (m_playerState.GetPlayerStatus() == 1)
         {
             //下方向に力を加える
             m_playerRigidbody.AddForce(Vector3.down * gravity);
 
-            fallSwich = false;
+            
         }
        
     }
@@ -56,13 +50,28 @@ public class PlayerFall : MonoBehaviour
     private void LateUpdate()
     {
 
-        //床のy座標取得
-        m_playerTransformLimit = m_playerState.GetTriggerObj().transform.position.y;
+        if (m_playerState.GetTriggerObj() != null)
+        {
 
-        if (transform.position.y < m_playerTransformLimit) transform.position = new Vector3(transform.position.x, m_playerTransformLimit, transform.position.z);
+            //床のy座標取得
+            m_playerTransformLimit = m_playerState.GetTriggerObj().transform.position.y;
 
-        //moveに戻す
-        m_playerState.Move();
+            if (transform.position.y < m_playerTransformLimit)
+            {
+                transform.position = new Vector3(transform.position.x, m_playerTransformLimit, transform.position.z);
+
+               
+            }
+            
+
+
+            //moveに戻す
+            m_playerState.Move();
+        }
+
+       
+
+       
 
     }
 }

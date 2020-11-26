@@ -50,14 +50,19 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
     private bool ToleranceCheck()
     {
-       
-        //許容範囲の計算
-        m_judgment = Mathf.Abs(m_playerState.GetTriggerObj().transform.position.x - transform.position.x);
 
-        //範囲内ならtrueを返す
-        if (m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment) return true;
-        
+        if (m_playerState.GetTriggerObj() != null)
+        {
+            //許容範囲の計算
+            m_judgment = Mathf.Abs(m_playerState.GetTriggerObj().transform.position.x - transform.position.x);
+            //範囲内ならtrueを返す
+            if (m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment) return true;
+            else return false;
+
+        }
+
         else return false;
+
     }
 
 

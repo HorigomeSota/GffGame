@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
             seconds = (int)(time - time % 1);
             comma = (int)(time % 1*100);
         }
-        Debug.Log(seconds);
+
         timerText.GetComponent<Text>().text = seconds + ":" + comma;
         return;
     }

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// ゲームがスタートするとTRUEになる
     /// </summary>
-    private bool m_gamestarting = false;
+    [SerializeField] private bool m_gamestarting = false;
     /// <summary>
     /// JumpCheckのリターン
     /// </summary>
@@ -58,15 +58,16 @@ public class GameManager : MonoBehaviour
 
 
             //Inputのジャンプ呼び出し
-            m_jumpinput= m_InputObject.GetComponent<SmartPhoneInput>().JumpCheck();
+            m_jumpinput= m_InputObject.GetComponent<IInput>().JumpCheck();
 
             //Inputのカラーチェンジ呼び出し
-            m_colorcheckinput = m_InputObject.GetComponent<SmartPhoneInput>().ColorCheck();
+            m_colorcheckinput = m_InputObject.GetComponent<IInput>().ColorCheck();
 
             //ジャンプとカラーチェンジの条件判定
             if (m_jumpinput)
             {
                 m_PlayreState.GetComponent<PlayerState>().JumpFlagOn();
+                Debug.Log("ジャンプ");
                 m_jumpinput = false;
             }
             if (m_colorcheckinput)
