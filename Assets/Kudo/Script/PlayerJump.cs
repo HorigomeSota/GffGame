@@ -52,7 +52,8 @@ public class PlayerJump : MonoBehaviour
         m_PlayerRigidbody.AddForce(m_jumpForce * m_jumpPower, ForceMode.Impulse);
 
         //fallに変える
-        m_playerState.Fall();
+        //m_playerState.Fall();
+        //Debug.Log("fallに変ええる");
 
         //JumpFlagをoff
         m_playerState.JumpFlagOff();

@@ -68,6 +68,10 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
     private void ColorSpeedUp()
     {
+        
+        m_playerState.ColorChangeNowFlagOff();
+
+        
         if (m_judgment <= m_justTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 12;
 
         else if (m_judgment < m_goodTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 11;
