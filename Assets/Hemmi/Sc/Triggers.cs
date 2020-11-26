@@ -40,7 +40,7 @@ public class Triggers : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)//触れたオブジェクトを配列に追加
     {
-        Debug.Log("ｱﾀｯﾀｱｱｱｱｱ！！！");
+
         switch (other.gameObject.tag)
         {
             case "Enemy":
@@ -108,7 +108,7 @@ public class Triggers : MonoBehaviour
             int m_rePriorityMax = 4;
             while (m_rePriorityMax>=0)
             {
-                Debug.Log(Array.IndexOf(m_prioritys, m_rePriorityMax));
+
                 if(Array.IndexOf(m_prioritys, m_rePriorityMax) != -1)
                 {
                     m_priorityMax = m_prioritys[Array.IndexOf(m_prioritys, m_rePriorityMax)];

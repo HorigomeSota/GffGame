@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerPanelSpeedUp : MonoBehaviour
 {
+    /// <summary>
+    /// プレイヤーのステータス
+    /// </summary>
+    PlayerState m_playerState;
 
     /// <summary>
     /// Panelの向き
@@ -21,12 +25,11 @@ public class PlayerPanelSpeedUp : MonoBehaviour
 
     private void Start()
     {
+        m_playerState = GetComponent<PlayerState>();
+
         m_PlayerRigidbody = GetComponent<Rigidbody>();
 
-        //ここで向きを取得する
-        if (m_panelForce == new Vector3(0, 0, 0))
-            m_panelForce = new Vector3(0, 1, 0);
-
+        
         if (m_speed == 0)
             m_speed = 10;
 
@@ -34,12 +37,20 @@ public class PlayerPanelSpeedUp : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown) PanelSpeedUp();
+        if (m_playerState.GetPanelSpeedUpFlag()==true) PanelSpeedUp();
     }
 
     private void PanelSpeedUp()
     {
+
+        //ここで向きを取得する
+        m_panelForce = m_playerState.GetTriggerObj().GetComponent<Panel>().GetVector();
+
+        //力を加える
         m_PlayerRigidbody.AddForce(m_panelForce * m_speed, ForceMode.Impulse);
+
+        //PanelSpeedUpFlagをoff
+        m_playerState.PanelSpeedUpFlagOff();
     }
 
 

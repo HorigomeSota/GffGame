@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerColorSpeedUp : MonoBehaviour
 {
-    
+    PlayerState m_playerState;
+
     /// <summary>
     /// プレイヤーのRigidbody
     /// </summary>
@@ -20,9 +21,12 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
     private float m_judgment;
 
+
     private void Start()
     {
         m_PlayerRigidbody = GetComponent<Rigidbody>();
+
+        m_playerState = GetComponent<PlayerState>();
 
         m_justTolerance = 0.1f;
         m_goodTolerance = 0.25f;
@@ -34,27 +38,42 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
     }
 
-    //colorChangeNowがtrue&&許容範囲内
 
-    //m_judgment=Mathf.Abs(許容範囲オブジェクト.x-transform.position.x)
-    //m_judgment<m_justTolerance*許容範囲オブジェクト.scale.x
-    //speed=12;
-
-    //m_judgment<m_goodTolerance*許容範囲オブジェクト.scale.x
-    //speed=11;
-
-    //m_judgment<m_okTolerance*許容範囲オブジェクト.scale.x
-    //speed=10;
+    
+    
 
 
     private void Update()
     {
-        if (Input.anyKeyDown) ColorSpeedUp();
+        if (m_playerState.GetColorChangeNowFlag()&&ToleranceCheck()) ColorSpeedUp();
     }
+
+    private bool ToleranceCheck()
+    {
+
+        if (m_playerState.GetTriggerObj() != null)
+        {
+            //許容範囲の計算
+            m_judgment = Mathf.Abs(m_playerState.GetTriggerObj().transform.position.x - transform.position.x);
+            //範囲内ならtrueを返す
+            if (m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment) return true;
+            else return false;
+
+        }
+
+        else return false;
+
+    }
+
 
     private void ColorSpeedUp()
     {
-        
+        if (m_judgment <= m_justTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 12;
+
+        else if (m_judgment < m_goodTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 11;
+
+        else if (m_judgment < m_okTolerance * m_playerState.GetTriggerObj().transform.position.x) m_speed = 10;
+
 
         m_PlayerRigidbody.AddForce(Vector3.right * m_speed, ForceMode.Impulse);
     }

@@ -110,7 +110,7 @@ public class PlayerState : MonoBehaviour
         none
     }
 
-    PlayerStatus g_playerStatus = PlayerStatus.none;
+    [SerializeField] PlayerStatus g_playerStatus = PlayerStatus.none;
     /// <summary>プレイヤーステータスをmoveにする</summary>
     public void Move() { if (!g_boost) g_playerStatus = PlayerStatus.move; }
     /// <summary>プレイヤーステータスをfallにする</summary>

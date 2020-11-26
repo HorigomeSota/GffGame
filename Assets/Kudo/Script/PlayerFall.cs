@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerFall : MonoBehaviour
 {
     /// <summary>
+    /// プレイヤーのステータス
+    /// </summary>
+    PlayerState m_playerState;
+
+    /// <summary>
     /// プレイヤーのRigidbody
     /// </summary>
     private Rigidbody m_playerRigidbody;
-
    
     /// <summary>
     /// 重力
@@ -20,37 +24,54 @@ public class PlayerFall : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_playerTransformLimit;
 
-
+    private bool fallSwich = false;
 
 
 
     private void Start()
     {
         m_playerRigidbody = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        
+        m_playerState = GetComponent<PlayerState>();
     }
 
     private void FixedUpdate()
     {
-        //stateがfallの時
-        //下方向に力を加える
-        m_playerRigidbody.AddForce(Vector3.down * gravity);
-    }
+        
+        if (m_playerState.GetPlayerStatus() == 1)
+        {
+            //下方向に力を加える
+            m_playerRigidbody.AddForce(Vector3.down * gravity);
 
+            
+        }
+       
+    }
 
     private void LateUpdate()
     {
-        if (m_playerRigidbody.velocity.y<0)
+
+        if (m_playerState.GetTriggerObj() != null)
         {
-            //m_playerTransformLimit=床のオブジェクト.y
 
-            if (transform.position.y < m_playerTransformLimit) transform.position = new Vector3(transform.position.x, m_playerTransformLimit, transform.position.z);
+            //床のy座標取得
+            m_playerTransformLimit = m_playerState.GetTriggerObj().transform.position.y;
 
+            if (transform.position.y < m_playerTransformLimit)
+            {
+                transform.position = new Vector3(transform.position.x, m_playerTransformLimit, transform.position.z);
+
+               
+            }
+            
+
+
+            //moveに戻す
+            m_playerState.Move();
         }
+
+       
+
+       
 
     }
 }
