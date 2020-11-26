@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8533339422289211191}
   - component: {fileID: 5289491974076558422}
   - component: {fileID: 1815245602754960165}
+  - component: {fileID: -3773793322368408357}
   m_Layer: 0
   m_Name: Tolerance
-  m_TagString: Untagged
+  m_TagString: ToleranceValue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,3 +105,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309fea6ea80fb5a48ad1bdad384275f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &-3773793322368408357
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762192496378066258}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
