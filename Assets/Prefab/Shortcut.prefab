@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2226946047042684027}
   m_Layer: 0
   m_Name: Shortcut
-  m_TagString: Untagged
+  m_TagString: Shortcut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
