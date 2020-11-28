@@ -117,12 +117,13 @@ public class PlayerState : MonoBehaviour
         fall,
         cSpeedup,
         cSpeeddown,
-        none
+        none,
+        boost
     }
 
     [SerializeField] PlayerStatus g_playerStatus = PlayerStatus.none;
     /// <summary>プレイヤーステータスをmoveにする</summary>
-    public void Move() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.move; }
+    public void Move() { if (!g_boost&&!g_death) g_playerStatus = PlayerStatus.move; }
     /// <summary>プレイヤーステータスをfallにする</summary>
     public void Fall() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.fall; }
     /// <summary>プレイヤーステータスをcSpeedupにする</summary>
@@ -131,14 +132,17 @@ public class PlayerState : MonoBehaviour
     public void ColorSpeedDown() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeeddown; }
     /// <summary>プレイヤーステータスをnoneにする</summary>
     public void None() { g_playerStatus = PlayerStatus.none; }
+    /// <summary>プレイヤーステータスをboostにする</summary>
+    public void Boost() {if(!g_death) g_playerStatus = PlayerStatus.boost; }
     /// <summary>プレイヤーステータス取得</summary>
-    /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown,4=none</returns>
+    /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown,4=none,5=boost</returns>
     public int GetPlayerStatus() { return (int)g_playerStatus; }
     #endregion
 
     private void Update()
     {
         speed = GetComponent<Rigidbody>().velocity.x;
+        Debug.Log(speed);
 
     }
 }

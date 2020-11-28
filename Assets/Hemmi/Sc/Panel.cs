@@ -8,12 +8,13 @@ public class Panel : Gimmick
 
     private Vector3[] m_forceVecter3s =
     {
+       
         new Vector3(1,0,0),    //0度
-        new Vector3(Mathf.Sqrt(6)-Mathf.Sqrt(2)/4,Mathf.Sqrt(6)+Mathf.Sqrt(2)/4,0),    //15度
-        new Vector3 (Mathf.Sqrt(3)/2, 1/2, 0),     //30度
+        new Vector3((Mathf.Sqrt(6)+Mathf.Sqrt(2))/4,(Mathf.Sqrt(6)-Mathf.Sqrt(2))/4,0),    //15度
+        new Vector3 (Mathf.Sqrt(3)/2,0.5f, 0),     //30度
         new Vector3(1/Mathf.Sqrt(2), 1/Mathf.Sqrt(2), 0),      //45度
-        new Vector3(1/2,Mathf.Sqrt(3)/2,0),        //60度
-        new Vector3(Mathf.Sqrt(6)+Mathf.Sqrt(2)/4,Mathf.Sqrt(6)-Mathf.Sqrt(2)/4,0),        //75度
+        new Vector3(0.5f,Mathf.Sqrt(3)/2,0),        //60度
+        new Vector3((Mathf.Sqrt(6)-Mathf.Sqrt(2))/4,(Mathf.Sqrt(6)+Mathf.Sqrt(2))/4,0),        //75度
         new Vector3(0,1,0)      //90度
     };
     [SerializeField] private float m_power = 10;

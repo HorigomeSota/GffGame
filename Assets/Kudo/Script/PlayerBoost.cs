@@ -26,7 +26,7 @@ public class PlayerBoost : MonoBehaviour
     /// <summary>
     /// boostのオンオフ
     /// </summary>
-    private bool boostSwich = false;
+   [SerializeField] private bool boostSwich = false;
 
     private void Start()
     {
@@ -47,7 +47,8 @@ public class PlayerBoost : MonoBehaviour
         {
             
             boostSwich = true;
-            Boost();
+            m_playerState.Boost();
+            StartCoroutine("Boost");
         }
     }
 
@@ -63,12 +64,13 @@ public class PlayerBoost : MonoBehaviour
     }
 
 
-    IEnumerable Boost()
+    IEnumerator Boost()
     {
-
+        Debug.Log("sutat");
         //時間待ち
         yield return new WaitForSeconds(boostTime);
 
+        Debug.Log("end");
         boostSwich = false;
         m_playerState.BoostFlagOff();
 

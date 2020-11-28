@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
             }
             if (m_colorcheckinput)
             {
-                Debug.Log("最初に呼ばれてますけど何か");
+
                 m_PlayreState.GetComponent<PlayerState>().ColorChangeFlagOn();
                 m_colorcheckinput = false;
             }
