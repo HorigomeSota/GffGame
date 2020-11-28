@@ -56,9 +56,9 @@ public class PlayerFall : MonoBehaviour
     private void LateUpdate()
     {
 
-        if (m_playerState.GetTriggerObj() != null)
+        if (m_playerState.GetTriggerObj() != null&& (m_playerState.GetTriggerObj().tag=="Floor"|| m_playerState.GetTriggerObj().tag == "ToleranceValue"))
         {
-
+            
             //床のy座標取得
             m_playerTransformLimit = m_playerState.GetTriggerObj().transform.position.y;
 

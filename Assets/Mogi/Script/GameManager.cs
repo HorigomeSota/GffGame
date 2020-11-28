@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
             //UIManagerでタイマー表示
             m_UIManagerObject.GetComponent<UIManager>().TimerOutput(m_time);
         }
+
+        if (m_PlayreState.GetComponent<PlayerState>().GetDeathFlag() == true) GameEnd();
     }
 
 

@@ -38,19 +38,19 @@ public class Panel : Gimmick
                 break;
 
             case 45:
-                g_forceVecter = m_forceVecter3s[4];
+                g_forceVecter = m_forceVecter3s[3];
                 break;
 
             case 60:
-                g_forceVecter = m_forceVecter3s[5];
+                g_forceVecter = m_forceVecter3s[4];
                 break;
 
             case 75:
-                g_forceVecter = m_forceVecter3s[6];
+                g_forceVecter = m_forceVecter3s[5];
                 break;
 
             case 90:
-                g_forceVecter = m_forceVecter3s[7];
+                g_forceVecter = m_forceVecter3s[6];
                 break;
         }
     }
