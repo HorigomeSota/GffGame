@@ -9,10 +9,15 @@ public class PlayerState : MonoBehaviour
     /// <summary>Colorを変える</summary>
     public void ColorChange()
     {
-        if (color == 0) { color = 1; }
-        else { color = 0; }
-        g_colorChange = false;
-        g_colorChangeNow = true;
+        //生きている間だけ色を変える
+        if (!g_death)
+        {
+            if (color == 0) { color = 1; }
+            else { color = 0; }
+            g_colorChange = false;
+            g_colorChangeNow = true;
+        }
+        
     }
     /// <summary>プレイヤーの色取得</summary>
     /// <returns>0か1</returns>
@@ -25,7 +30,7 @@ public class PlayerState : MonoBehaviour
     public float GetSpeed() { return speed; }
 
     //触れているゲームオブジェクト
-    [SerializeField] private GameObject g_triggerObject;
+    private GameObject g_triggerObject;
     /// <summary>プレイヤーに触れているゲームオブジェクトを渡す</summary>
     /// <param name="triggerObj">触れているゲームオブジェクト</param>
     public void SetTriggerObj(GameObject triggerObj) { g_triggerObject = triggerObj; }
@@ -40,7 +45,11 @@ public class PlayerState : MonoBehaviour
     public void DeathFlagOn()
     {
         //ブースト中は死なない
-        if (!g_boost) { g_death = true; }
+        if (!g_boost) 
+        {
+            g_death = true;
+            g_playerStatus = PlayerStatus.none;
+        }
     }
     /// <summary>プレイヤーの死んだフラグ取得</summary>
     /// <returns>true=死んでる false=生きてる</returns>
@@ -53,7 +62,8 @@ public class PlayerState : MonoBehaviour
     {
         if (!g_boost &&
             g_playerStatus != PlayerStatus.fall &&
-            g_playerStatus != PlayerStatus.cSpeeddown)
+            g_playerStatus != PlayerStatus.cSpeeddown &&
+            !g_death)
         { g_jump = true; }
     }
     /// <summary>プレイヤーのジャンプフラグをオフにする</summary>
@@ -107,27 +117,32 @@ public class PlayerState : MonoBehaviour
         fall,
         cSpeedup,
         cSpeeddown,
-        none
+        none,
+        boost
     }
 
     [SerializeField] PlayerStatus g_playerStatus = PlayerStatus.none;
     /// <summary>プレイヤーステータスをmoveにする</summary>
-    public void Move() { if (!g_boost) g_playerStatus = PlayerStatus.move; }
+    public void Move() { if (!g_boost&&!g_death) g_playerStatus = PlayerStatus.move; }
     /// <summary>プレイヤーステータスをfallにする</summary>
-    public void Fall() { if (!g_boost) g_playerStatus = PlayerStatus.fall; }
+    public void Fall() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.fall; }
     /// <summary>プレイヤーステータスをcSpeedupにする</summary>
-    public void ColorSpeedUp() { if (!g_boost) g_playerStatus = PlayerStatus.cSpeedup; }
+    public void ColorSpeedUp() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeedup; }
     /// <summary>プレイヤーステータスをcSpeeddownにする</summary>
-    public void ColorSpeedDown() { if (!g_boost) g_playerStatus = PlayerStatus.cSpeeddown; }
+    public void ColorSpeedDown() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeeddown; }
     /// <summary>プレイヤーステータスをnoneにする</summary>
     public void None() { g_playerStatus = PlayerStatus.none; }
+    /// <summary>プレイヤーステータスをboostにする</summary>
+    public void Boost() {if(!g_death) g_playerStatus = PlayerStatus.boost; }
     /// <summary>プレイヤーステータス取得</summary>
-    /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown,4=none</returns>
+    /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown,4=none,5=boost</returns>
     public int GetPlayerStatus() { return (int)g_playerStatus; }
     #endregion
 
     private void Update()
     {
         speed = GetComponent<Rigidbody>().velocity.x;
+        Debug.Log(speed);
+
     }
 }

@@ -72,11 +72,12 @@ public class GameManager : MonoBehaviour
             }
             if (m_colorcheckinput)
             {
+
                 m_PlayreState.GetComponent<PlayerState>().ColorChangeFlagOn();
                 m_colorcheckinput = false;
             }
             //リセット
-            m_InputObject.GetComponent<SmartPhoneInput>().Reset();
+            m_InputObject.GetComponent<IInput>().Reset();
 
 
             //タイマーカウント呼び出し
@@ -85,6 +86,8 @@ public class GameManager : MonoBehaviour
             //UIManagerでタイマー表示
             m_UIManagerObject.GetComponent<UIManager>().TimerOutput(m_time);
         }
+
+        if (m_PlayreState.GetComponent<PlayerState>().GetDeathFlag() == true) GameEnd();
     }
 
 

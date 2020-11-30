@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2226946047042684027}
   m_Layer: 0
   m_Name: Shortcut
-  m_TagString: Untagged
+  m_TagString: Shortcut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0dc9f2c64168c2f45a3b1a3c90b7dcef, type: 2}
+  - {fileID: 2100000, guid: 89ea84b0208fda64fbe50401a4e92a6c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
