@@ -31,7 +31,7 @@ public class PlayerPanelSpeedUp : MonoBehaviour
 
         
         if (m_speed == 0)
-            m_speed = 10;
+            m_speed = 20;
 
     }
 
@@ -42,12 +42,19 @@ public class PlayerPanelSpeedUp : MonoBehaviour
 
     private void PanelSpeedUp()
     {
+        if(m_playerState.GetTriggerObj()!=null&& m_playerState.GetTriggerObj().tag == "Panel")
+        {
+            //ここで向きを取得する
+            m_panelForce = m_playerState.GetTriggerObj().GetComponent<Panel>().GetVector();
 
-        //ここで向きを取得する
-        m_panelForce = m_playerState.GetTriggerObj().GetComponent<Panel>().GetVector();
+            Debug.Log("x"+m_panelForce.x+ "y"+ m_panelForce.y+ "z" + m_panelForce.z);
+        }
+
 
         //力を加える
-        m_PlayerRigidbody.AddForce(m_panelForce * m_speed, ForceMode.Impulse);
+        m_PlayerRigidbody.velocity=m_panelForce*m_speed;
+
+        
 
         //PanelSpeedUpFlagをoff
         m_playerState.PanelSpeedUpFlagOff();

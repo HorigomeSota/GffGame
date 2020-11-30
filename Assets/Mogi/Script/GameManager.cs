@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
             }
             if (m_colorcheckinput)
             {
-                Debug.Log("最初に呼ばれてますけど何か");
+
                 m_PlayreState.GetComponent<PlayerState>().ColorChangeFlagOn();
                 m_colorcheckinput = false;
             }
@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
             //UIManagerでタイマー表示
             m_UIManagerObject.GetComponent<UIManager>().TimerOutput(m_time);
         }
+
+        if (m_PlayreState.GetComponent<PlayerState>().GetDeathFlag() == true) GameEnd();
     }
 
 
