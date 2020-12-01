@@ -88,14 +88,18 @@ public class StageCreate : MonoBehaviour
 
     GameObject checkPointObject;
 
-    // Start is called before the first frame update
-    void Start()
+    private string g_stage;
+
+    public void SetStageName(string stageName)
     {
-        GetComponent<CSVread>().PrepareStage("Stage01");
-        CreateMap(GetComponent<CSVread>().GetStageMapDatas(), GetComponent<CSVread>().GetHeight(), GetComponent<CSVread>().GetWidth());
+        g_stage = stageName;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
 
@@ -201,6 +205,18 @@ public class StageCreate : MonoBehaviour
                 }
             }
         }
-        transform.position = checkPointObject.transform.position;
+        transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
+    }
+
+    public void Generate()
+    {
+        g_stage = GetComponent<StageOrder>().GetNextStage();
+
+        Debug.Log(g_stage);
+
+        if (g_stage == null) { g_stage = "Stage01"; }
+        GetComponent<StageMapCSVread>().PrepareStage(g_stage);
+        CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth());
+
     }
 }

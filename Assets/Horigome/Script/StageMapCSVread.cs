@@ -4,27 +4,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class CSVread : MonoBehaviour
+public class StageMapCSVread : MonoBehaviour
 {
-    private int[,] stageMapDatas;
+    private int[,] g_stageMapDatas;
     public int[,] GetStageMapDatas()
     {
-        return stageMapDatas;
+        return g_stageMapDatas;
     }
 
     // CSVから切り分けられた文字列型２次元配列データ 
-    private string[,] sdataArrays;
+    private string[,] g_sdataArrays;
 
     //読み込めたか確認の表示用の変数
-    private int height = 0;    //行数
+    private int g_height = 0;    //行数
     public int GetHeight()
     {
-        return height;
+        return g_height;
     }
-    private int width = 0;    //列数
+    private int g_width = 0;    //列数
     public int GetWidth()
     {
-        return width;
+        return g_width;
     }
 
     void Start()
@@ -77,8 +77,8 @@ public class CSVread : MonoBehaviour
         }
 
         // 確認表示用の変数(行数、列数)を格納する
-        this.height = h;    //行数   
-        this.width = w;    //列数
+        this.g_height = h;    //行数   
+        this.g_width = w;    //列数
     }
 
     // ２次元配列の型を文字列型から整数値型へ変換する
@@ -99,9 +99,9 @@ public class CSVread : MonoBehaviour
     /// </summary>
     public void PrepareStage(string path)
     {
-        path = "/StreamingAssets/" + path + ".csv";
-        readCSVData(Application.dataPath + path, ref this.sdataArrays);
-        convert2DArrayType(ref this.sdataArrays, ref this.stageMapDatas, this.height, this.width);
+        path = "/StreamingAssets/stages/" + path + ".csv";
+        readCSVData(Application.dataPath + path, ref this.g_sdataArrays);
+        convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
     }
 
 
