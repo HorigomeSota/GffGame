@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Input格納用変数
     /// </summary>
-    IInput m_input=new SmartPhoneInput();
+    IInput m_input;
 
     /// <summary>
     /// UIManager格納用変数
@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     GameObject m_UIManagerObject;
+
+    /// <summary>
+    /// UIManagerが入っているゲームオブジェクト
+    /// </summary>
+    [SerializeField]
+    GameObject m_InputObject;
 
     /// <summary>
     /// AudioManagerが入っているゲームオブジェクト
@@ -86,9 +92,7 @@ public class GameManager : MonoBehaviour
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_playerState = m_playerStateObject.GetComponent<PlayerState>();
         m_UIManager = m_UIManagerObject.GetComponent<UIManager>();
-
-        //if(スマートフォンなら)
-        m_input = new SmartPhoneInput();
+        m_input = m_InputObject.GetComponent<IInput>();
 
 
     }
@@ -105,8 +109,6 @@ public class GameManager : MonoBehaviour
     {
         if (m_gamestarting)
         {
-
-
             //Inputのジャンプ呼び出し
             m_jumpinput= m_input.JumpCheck();
 
@@ -114,38 +116,12 @@ public class GameManager : MonoBehaviour
             m_colorcheckinput = m_input.ColorCheck();
 
 
-            if (m_playerState.GetJumpFlag())
-            {
-                m_audioManager.JumpSE();
-            }
-            else if (m_playerState.GetBoostFlag())
-            {
-                m_audioManager.BoostSE();
-            }
-            else if (m_playerState.GetColorChangeFlag())
-            {
-                m_audioManager.ColorChangeSE();
-            }
-            else if (m_playerState.GetPanelSpeedUpFlag())
-            {
-                m_audioManager.PanelSE();
-            }
-            else if (m_playerState.GetDeathFlag())
-            {
-
-            }
-            else
-            {
-                //m_playAudio = false;
-            }
-
-
 
             //ジャンプとカラーチェンジの条件判定
             if (m_jumpinput)
             {
                 m_playerState.JumpFlagOn();
-                //Debug.Log("ジャンプ");
+                Debug.Log("ジャンプ");
                 m_jumpinput = false;
                 
             }
@@ -174,9 +150,8 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
-        m_audioManager.StageBGM();
+        m_audioManager.PlayClip("stage1");
         m_tim.TimerStart();
-
     }
 
     /// <summary>
