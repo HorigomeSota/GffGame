@@ -39,7 +39,7 @@ public class PlayerPanelSpeedUp : MonoBehaviour
         m_audioManager = audioManagerObject.GetComponent<AudioManager>();
 
         if (m_speed == 0)
-            m_speed = 20;
+            m_speed = 25;
 
 
 
@@ -67,7 +67,7 @@ public class PlayerPanelSpeedUp : MonoBehaviour
             Debug.Log("x"+m_panelForce.x+ "y"+ m_panelForce.y+ "z" + m_panelForce.z);
         }
 
-        m_timeSpeedUp = 1;
+        m_timeSpeedUp = 0.3f;
 
         m_audioManager.PlayClip("PanelSpeedUp");
 
@@ -77,7 +77,7 @@ public class PlayerPanelSpeedUp : MonoBehaviour
     private void FixedUpdate()
     {
 
-        while (m_timeSpeedUp >= 0)
+        if (m_timeSpeedUp >= 0)
         {
             //力を加える
             m_PlayerRigidbody.velocity = m_panelForce * m_speed;

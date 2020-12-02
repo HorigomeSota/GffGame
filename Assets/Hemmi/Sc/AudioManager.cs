@@ -13,18 +13,6 @@ public class AudioManager : MonoBehaviour
 
     AudioType audioType=AudioType.none;
 
-
-    /*
-    [SerializeField]
-    private GameObject m_audioBGMObject;
-    [SerializeField]
-    private GameObject m_audioSEObject;
-
-    [SerializeField]
-    private AudioSource m_audioSourceBGM;
-    [SerializeField]
-    private AudioSource m_audioSourceSE;
-    */
     [SerializeField]
     private AudioSource[] m_audioSources;
 

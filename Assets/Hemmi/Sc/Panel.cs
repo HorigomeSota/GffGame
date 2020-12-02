@@ -57,8 +57,11 @@ public class Panel : Gimmick
     }
     
 
-
-    public Vector3 GetVector()//vector渡す
+    /// <summary>
+    /// パネルの向き取得用
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetVector()
     {
         return g_forceVecter;
     }
