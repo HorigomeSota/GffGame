@@ -12,9 +12,17 @@ public class Triggers : MonoBehaviour
     private int m_priorityExit;//今出ていったオブジェクトの優先度
     [SerializeField] private GameObject m_player;//プレイヤー取得
     bool m_nullFrag = false;
+
+    [SerializeField]
+    private GameObject m_audioManagerObject;
+    AudioManager m_audioManager;
+
+    PlayerState m_playerState;
     private void Start()
     {
-        m_player = GameObject.Find("Player");
+
+        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
+        m_playerState = GetComponent<PlayerState>();
         m_priorityMax = 5;
         int loopCount = 4;
         while (loopCount >= 0)//初期化
@@ -25,7 +33,7 @@ public class Triggers : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        GetComponent<PlayerState>().SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出すm_player.GetComponent<プレイヤーステイト>().呼び出すやつ(g_mostPriority);
+        m_playerState.SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出すm_player.GetComponent<プレイヤーステイト>().呼び出すやつ(g_mostPriority);
         /*
          int m_nullLoop = 4;
         while (m_nullLoop >= 0)
@@ -72,6 +80,8 @@ public class Triggers : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)//離れたオブジェクトを配列から排除
     {
+
+
         switch (other.gameObject.tag)
         {
             case "Enemy":

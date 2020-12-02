@@ -22,6 +22,11 @@ public class PlayerJump : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_jumpPower;
 
+    [SerializeField]
+    private GameObject audioManagerObject;
+
+    [SerializeField]
+    private AudioManager m_audioManager;
 
     private void Start()
     {
@@ -29,7 +34,10 @@ public class PlayerJump : MonoBehaviour
 
         m_PlayerRigidbody = GetComponent<Rigidbody>();
 
-        if(m_jumpForce== new Vector3(0,0,0))
+        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+
+
+        if (m_jumpForce== new Vector3(0,0,0))
         m_jumpForce = new Vector3(0, 1, 0);
 
         if(m_jumpPower==0)
@@ -54,6 +62,8 @@ public class PlayerJump : MonoBehaviour
         //fallに変える
         //m_playerState.Fall();
         //Debug.Log("fallに変ええる");
+        m_audioManager.PlayClip("Jump");
+        Debug.Log("JumpSE");
 
         //JumpFlagをoff
         m_playerState.JumpFlagOff();

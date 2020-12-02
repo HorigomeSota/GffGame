@@ -28,11 +28,21 @@ public class PlayerBoost : MonoBehaviour
     /// </summary>
    [SerializeField] private bool boostSwich = false;
 
+    [SerializeField]
+    private GameObject audioManagerObject;
+
+    [SerializeField]
+    private AudioManager m_audioManager;
+
     private void Start()
     {
         m_PlayerRigidbody = GetComponent<Rigidbody>();
 
         m_playerState = GetComponent<PlayerState>();
+
+        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+
+
 
         if (m_speed == 0)
             m_speed = 11;
@@ -49,7 +59,9 @@ public class PlayerBoost : MonoBehaviour
             boostSwich = true;
             m_playerState.Boost();
             StartCoroutine("Boost");
+            m_audioManager.PlayClip("Boost");
         }
+
     }
 
     private void FixedUpdate()
@@ -58,9 +70,10 @@ public class PlayerBoost : MonoBehaviour
         {
             //boost時の処理
             m_PlayerRigidbody.velocity = new Vector3(m_speed, 0, 0);
+
         }
-        
-        
+
+
     }
 
 

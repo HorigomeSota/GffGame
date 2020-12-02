@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
-        m_audioManager.PlayClip("stage1");
+        m_audioManager.PlayClip("Stage");
         m_tim.TimerStart();
     }
 

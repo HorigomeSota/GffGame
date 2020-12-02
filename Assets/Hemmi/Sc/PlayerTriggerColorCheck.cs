@@ -6,6 +6,8 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 {
     private GameObject m_triggerObj;
 
+    private GameObject m_triggerObjBefore;
+
     private int m_playerColor;
 
     private PlayerState m_playerState;
@@ -21,11 +23,11 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         //触れているオブジェクトとプレイヤーの色取得
         m_playerColor = m_playerState.GetColor();
         m_triggerObj = m_playerState.GetTriggerObj();
-        if(m_triggerObj!=null) ColorCheck();
+        if(m_triggerObj!=null&&m_triggerObj!=m_triggerObjBefore) ColorCheck();
 
     }
 
-    private void ColorCheck()//自分の色と、オブジェクトの色比較
+    private void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
         switch (m_triggerObj.tag)
         {
@@ -85,6 +87,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
 
         }
+        m_triggerObjBefore = m_triggerObj;
 
     }
 

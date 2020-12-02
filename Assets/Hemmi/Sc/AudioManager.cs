@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource m_audioSourceSE;
     */
+    [SerializeField]
     private AudioSource[] m_audioSources;
 
     [SerializeField]
@@ -38,8 +39,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip m_panel;
 
-    [SerializeField]
-    private bool g_playOneShot;
 
     // 音声再生用スクリプト
     // Start is called before the first frame update
@@ -47,64 +46,66 @@ public class AudioManager : MonoBehaviour
     {
         m_audioSources = new AudioSource[2];
         m_audioSources=GetComponents<AudioSource>();
-        g_playOneShot = false;
-        //m_audioSourceBGM = m_audioBGMObject.GetComponent<AudioSource>();
-        //m_audioSourceSE = m_audioSEObject.GetComponent<AudioSource>();
     }
 
-    /*
     private void PlayBGM()
     {
-        m_audioSourceBGM.Play();
+        m_audioSources[0].Play();
         Debug.Log("BGMなった");
     }
-    */
 
     private void PlaySE()
     {
-        if (!g_playOneShot)//連続でならないように
-        {
-            m_audioSources[1].PlayOneShot(m_audioSources[1].clip);
-            Debug.Log("SEなった");
-            g_playOneShot = true;
-        }
-        
+
+        m_audioSources[1].PlayOneShot(m_audioSources[1].clip);
+        Debug.Log("SEなった");
+
     }
 
-
-
-    /*
-
-    public void StageBGM()//StageBGM再生
-    {
-        Debug.Log("BGM");
-        m_audioSourceBGM.clip = m_stage;
-        PlayBGM();
-    }
-
-    */
-
+    /// <summary>
+    /// 各クラスから、音を鳴らしたいときに呼び出す。stringは、接頭語を抜いたクラス名でお願いします
+    /// </summary>
+    /// <param name="audio"></param>
     public void PlayClip(string audio)
     {
         switch (audio)
         {
-            case "jump":
+            case "Jump":
+                m_audioSources[1].clip = m_jump;
+                audioType = AudioType.SE;
                 break;
 
-            case "stage":
+            case "Stage":
+                m_audioSources[0].clip = m_stage;
+                audioType = AudioType.BGM;
+                break;
+
+            case "ColorChange":
+                m_audioSources[1].clip = m_colorChange;
+                audioType = AudioType.SE;
+                break;
+
+            case "Boost":
+                m_audioSources[1].clip = m_boost;
+                audioType = AudioType.SE;
+                break;
+
+            case "PanelSpeedUp":
+                m_audioSources[1].clip = m_panel;
+                audioType = AudioType.SE;
                 break;
         }
 
         if (audioType == AudioType.BGM)
         {
-
+            PlayBGM();
         }
         else if (audioType == AudioType.SE)
         {
-
+            PlaySE();
         }
 
-
     }
+
 
 }

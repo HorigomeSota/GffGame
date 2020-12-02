@@ -20,8 +20,15 @@ public class PlayerPanelSpeedUp : MonoBehaviour
     /// <summary>
     /// スピード
     /// </summary>
-    [SerializeField] private float m_speed;
+    private float m_speed;
 
+    private float m_timeSpeedUp;
+
+    [SerializeField]
+    private GameObject audioManagerObject;
+
+    [SerializeField]
+    private AudioManager m_audioManager;
 
     private void Start()
     {
@@ -29,19 +36,29 @@ public class PlayerPanelSpeedUp : MonoBehaviour
 
         m_PlayerRigidbody = GetComponent<Rigidbody>();
 
-        
+        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+
         if (m_speed == 0)
             m_speed = 20;
+
+
 
     }
 
     private void Update()
     {
-        if (m_playerState.GetPanelSpeedUpFlag()==true) PanelSpeedUp();
+        if (m_playerState.GetPanelSpeedUpFlag() == true) {
+            //PanelSpeedUpFlagをoff
+            m_playerState.PanelSpeedUpFlagOff();
+            PanelSpeedUp();
+
+        }
+
     }
 
     private void PanelSpeedUp()
     {
+        Debug.Log("PanelSpeedUp");
         if(m_playerState.GetTriggerObj()!=null&& m_playerState.GetTriggerObj().tag == "Panel")
         {
             //ここで向きを取得する
@@ -50,14 +67,24 @@ public class PlayerPanelSpeedUp : MonoBehaviour
             Debug.Log("x"+m_panelForce.x+ "y"+ m_panelForce.y+ "z" + m_panelForce.z);
         }
 
+        m_timeSpeedUp = 1;
 
-        //力を加える
-        m_PlayerRigidbody.velocity=m_panelForce*m_speed;
+        m_audioManager.PlayClip("PanelSpeedUp");
 
         
+    }
 
-        //PanelSpeedUpFlagをoff
-        m_playerState.PanelSpeedUpFlagOff();
+    private void FixedUpdate()
+    {
+
+        while (m_timeSpeedUp >= 0)
+        {
+            //力を加える
+            m_PlayerRigidbody.velocity = m_panelForce * m_speed;
+            m_timeSpeedUp = m_timeSpeedUp - Time.deltaTime;
+        }
+
+
     }
 
 
