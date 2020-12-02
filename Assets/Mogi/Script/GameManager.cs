@@ -81,10 +81,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool m_playAudio;
 
-    /// <summary>
-    /// 時間
-    /// </summary>
-    private float m_time=0;
 
     private void Awake()
     {
@@ -135,10 +131,10 @@ public class GameManager : MonoBehaviour
 
 
             //タイマーカウント呼び出し
-            m_time = m_tim.TimerCount(Time.deltaTime);
+            m_tim.TimerCount(Time.deltaTime);
 
             //UIManagerでタイマー表示
-            m_UIManager.TimerOutput(m_time);
+            m_UIManager.TimerOutput();
         }
 
         if (m_playerState.GetDeathFlag() == true) GameEnd();
@@ -150,8 +146,8 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
-        m_audioManager.PlayClip("Stage");
-        m_tim.TimerStart();
+        m_audioManager.PlayClip("stage1");
+        m_tim.TimerReset();
     }
 
     /// <summary>
