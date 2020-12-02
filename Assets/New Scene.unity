@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 175904234}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 253581313}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1679ffffc4d07124c9f7fa65ccdcddd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManagerObject: {fileID: 175904233}
+  m_audioManagerObject: {fileID: 0}
   m_audioManager: {fileID: 0}
 --- !u!114 &253581302
 MonoBehaviour:
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_jumpPower: 12
-  audioManagerObject: {fileID: 175904233}
+  m_audioManagerObject: {fileID: 0}
   m_audioManager: {fileID: 0}
 --- !u!114 &253581303
 MonoBehaviour:
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 346492106}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: TextTimer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

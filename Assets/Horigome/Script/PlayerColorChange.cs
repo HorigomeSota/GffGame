@@ -9,7 +9,7 @@ public class PlayerColorChange : MonoBehaviour
 
 
     [SerializeField]
-    private GameObject audioManagerObject;
+    private GameObject m_audioManagerObject;
 
     private PlayerState m_playerState;
     private Renderer m_renderer;
@@ -19,8 +19,17 @@ public class PlayerColorChange : MonoBehaviour
 
     private void Start()
     {
+
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+
+        //マテリアル参照
+        materialBlue = Resources.Load<Material>("Materials/Blue");
+        materialRed = Resources.Load<Material>("Materials/Blue");
+
+        //インスタンス化
         m_playerState = GetComponent<PlayerState>();
-        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_renderer = GetComponent<Renderer>();
     }
 

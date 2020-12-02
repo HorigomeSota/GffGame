@@ -26,7 +26,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        //ゲームオブジェクトFind
+        timerText = GameObject.FindGameObjectWithTag("TextTimer");
         m_timedata = GameObject.FindGameObjectWithTag(m_datatag).GetComponent<TimeData>();
+
     }
 
 

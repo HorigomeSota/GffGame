@@ -29,18 +29,22 @@ public class PlayerBoost : MonoBehaviour
    [SerializeField] private bool boostSwich = false;
 
     [SerializeField]
-    private GameObject audioManagerObject;
+    private GameObject m_audioManagerObject;
 
     [SerializeField]
     private AudioManager m_audioManager;
 
     private void Start()
     {
+
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+
+
+        //インスタンス化
         m_PlayerRigidbody = GetComponent<Rigidbody>();
-
         m_playerState = GetComponent<PlayerState>();
-
-        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
 
 
 

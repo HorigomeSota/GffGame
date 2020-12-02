@@ -20,7 +20,10 @@ public class Triggers : MonoBehaviour
     PlayerState m_playerState;
     private void Start()
     {
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
 
+        //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_playerState = GetComponent<PlayerState>();
         m_priorityMax = 5;

@@ -25,18 +25,20 @@ public class PlayerPanelSpeedUp : MonoBehaviour
     private float m_timeSpeedUp;
 
     [SerializeField]
-    private GameObject audioManagerObject;
+    private GameObject m_audioManagerObject;
 
     [SerializeField]
     private AudioManager m_audioManager;
 
     private void Start()
     {
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+
+        //インスタンス化
         m_playerState = GetComponent<PlayerState>();
-
         m_PlayerRigidbody = GetComponent<Rigidbody>();
-
-        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
 
         if (m_speed == 0)
             m_speed = 25;

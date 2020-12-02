@@ -23,18 +23,21 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float m_jumpPower;
 
     [SerializeField]
-    private GameObject audioManagerObject;
+    private GameObject m_audioManagerObject;
 
     [SerializeField]
     private AudioManager m_audioManager;
 
     private void Start()
     {
+
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+
+        //インスタンス化
         m_playerState = GetComponent<PlayerState>();
-
         m_PlayerRigidbody = GetComponent<Rigidbody>();
-
-        m_audioManager = audioManagerObject.GetComponent<AudioManager>();
+        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
 
 
         if (m_jumpForce== new Vector3(0,0,0))

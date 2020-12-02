@@ -32,7 +32,18 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        //AudioClip参照
+        m_jump = Resources.Load<AudioClip>("Sound/SE/Jump");
+        m_stage = Resources.Load<AudioClip>("Sound/BGM/Stage (7)");
+        m_colorChange = Resources.Load<AudioClip>("Sound/SE/Tap");
+        m_boost = Resources.Load<AudioClip>("Sound/SE/SpeedUp");
+        m_panel = Resources.Load<AudioClip>("Sound/SE/SpeedUp");
+
+        //ゲームオブジェクトFind
+
         m_audioSources = new AudioSource[2];
+
+        //インスタンス化
         m_audioSources=GetComponents<AudioSource>();
     }
 
