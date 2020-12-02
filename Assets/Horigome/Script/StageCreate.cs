@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class StageCreate : MonoBehaviour
 {
     [SerializeField]
@@ -88,23 +89,23 @@ public class StageCreate : MonoBehaviour
 
     GameObject checkPointObject;
 
+    //CSVの名前
     private string g_stage;
-
+    /// <summary>
+    /// ステージの名前入れる
+    /// </summary>
+    /// <param name="stageName">ステージ名（csvファイル名）</param>
     public void SetStageName(string stageName)
     {
         g_stage = stageName;
     }
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// ステージ、ブロック生成
+    /// </summary>
+    /// <param name="arrays">csv</param>
+    /// <param name="hgt">高さ</param>
+    /// <param name="wid">長さ</param>
     void CreateMap(int[,] arrays, int hgt, int wid)
     {
         for (int i = 0; i < hgt; i++)
@@ -208,11 +209,12 @@ public class StageCreate : MonoBehaviour
         transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
     }
 
+    /// <summary>
+    /// ステージ生成
+    /// </summary>
     public void Generate()
     {
         g_stage = GetComponent<StageOrder>().GetNextStage();
-
-        Debug.Log(g_stage);
 
         if (g_stage == null) { g_stage = "Stage01"; }
         GetComponent<StageMapCSVread>().PrepareStage(g_stage);

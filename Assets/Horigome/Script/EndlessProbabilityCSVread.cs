@@ -4,21 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class StageMapCSVread : MonoBehaviour
+public class EndlessProbabilityCSVread : MonoBehaviour
 {
-    //マップの情報の配列
-    private int[,] g_stageMapDatas;
+    //エンドレスモードの確率の配列
+    private int[,] g_probabilityDatas;
     /// <summary>
-    /// マップデータ取得（2次元配列）
+    /// エンドレスモードの確率の配列の取得
     /// </summary>
-    /// <returns>マップの配列</returns>
-    public int[,] GetStageMapDatas()
+    /// <returns>確率の2次元配列</returns>
+    public int[,] GetProbabilityDatas()
     {
-        return g_stageMapDatas;
+        return g_probabilityDatas;
     }
 
     // CSVから切り分けられた文字列型２次元配列データ 
-    private string[,] g_sdataArrays;
+    private string[,] g_probabilityDataArrays;
 
     //行数
     private int g_height = 0;
@@ -81,7 +81,7 @@ public class StageMapCSVread : MonoBehaviour
         }
 
         // 確認表示用の変数(行数、列数)を格納する
-        this.g_height = h;  
+        this.g_height = h;
         this.g_width = w;
     }
 
@@ -107,10 +107,9 @@ public class StageMapCSVread : MonoBehaviour
     /// <summary>
     /// CSV読み込んで準備
     /// </summary>
-    public void PrepareStage(string path)
+    public void PrepareProbability()
     {
-        path = "/StreamingAssets/stages/" + path + ".csv";
-        readCSVData(Application.dataPath + path, ref this.g_sdataArrays);
-        convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
+        readCSVData(Application.dataPath + "/StreamingAssets/stages/EndlessProbability.csv", ref this.g_probabilityDataArrays);
+        convert2DArrayType(ref this.g_probabilityDataArrays, ref this.g_probabilityDatas, this.g_height, this.g_width);
     }
 }

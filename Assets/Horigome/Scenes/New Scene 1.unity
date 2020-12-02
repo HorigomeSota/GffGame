@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 64095517}
   - component: {fileID: 64095516}
   - component: {fileID: 64095522}
+  - component: {fileID: 64095523}
   m_Layer: 0
   m_Name: StageCreate
   m_TagString: Untagged
@@ -362,7 +363,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0fbed2ea943b44a87c97f16b26f035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firststage: 0
+  firststage: 2
+--- !u!114 &64095523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64095515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcaaa29c95ff63643a5844b894f5a513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &134638196
 GameObject:
   m_ObjectHideFlags: 0

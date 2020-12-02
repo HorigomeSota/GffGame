@@ -12,9 +12,9 @@ public class CheckPointDistance : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //距離が縮まったらステージ生成
         if (this.transform.position.x - player.transform.position.x <= STAGE_CREATE_DIS)
         {
             GetComponent<StageCreate>().Generate();
