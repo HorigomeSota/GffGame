@@ -16,10 +16,16 @@ public class TimeData : MonoBehaviour
     private float g_resultTime;
     private float g_bestScore;
     private float g_scoreResult;
+<<<<<<< HEAD
     int key; 
     private float g_playingtime = 0;
 
     private string datastr = "ScoreData";
+=======
+    
+    private float g_playingtime = 0;
+    private int key=0;
+>>>>>>> db7cfa28d1831057dea7b377c9aca52c26da354d
 
     /// <summary>
     /// 最高記録を比較してセット

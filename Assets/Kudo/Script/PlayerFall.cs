@@ -25,9 +25,6 @@ public class PlayerFall : MonoBehaviour
     [SerializeField] private float m_playerTransformLimit;
 
 
-    private bool landingOnce=true;
-
-
     private float addGravity=0;
 
     private void Start()
@@ -96,7 +93,6 @@ public class PlayerFall : MonoBehaviour
     private void Landing()
     {
         m_playerState.Move();
-        landingOnce = true;
     }
 
 }

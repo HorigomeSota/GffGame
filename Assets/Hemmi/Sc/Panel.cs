@@ -17,7 +17,7 @@ public class Panel : Gimmick
         new Vector3((Mathf.Sqrt(6)-Mathf.Sqrt(2))/4,(Mathf.Sqrt(6)+Mathf.Sqrt(2))/4,0),        //75度
         new Vector3(0,1,0)      //90度
     };
-    [SerializeField] private float m_power = 10;
+
 
     [SerializeField] private int m_panelRotation = 0;//ここに角度を入れると、オブジェクトの角度も、向きも、全部求めて変更するよ！
     // Start is called before the first frame update

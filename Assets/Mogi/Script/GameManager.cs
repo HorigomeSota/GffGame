@@ -36,16 +36,10 @@ public class GameManager : MonoBehaviour
     GameObject m_TimerObject;
 
     /// <summary>
-    /// UIManagerが入っているゲームオブジェクト
+    /// UIManagerとInputが入っているゲームオブジェクト(canvas
     /// </summary>
     [SerializeField]
-    GameObject m_UIManagerObject;
-
-    /// <summary>
-    /// UIManagerが入っているゲームオブジェクト
-    /// </summary>
-    [SerializeField]
-    GameObject m_InputObject;
+    GameObject m_CanvasObject;
 
     /// <summary>
     /// AudioManagerが入っているゲームオブジェクト
@@ -53,20 +47,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject m_audioManagerObject;
 
-    /*
-    /// <summary>
-    /// timerが入ってるオブジェクト
-    /// </summary>
-    [SerializeField]
-    GameObject m_timerObject;
-    */
 
     /// <summary>
     /// PlayerStateが入っているゲームオブジェクト
     /// </summary>
     [SerializeField]
     GameObject m_playerStateObject;
-
 
 
     /// <summary>
@@ -90,12 +76,19 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+        m_playerStateObject = GameObject.FindGameObjectWithTag("Player");
+        m_CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
+        m_TimerObject=GameObject.FindGameObjectWithTag("Timer");
+
         //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_playerState = m_playerStateObject.GetComponent<PlayerState>();
-        m_UIManager = m_UIManagerObject.GetComponent<UIManager>();
-        m_input = m_InputObject.GetComponent<IInput>();
+        m_UIManager = m_CanvasObject.GetComponent<UIManager>();
+        m_input = m_CanvasObject.GetComponent<IInput>();
         m_tim = m_TimerObject.GetComponent<Timer>();
+
 
     }
 
