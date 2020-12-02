@@ -16,7 +16,11 @@ public class TimeData : MonoBehaviour
     private float g_resultTime;
     private float g_bestScore;
     private float g_scoreResult;
-    int key; private float g_playingtime = 0;
+    int key; 
+    private float g_playingtime = 0;
+
+    private string datastr = "ScoreData";
+
     /// <summary>
     /// 最高記録を比較してセット
     /// </summary>
@@ -57,11 +61,12 @@ public class TimeData : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// ScoreDataを保存
+    /// </summary>
     public void SavePlayerData()
     {
         StreamWriter writer;
-        string datastr = "ScoreData";
         string jsonstr = JsonUtility.ToJson(playerData);
         writer = new StreamWriter(Application.dataPath + "/save" + datastr + ".json", false);
         writer.Write(jsonstr);
@@ -70,10 +75,12 @@ public class TimeData : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// ScoreDataを読み込み
+    /// </summary>
     public void LoadPlayerData()
     {
-        string datastr = "ScoreData";
+        
         StreamReader reader;
         reader = new StreamReader(Application.dataPath + "/save" + datastr + ".json");
         datastr = reader.ReadToEnd();
