@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Timer格納用の変数。インスタンス化済み
     /// </summary>
-    Timer m_tim = new Timer();
+    Timer m_tim;
 
     /// <summary>
     /// AudioManager格納用変数
@@ -28,6 +28,12 @@ public class GameManager : MonoBehaviour
     /// UIManager格納用変数
     /// </summary>
     UIManager m_UIManager;
+
+    /// <summary>
+    /// Timer格納オブジェクト
+    /// </summary>
+    [SerializeField]
+    GameObject m_TimerObject;
 
     /// <summary>
     /// UIManagerが入っているゲームオブジェクト
@@ -89,7 +95,7 @@ public class GameManager : MonoBehaviour
         m_playerState = m_playerStateObject.GetComponent<PlayerState>();
         m_UIManager = m_UIManagerObject.GetComponent<UIManager>();
         m_input = m_InputObject.GetComponent<IInput>();
-
+        m_tim = m_TimerObject.GetComponent<Timer>();
 
     }
 

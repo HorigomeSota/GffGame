@@ -9,6 +9,7 @@ TagManager:
   - Panel
   - ToleranceValue
   - Floor
+  - Data
   layers:
   - Default
   - TransparentFX
