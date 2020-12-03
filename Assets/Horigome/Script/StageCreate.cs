@@ -6,22 +6,22 @@ using UnityEngine;
 public class StageCreate : MonoBehaviour
 {
     [SerializeField]
-    GameObject floorAObj;
+    GameObject floorAObj= default;
     const int FLOOR_A = 10;
     [SerializeField]
-    GameObject floorBObj;
+    GameObject floorBObj= default;
     const int FLOOR_B = 11;
     [SerializeField]
-    GameObject toleranceAObj;
+    GameObject toleranceAObj= default;
     const int TOLERANCE_A = 20;
     [SerializeField]
-    GameObject toleranceBObj;
+    GameObject toleranceBObj = default;
     const int TOLERANCE_B = 21;
     [SerializeField]
-    GameObject enemyAObj;
+    GameObject enemyAObj = default;
     const int ENEMY_A = 30;
     [SerializeField]
-    GameObject enemyBObj;
+    GameObject enemyBObj = default;
     const int ENEMY_B = 31;
 
     [SerializeField]
@@ -35,59 +35,59 @@ public class StageCreate : MonoBehaviour
 
     #region GameObject panelAObj
     [SerializeField]
-    GameObject panelA0Obj;
+    GameObject panelA0Obj = default;
     const int PANEL_A_0 = 4000;
     [SerializeField]
-    GameObject panelA15Obj;
+    GameObject panelA15Obj = default;
     const int PANEL_A_15 = 4015;
     [SerializeField]
-    GameObject panelA30Obj;
+    GameObject panelA30Obj = default;
     const int PANEL_A_30 = 4030;
     [SerializeField]
-    GameObject panelA45Obj;
+    GameObject panelA45Obj = default;
     const int PANEL_A_45 = 4045;
     [SerializeField]
-    GameObject panelA60Obj;
+    GameObject panelA60Obj = default;
     const int PANEL_A_60 = 4060;
     [SerializeField]
-    GameObject panelA75Obj;
+    GameObject panelA75Obj = default;
     const int PANEL_A_75 = 4075;
     [SerializeField]
-    GameObject panelA90Obj;
+    GameObject panelA90Obj = default;
     const int PANEL_A_90 = 4090;
     #endregion
     #region GameObject panelBObj
     [SerializeField]
-    GameObject panelB0Obj;
+    GameObject panelB0Obj = default;
     const int PANEL_B_0 = 4100;
     [SerializeField]
-    GameObject panelB15Obj;
+    GameObject panelB15Obj = default;
     const int PANEL_B_15 = 4115;
     [SerializeField]
-    GameObject panelB30Obj;
+    GameObject panelB30Obj = default;
     const int PANEL_B_30 = 4130;
     [SerializeField]
-    GameObject panelB45Obj;
+    GameObject panelB45Obj = default;
     const int PANEL_B_45 = 4145;
     [SerializeField]
-    GameObject panelB60Obj;
+    GameObject panelB60Obj = default;
     const int PANEL_B_60 = 4160;
     [SerializeField]
-    GameObject panelB75Obj;
+    GameObject panelB75Obj = default;
     const int PANEL_B_75 = 4175;
     [SerializeField]
-    GameObject panelB90Obj;
+    GameObject panelB90Obj = default;
     const int PANEL_B_90 = 4190;
     #endregion
     [SerializeField]
-    GameObject shortcutObj;
+    GameObject shortcutObj = default;
     const int SHORTCUT = 50;
 
     [SerializeField]
-    GameObject checkPointObj;
+    GameObject checkPointObj = default;
     const int CHECKPOINT = 100;
 
-    GameObject checkPointObject;
+    GameObject checkPointObject = default;
 
     //CSVの名前
     private string g_stage;

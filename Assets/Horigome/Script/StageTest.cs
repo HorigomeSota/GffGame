@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageTest : MonoBehaviour
 {
     [SerializeField]
-    int firststage;
+    int firststage = default;
 
     void Start()
     {

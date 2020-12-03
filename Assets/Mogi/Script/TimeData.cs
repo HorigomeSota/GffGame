@@ -16,7 +16,7 @@ public class TimeData : MonoBehaviour
     private float g_resultTime;
     private float g_bestScore;
     private float g_scoreResult;
-    int key; 
+    int key = default; 
 
     private string datastr = "ScoreData";
     
