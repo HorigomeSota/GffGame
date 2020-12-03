@@ -19,5 +19,6 @@ public class CheckPointDistance : MonoBehaviour
         {
             GetComponent<StageCreate>().Generate();
         }
+
     }
 }

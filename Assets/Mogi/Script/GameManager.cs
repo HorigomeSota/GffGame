@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
         m_playerStateObject = GameObject.FindGameObjectWithTag("Player");
         m_CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
-        m_TimerObject=GameObject.FindGameObjectWithTag("Timer");
+        m_TimerObject=GameObject.FindGameObjectWithTag("TextTimer");
 
         //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
