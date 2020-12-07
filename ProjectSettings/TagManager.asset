@@ -12,6 +12,8 @@ TagManager:
   - Data
   - AudioManager
   - TextTimer
+  - Canvas
+  - Timer
   layers:
   - Default
   - TransparentFX

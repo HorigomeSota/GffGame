@@ -80,13 +80,13 @@ public class GameManager : MonoBehaviour
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
         m_playerStateObject = GameObject.FindGameObjectWithTag("Player");
         m_CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
-        m_TimerObject=GameObject.FindGameObjectWithTag("TextTimer");
+        m_TimerObject=GameObject.FindGameObjectWithTag("Timer");
 
         //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_playerState = m_playerStateObject.GetComponent<PlayerState>();
         m_UIManager = m_CanvasObject.GetComponent<UIManager>();
-        m_input = m_CanvasObject.GetComponent<IInput>();
+        m_input = m_CanvasObject.GetComponent<SmartPhoneInput>();
         m_tim = m_TimerObject.GetComponent<Timer>();
 
 
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
-        m_audioManager.PlayClip("stage1");
+        m_audioManager.PlayClip("stage1",1);
         m_tim.TimerReset();
     }
 

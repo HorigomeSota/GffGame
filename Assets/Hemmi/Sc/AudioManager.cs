@@ -19,25 +19,34 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip m_jump;
     [SerializeField]
-    private AudioClip m_stage;
+    private AudioClip[] m_stage;
     [SerializeField]
     private AudioClip m_colorChange;
     [SerializeField]
     private AudioClip m_boost;
     [SerializeField]
-    private AudioClip m_panel;
+    private AudioClip m_speedUp;
+    [SerializeField]
+    private AudioClip m_uiClick;
+
+    private bool defaultBGM;
 
 
     // 音声再生用スクリプト
     // Start is called before the first frame update
     private void Awake()
     {
+        m_stage = new AudioClip[5];
+        defaultBGM = true;
+
         //AudioClip参照
+        m_stage[0] = Resources.Load<AudioClip>("Sound/BGM/Stage1");
+        m_stage[1] = Resources.Load<AudioClip>("Sound/BGM/Stage2");
         m_jump = Resources.Load<AudioClip>("Sound/SE/Jump");
-        m_stage = Resources.Load<AudioClip>("Sound/BGM/Stage (7)");
-        m_colorChange = Resources.Load<AudioClip>("Sound/SE/Tap");
-        m_boost = Resources.Load<AudioClip>("Sound/SE/SpeedUp");
-        m_panel = Resources.Load<AudioClip>("Sound/SE/SpeedUp");
+        m_colorChange = Resources.Load<AudioClip>("Sound/SE/ColorChange");
+        m_boost = Resources.Load<AudioClip>("Sound/SE/Boost");
+        m_speedUp = Resources.Load<AudioClip>("Sound/SE/SpeedUp");
+        m_uiClick = Resources.Load<AudioClip>("Sound/SE/SpeedUp");
 
         //ゲームオブジェクトFind
 
@@ -62,38 +71,54 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 各クラスから、音を鳴らしたいときに呼び出す。stringは、接頭語を抜いたクラス名でお願いします
+    /// 各クラスから、音を鳴らしたいときに呼び出す。stringは、接頭語を抜いたクラス名でお願いします。typeはSEなら0BGMなら1
     /// </summary>
     /// <param name="audio"></param>
-    public void PlayClip(string audio)
+    public void PlayClip(string audio ,int type)
     {
-        switch (audio)
+        if (type == 0)
         {
-            case "Jump":
-                m_audioSources[1].clip = m_jump;
-                audioType = AudioType.SE;
-                break;
+            switch (audio)
+            {
+                case "Jump":
+                    m_audioSources[type].clip = m_jump;
+                    audioType = AudioType.SE;
+                    break;
 
-            case "Stage":
-                m_audioSources[0].clip = m_stage;
-                audioType = AudioType.BGM;
-                break;
+                case "ColorChange":
+                    m_audioSources[type].clip = m_colorChange;
+                    audioType = AudioType.SE;
+                    break;
 
-            case "ColorChange":
-                m_audioSources[1].clip = m_colorChange;
-                audioType = AudioType.SE;
-                break;
+                case "Boost":
+                    m_audioSources[type].clip = m_boost;
+                    audioType = AudioType.SE;
+                    break;
 
-            case "Boost":
-                m_audioSources[1].clip = m_boost;
-                audioType = AudioType.SE;
-                break;
+                case "SpeedUp":
+                    m_audioSources[type].clip = m_speedUp;
+                    audioType = AudioType.SE;
+                    break;
 
-            case "PanelSpeedUp":
-                m_audioSources[1].clip = m_panel;
-                audioType = AudioType.SE;
-                break;
+            }
         }
+        else if (type == 1&&defaultBGM)
+        {
+            
+            switch (audio)
+            {
+                case "Stage1":
+                    m_audioSources[type].clip = m_stage[0];
+                    audioType = AudioType.BGM;
+                    break;
+
+                case "Stage2":
+                    m_audioSources[type].clip = m_stage[1];
+                    audioType = AudioType.BGM;
+                    break;
+            }
+        }
+        
 
         if (audioType == AudioType.BGM)
         {
@@ -106,5 +131,19 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// defaultBGMをオンにする(最初から決まっているBGMを再生する
+    /// </summary>
+    public void DefaultBGMON()
+    {
 
+    }
+
+    /// <summary>
+    /// defaultBGMをオフにする(カスタムで決めたBGMを再生する
+    /// </summary>
+    public void DedaultBGMOFF()
+    {
+
+    }
 }

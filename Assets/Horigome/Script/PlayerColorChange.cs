@@ -25,7 +25,7 @@ public class PlayerColorChange : MonoBehaviour
 
         //マテリアル参照
         materialBlue = Resources.Load<Material>("Materials/Blue");
-        materialRed = Resources.Load<Material>("Materials/Blue");
+        materialRed = Resources.Load<Material>("Materials/Red");
 
         //インスタンス化
         m_playerState = GetComponent<PlayerState>();
@@ -39,16 +39,18 @@ public class PlayerColorChange : MonoBehaviour
         {
             m_playerState.ColorChange();
 
-            m_audioManager.PlayClip("ColorChange");
+            m_audioManager.PlayClip("ColorChange",0);
 
             //色情報取得
             if (m_playerState.GetColor() == 0)
             {
+                Debug.Log("げっとからー"+m_playerState.GetColor());
                 //色（見た目）変える
                 m_renderer.material = materialBlue;
             }
             else
             {
+                Debug.Log("げっとからー" + m_playerState.GetColor());
                 //色（見た目）変える
                 m_renderer.material = materialRed;
             }

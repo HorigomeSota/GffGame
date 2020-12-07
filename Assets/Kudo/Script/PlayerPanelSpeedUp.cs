@@ -71,7 +71,7 @@ public class PlayerPanelSpeedUp : MonoBehaviour
 
         m_timeSpeedUp = 0.3f;
 
-        m_audioManager.PlayClip("PanelSpeedUp");
+        m_audioManager.PlayClip("SpeedUp",0);
 
         
     }

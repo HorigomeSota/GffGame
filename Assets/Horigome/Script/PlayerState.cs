@@ -92,6 +92,7 @@ public class PlayerState : MonoBehaviour
     /// <returns>true=パネルスピードアップしたい</returns>
     public bool GetPanelSpeedUpFlag() { return g_pSpeedUp; }
 
+    [SerializeField]
     //カラーチェンジフラグ
     private bool g_colorChange = false;
     /// <summary>プレイヤーのカラーチェンジフラグをオンにする</summary>
@@ -142,7 +143,6 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         speed = GetComponent<Rigidbody>().velocity.x;
-        Debug.Log(speed);
 
     }
 }
