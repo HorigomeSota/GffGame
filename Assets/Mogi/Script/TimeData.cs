@@ -11,6 +11,7 @@ public class TimeData : MonoBehaviour
         public float BestScore;
     }
     PlayerData playerData = new PlayerData();
+    [SerializeField] int m_saveStageNumber=default;
     [SerializeField] float m_saveTime;
     private float[] g_stageTimes;
     private float g_resultTime;
@@ -68,8 +69,10 @@ public class TimeData : MonoBehaviour
     public void SavePlayerData()
     {
         StreamWriter writer;
+        Debug.Log(g_playingtime);
+        playerData.BestScore = g_playingtime;
         string jsonstr = JsonUtility.ToJson(playerData);
-        writer = new StreamWriter(Application.dataPath + "/save" + datastr + ".json", false);
+        writer = new StreamWriter(Application.dataPath + "/save" +m_saveStageNumber+ ".json", false);
         writer.Write(jsonstr);
         writer.Flush();
         writer.Close();
@@ -83,7 +86,8 @@ public class TimeData : MonoBehaviour
     {
         
         StreamReader reader;
-        reader = new StreamReader(Application.dataPath + "/save" + datastr + ".json");
+        Debug.Log("/save" + m_saveStageNumber + datastr + ".json");
+        reader = new StreamReader(Application.dataPath + "/save" + m_saveStageNumber + ".json");
         datastr = reader.ReadToEnd();
         reader.Close();
         playerData = JsonUtility.FromJson<PlayerData>(datastr); // ロードしたデータで上書き
@@ -91,4 +95,10 @@ public class TimeData : MonoBehaviour
         g_stageTimes = playerData.saveBestTimes;
         g_bestScore = playerData.BestScore;
     }
+
+    public float GetBestScore()
+    {
+        return g_bestScore;
+    }
+
 }

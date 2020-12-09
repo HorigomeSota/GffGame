@@ -42,7 +42,7 @@ class Timer : MonoBehaviour
     /// </summary>
     public void TimerCount(float delta)
     {
-        m_time += delta;
+        m_time = delta;
         m_timedata.PlayNowTimeSave(m_time);
     }
 }
