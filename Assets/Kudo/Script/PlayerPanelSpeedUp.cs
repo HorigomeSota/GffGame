@@ -66,7 +66,7 @@ public class PlayerPanelSpeedUp : MonoBehaviour
             //ここで向きを取得する
             m_panelForce = m_playerState.GetTriggerObj().GetComponent<Panel>().GetVector();
 
-            Debug.Log("x"+m_panelForce.x+ "y"+ m_panelForce.y+ "z" + m_panelForce.z);
+            //Debug.Log("x"+m_panelForce.x+ "y"+ m_panelForce.y+ "z" + m_panelForce.z);
         }
 
         m_timeSpeedUp = 0.3f;

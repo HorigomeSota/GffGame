@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
-        m_audioManager.PlayClip("stage1",1);
+        m_audioManager.PlayClip("Stage1",1);
         m_tim.TimerReset();
     }
 

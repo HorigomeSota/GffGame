@@ -585,10 +585,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_audioSources: []
   m_jump: {fileID: 8300000, guid: 2bbaaf0bf346b1d45a183a65bad1d92e, type: 3}
-  m_stage: {fileID: 8300000, guid: f79562c5f89c5a246b5d1a94bff6751f, type: 3}
+  m_stage: []
   m_colorChange: {fileID: 8300000, guid: 6b807652f12ed0f448400cf7da2aec50, type: 3}
   m_boost: {fileID: 8300000, guid: 9f184ff966475df4ab282cdf06def448, type: 3}
   m_speedUp: {fileID: 0}
+  m_uiClick: {fileID: 0}
+  m_uiCancel: {fileID: 0}
+  m_customBGM: {fileID: 0}
 --- !u!1 &253581296
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d7553b652dc9949893f7848dd44ebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_colorChange: 0
   g_colorChangeNow: 0
   g_playerStatus: 4
 --- !u!114 &253581308
@@ -2851,7 +2855,7 @@ PrefabInstance:
     - target: {fileID: 6107731901550677016, guid: 1ef48ca30d610b544864cd43a0df4417,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 54.78
+      value: 58.09
       objectReference: {fileID: 0}
     - target: {fileID: 6107731901550677016, guid: 1ef48ca30d610b544864cd43a0df4417,
         type: 3}
@@ -2920,7 +2924,7 @@ PrefabInstance:
     - target: {fileID: 1959184278923132522, guid: 9630b9f264656b448ac6d42d63fccdf4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.23
+      value: 47.74
       objectReference: {fileID: 0}
     - target: {fileID: 1959184278923132522, guid: 9630b9f264656b448ac6d42d63fccdf4,
         type: 3}
@@ -3306,7 +3310,7 @@ PrefabInstance:
     - target: {fileID: 5572044516657194253, guid: 0ac82bd963f2d4443a28934ab5c87bfc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.97
+      value: 53.14
       objectReference: {fileID: 0}
     - target: {fileID: 5572044516657194253, guid: 0ac82bd963f2d4443a28934ab5c87bfc,
         type: 3}
