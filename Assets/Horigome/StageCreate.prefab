@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1564289071673424080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564289071673424106}
+  - component: {fileID: 1564289071673424107}
+  - component: {fileID: 1564289071673424084}
+  - component: {fileID: 1564289071673424085}
+  - component: {fileID: 1564289071673424086}
+  - component: {fileID: 1564289071673424087}
+  - component: {fileID: 1564289071673424105}
+  - component: {fileID: 1564289071673424104}
+  m_Layer: 0
+  m_Name: StageCreate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564289071673424106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564289071673424107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370cf30771a3ab14da4b2466f931fdca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564289071673424084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d981ada950e514ba49ad6aa1cfba01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorAObj: {fileID: 93602092038458714, guid: 0ac82bd963f2d4443a28934ab5c87bfc, type: 3}
+  floorBObj: {fileID: 6096534940290180368, guid: 1ef48ca30d610b544864cd43a0df4417,
+    type: 3}
+  toleranceAObj: {fileID: 8762192496378066258, guid: 9630b9f264656b448ac6d42d63fccdf4,
+    type: 3}
+  toleranceBObj: {fileID: 8378011711541258779, guid: a518b6a5db0b4ff4b8c92a652df2b07d,
+    type: 3}
+  enemyAObj: {fileID: 5949942385873306926, guid: 1eb1e6f86a6f37040b7b2ee7b09bade3,
+    type: 3}
+  enemyBObj: {fileID: 1668640788859693720, guid: 7d39b88d95bc5ad4bbf57e19c93033d9,
+    type: 3}
+  panelA0Obj: {fileID: 3813064343070797700, guid: f7b0280c5d58e3348b61708cd4702072,
+    type: 3}
+  panelA15Obj: {fileID: 3813064343070797700, guid: 0db85d76c27b9bb41951bbe1aace46b4,
+    type: 3}
+  panelA30Obj: {fileID: 3813064343070797700, guid: 801658a2fdd7a454fb2413f993593741,
+    type: 3}
+  panelA45Obj: {fileID: 3813064343070797700, guid: 2de5ad504fc01b148bab3ba0bf79ca7f,
+    type: 3}
+  panelA60Obj: {fileID: 3813064343070797700, guid: 9a7d96583b27e634b8b1b93d3b1275fe,
+    type: 3}
+  panelA75Obj: {fileID: 3813064343070797700, guid: 28ac5134d916112489be85ada3b376ea,
+    type: 3}
+  panelA90Obj: {fileID: 3813064343070797700, guid: 1f228c1e48cf471479a440297834fe35,
+    type: 3}
+  panelB0Obj: {fileID: 3813064343070797700, guid: f7b0280c5d58e3348b61708cd4702072,
+    type: 3}
+  panelB15Obj: {fileID: 3813064343070797700, guid: 0db85d76c27b9bb41951bbe1aace46b4,
+    type: 3}
+  panelB30Obj: {fileID: 3813064343070797700, guid: 801658a2fdd7a454fb2413f993593741,
+    type: 3}
+  panelB45Obj: {fileID: 3813064343070797700, guid: 2de5ad504fc01b148bab3ba0bf79ca7f,
+    type: 3}
+  panelB60Obj: {fileID: 3813064343070797700, guid: 9a7d96583b27e634b8b1b93d3b1275fe,
+    type: 3}
+  panelB75Obj: {fileID: 3813064343070797700, guid: 28ac5134d916112489be85ada3b376ea,
+    type: 3}
+  panelB90Obj: {fileID: 3813064343070797700, guid: 1f228c1e48cf471479a440297834fe35,
+    type: 3}
+  shortcutObj: {fileID: 3634217948032184214, guid: 59b94089863bdd54fa43755e3f88c02c,
+    type: 3}
+  checkPointObj: {fileID: 4854715226704424606, guid: 0a2e4220af5de0241a3458dd9086e035,
+    type: 3}
+--- !u!114 &1564289071673424085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fcb5f119177e745942fe5ae68f918b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564289071673424086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5652a4f9e3b704642be8cca140b1521f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564289071673424087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec57121d2bd3f7448915cb25de51edcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564289071673424105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0fbed2ea943b44a87c97f16b26f035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firststage: 2
+--- !u!114 &1564289071673424104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564289071673424080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcaaa29c95ff63643a5844b894f5a513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -207,6 +207,8 @@ public class StageCreate : MonoBehaviour
             }
         }
         transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
+
+        GetComponent<StageMapCSVread>().MapCsvRead(g_stage);
     }
 
     /// <summary>
@@ -216,8 +218,8 @@ public class StageCreate : MonoBehaviour
     {
         g_stage = GetComponent<StageOrder>().GetNextStage();
 
-        if (g_stage == null) { g_stage = "Stage01"; }
-        GetComponent<StageMapCSVread>().PrepareStage(g_stage);
+        //if (g_stage == null) { g_stage = "Stage01"; }
+       // GetComponent<StageMapCSVread>().PrepareStage(g_stage);
         CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth());
 
     }

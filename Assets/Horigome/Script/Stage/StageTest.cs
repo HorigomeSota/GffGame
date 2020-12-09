@@ -9,6 +9,6 @@ public class StageTest : MonoBehaviour
 
     void Start()
     {
-        GetComponent<StageOrder>().SetFirstStage(firststage);
+        //GetComponent<StageOrder>().SetFirstStage(firststage);
     }
 }

@@ -25,7 +25,7 @@ public class PlayerColorChange : MonoBehaviour
 
         //マテリアル参照
         materialBlue = Resources.Load<Material>("Materials/Blue");
-        materialRed = Resources.Load<Material>("Materials/Blue");
+        materialRed = Resources.Load<Material>("Materials/Red");
 
         //インスタンス化
         m_playerState = GetComponent<PlayerState>();

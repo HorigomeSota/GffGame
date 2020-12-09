@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameStart();
+        Invoke("GameStart",3f);
     }
 
     /// <summary>
@@ -145,8 +145,12 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
+        m_playerState.SetGameStart();
+        GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
         m_audioManager.PlayClip("stage1");
         m_tim.TimerReset();
+
+        Debug.Log("Start");
     }
 
     /// <summary>

@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+    //ゲームがスタートしているかどうか
+    private bool m_gameStart=false;
+
+    public void SetGameStart()
+    {
+        m_gameStart = true;
+    }
+
     //現在の色
-    private int color;
+    [SerializeField] private int color;
     /// <summary>Colorを変える</summary>
     public void ColorChange()
     {
@@ -123,17 +131,17 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] PlayerStatus g_playerStatus = PlayerStatus.none;
     /// <summary>プレイヤーステータスをmoveにする</summary>
-    public void Move() { if (!g_boost&&!g_death) g_playerStatus = PlayerStatus.move; }
+    public void Move() { if (m_gameStart&&!g_boost&&!g_death) g_playerStatus = PlayerStatus.move; }
     /// <summary>プレイヤーステータスをfallにする</summary>
-    public void Fall() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.fall; }
+    public void Fall() { if (m_gameStart && !g_boost && !g_death) g_playerStatus = PlayerStatus.fall; }
     /// <summary>プレイヤーステータスをcSpeedupにする</summary>
-    public void ColorSpeedUp() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeedup; }
+    public void ColorSpeedUp() { if (m_gameStart && !g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeedup; }
     /// <summary>プレイヤーステータスをcSpeeddownにする</summary>
-    public void ColorSpeedDown() { if (!g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeeddown; }
+    public void ColorSpeedDown() { if (m_gameStart && !g_boost && !g_death) g_playerStatus = PlayerStatus.cSpeeddown; }
     /// <summary>プレイヤーステータスをnoneにする</summary>
     public void None() { g_playerStatus = PlayerStatus.none; }
     /// <summary>プレイヤーステータスをboostにする</summary>
-    public void Boost() {if(!g_death) g_playerStatus = PlayerStatus.boost; }
+    public void Boost() {if(m_gameStart && !g_death) g_playerStatus = PlayerStatus.boost; }
     /// <summary>プレイヤーステータス取得</summary>
     /// <returns>0=move,1=fall,2=cSpeedup,3=cSpeeddown,4=none,5=boost</returns>
     public int GetPlayerStatus() { return (int)g_playerStatus; }
@@ -142,7 +150,7 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         speed = GetComponent<Rigidbody>().velocity.x;
-        Debug.Log(speed);
+
 
     }
 }

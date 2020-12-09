@@ -24,6 +24,7 @@ public class StageOrder : MonoBehaviour
     /// <param name="firstStage"></param>
     public void SetFirstStage(int firstStage)
     {
+
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
         g_nextStageNo = firstStage;
@@ -35,6 +36,9 @@ public class StageOrder : MonoBehaviour
     /// <returns>CSVファイル名</returns>
     public string GetNextStage()
     {
+        
+
+
         //エンドレスモードじゃないとき次のステージのファイル名取得
         if (!g_endless)
         {
@@ -85,13 +89,28 @@ public class StageOrder : MonoBehaviour
         }
     }
 
-    void Awake()
+   /* void Awake()
     {
-        g_endless = false;
+       // g_endless = false;
         g_stageOrder= GetComponent<StageOrderCSVread>().PrepareStageOrder();
-        GetComponent<EndlessProbabilityCSVread>().PrepareProbability();
-        g_endlessProbability = GetComponent<EndlessProbabilityCSVread>().GetProbabilityDatas();
+       // GetComponent<EndlessProbabilityCSVread>().StartCoroutine("ReadCsv()");
+       g_endlessProbability = GetComponent<EndlessProbabilityCSVread>().GetProbabilityDatas();
     }
+   */
+
+
+
+    public void SetStageOrder(string[] stargeOrder)
+    {
+        g_stageOrder = stargeOrder;
+    }
+
+    public void SetEndlessProbability(int[,] EndlessProbability)
+    {
+        g_endlessProbability = EndlessProbability;
+    }
+
+
 
     private void Start()
     {

@@ -4,21 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class EndlessProbabilityCSVread : MonoBehaviour
+public class StageMapCSVread : MonoBehaviour
 {
-    //エンドレスモードの確率の配列
-    private int[,] g_probabilityDatas;
+    //マップの情報の配列
+    private int[,] g_stageMapDatas;
     /// <summary>
-    /// エンドレスモードの確率の配列の取得
+    /// マップデータ取得（2次元配列）
     /// </summary>
-    /// <returns>確率の2次元配列</returns>
-    public int[,] GetProbabilityDatas()
+    /// <returns>マップの配列</returns>
+    public int[,] GetStageMapDatas()
     {
-        return g_probabilityDatas;
+        return g_stageMapDatas;
     }
 
     // CSVから切り分けられた文字列型２次元配列データ 
-    private string[,] g_probabilityDataArrays;
+    private string[,] g_sdataArrays;
 
     //行数
     private int g_height = 0;
@@ -46,12 +46,9 @@ public class EndlessProbabilityCSVread : MonoBehaviour
     /// </summary>
     /// <param name="path">ファイルパス</param>
     /// <param name="sdata">2次元配列（文字型）</param>
-    private void readCSVData(string path, ref string[,] sdata)
+    private void readCSVData(string strStream, ref string[,] sdata)
     {
-        // ストリームリーダーsrに読み込む
-        StreamReader sr = new StreamReader(path);
-        // ストリームリーダーをstringに変換
-        string strStream = sr.ReadToEnd();
+       
         // StringSplitOptionを設定(要はカンマとカンマに何もなかったら格納しないことにする)
         StringSplitOptions option = StringSplitOptions.RemoveEmptyEntries;
 
@@ -81,7 +78,7 @@ public class EndlessProbabilityCSVread : MonoBehaviour
         }
 
         // 確認表示用の変数(行数、列数)を格納する
-        this.g_height = h;
+        this.g_height = h;  
         this.g_width = w;
     }
 
@@ -104,12 +101,36 @@ public class EndlessProbabilityCSVread : MonoBehaviour
         }
     }
 
+
+
     /// <summary>
     /// CSV読み込んで準備
     /// </summary>
-    public void PrepareProbability()
+    public void PrepareStage(string path)
     {
-        readCSVData(Application.dataPath + "/StreamingAssets/stages/EndlessProbability.csv", ref this.g_probabilityDataArrays);
-        convert2DArrayType(ref this.g_probabilityDataArrays, ref this.g_probabilityDatas, this.g_height, this.g_width);
+        path = "/StreamingAssets/stages/" + path + ".csv";
+        readCSVData(Application.dataPath + path, ref this.g_sdataArrays);
+        convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
+    }
+
+
+    public void MapCsvRead(string textFileName)
+    {
+        StartCoroutine(ReadCsv(textFileName));
+    }
+
+    IEnumerator ReadCsv(string textFileName)
+    {
+        Debug.Log(textFileName);
+
+        string path = Application.dataPath + "/StreamingAssets" + "/" + textFileName+".csv";
+        //string path = "jar:file://" + Application.dataPath + "!/assets" +"/" + textFileName+ ".csv";
+        WWW www = new WWW(path);
+        yield return www;
+        readCSVData(www.text, ref this.g_sdataArrays);
+
+        convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
+
+        yield break;
     }
 }
