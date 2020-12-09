@@ -27,7 +27,10 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
     }
 
-    private void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
+    /// <summary>
+    /// カラーチェンジした時にも呼ぶ
+    /// </summary>
+    public void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
         switch (m_triggerObj.tag)
         {

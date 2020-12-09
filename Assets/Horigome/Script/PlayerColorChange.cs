@@ -14,12 +14,14 @@ public class PlayerColorChange : MonoBehaviour
     private PlayerState m_playerState;
     private Renderer m_renderer;
 
+    private PlayerTriggerColorCheck m_TriggerColorCheck;
+
     [SerializeField]
     private AudioManager m_audioManager;
 
     private void Start()
     {
-
+        m_TriggerColorCheck = GetComponent<PlayerTriggerColorCheck>();
         //ゲームオブジェクトFind
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
 
@@ -37,6 +39,7 @@ public class PlayerColorChange : MonoBehaviour
     {
         if (m_playerState.GetColorChangeFlag())//cloroChangeのフラグがたっているか確認
         {
+            m_TriggerColorCheck.ColorCheck();
             m_playerState.ColorChange();
 
             m_audioManager.PlayClip("ColorChange",0);
