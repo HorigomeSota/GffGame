@@ -14,14 +14,15 @@ public class UIManager : MonoBehaviour
     //　タイマー表示用テキスト
     [SerializeField]
     GameObject timerText;
+    private int m_minutes;
     /// <summary>
     /// 秒数
     /// </summary>
-    private int seconds;
+    private int m_seconds;
     /// <summary>
     /// 小数点以下の秒数
     /// </summary>
-    private int comma;
+    private int m_comma;
 
 
     private void Start()
@@ -42,11 +43,18 @@ public class UIManager : MonoBehaviour
         float g_time = m_timedata.GetPlayNow();
         if (g_time != 0)
         {
-            seconds = (int)(g_time - g_time % 1);
-            comma = (int)(g_time % 1*100);
+
+            m_seconds = (int)(g_time - g_time % 1);
+            if (m_seconds >= 60)
+            {
+                m_minutes = m_seconds / 60;
+                m_seconds = m_seconds % 60;
+            }
+            m_comma = (int)(g_time % 1*100);
+
         }
 
-        timerText.GetComponent<Text>().text = seconds + ":" + comma;
+        timerText.GetComponent<Text>().text =m_minutes.ToString("00")+":"+ m_seconds.ToString("00") + ":" + m_comma.ToString("00");
         return;
     }
 }

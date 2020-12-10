@@ -9,8 +9,6 @@ using UnityEngine.UI;
 public class StageOrderCSVread : MonoBehaviour
 {
 
-    public Text tex;
-
     string m_csvData;
 
 
@@ -97,12 +95,31 @@ public class StageOrderCSVread : MonoBehaviour
     {
         
         string textFileName = "Order.csv";
-        //string path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
-        string path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+
+        string path = null;
+
+        DeviceType deviceType;
+
+
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+
         WWW www = new WWW(path);
         yield return www;
 
-        tex.text = www.text;
+       
+
+
 
         readCSVData(www.text, ref this.g_oredrDataArrays);
 

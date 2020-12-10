@@ -18,6 +18,8 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         m_playerState = GetComponent<PlayerState>();
     }
 
+
+
     private void Update()
     {
         //触れているオブジェクトとプレイヤーの色取得
@@ -27,8 +29,12 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
     }
 
-    private void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
+    /// <summary>
+    /// カラーチェンジした時にも呼ぶ
+    /// </summary>
+    public void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
+        if(m_triggerObj!=null)
         switch (m_triggerObj.tag)
         {
             case "Enemy"://敵に触れたとき(色が違うと死ぬ)

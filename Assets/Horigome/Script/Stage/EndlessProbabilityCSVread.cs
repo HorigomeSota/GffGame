@@ -126,10 +126,26 @@ public class EndlessProbabilityCSVread : MonoBehaviour
 
     IEnumerator ReadCsv()
     {
-
         string textFileName = "EndlessProbability.csv";
-        string path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
-        //string path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+
+        string path = null;
+
+        DeviceType deviceType;
+
+
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+
         WWW www = new WWW(path);
         yield return www;
 

@@ -63,7 +63,7 @@ public class PlayerBoost : MonoBehaviour
             boostSwich = true;
             m_playerState.Boost();
             StartCoroutine("Boost");
-            m_audioManager.PlayClip("Boost");
+            m_audioManager.PlayClip("Boost",0);
         }
 
     }

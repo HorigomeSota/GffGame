@@ -22,10 +22,20 @@ public class PlayerColorSpeedUp : MonoBehaviour
     private float m_judgment;
 
 
+    [SerializeField]
+    private GameObject m_audioManagerObject;
+
+    [SerializeField]
+    private AudioManager m_audioManager;
+
     private void Start()
     {
-        m_PlayerRigidbody = GetComponent<Rigidbody>();
+        //ゲームオブジェクトFind
+        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
 
+        //インスタンス化
+        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
+        m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_playerState = GetComponent<PlayerState>();
 
         m_justTolerance = 0.1f;
@@ -46,6 +56,7 @@ public class PlayerColorSpeedUp : MonoBehaviour
     private void Update()
     {
         if (m_playerState.GetColorChangeNowFlag()&&ToleranceCheck()) ColorSpeedUp();
+        m_playerState.ColorChangeNowFlagOff();
     }
 
     private bool ToleranceCheck()
@@ -59,7 +70,6 @@ public class PlayerColorSpeedUp : MonoBehaviour
             if ( m_playerState.GetTriggerObj().tag == "ToleranceValue" && m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment && m_playerState.GetColor() != m_playerState.GetTriggerObj().GetComponent<ToleranceValue>().GetColor()) return true;
             else 
             {
-                m_playerState.ColorChangeNowFlagOff();
                 return false;
             }
             
@@ -75,7 +85,6 @@ public class PlayerColorSpeedUp : MonoBehaviour
     private void ColorSpeedUp()
     {
         
-        m_playerState.ColorChangeNowFlagOff();
 
 
         if (m_judgment < m_justTolerance * m_playerState.GetTriggerObj().transform.localScale.x)
@@ -97,10 +106,11 @@ public class PlayerColorSpeedUp : MonoBehaviour
             Debug.Log("Ok");
             m_speed = 30;
         }
-        
 
 
+        m_audioManager.PlayClip("SpeedUp",0);
         m_PlayerRigidbody.AddForce(Vector3.right * m_speed, ForceMode.Impulse);
+
     }
 
 }

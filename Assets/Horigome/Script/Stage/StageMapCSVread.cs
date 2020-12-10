@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 
 public class StageMapCSVread : MonoBehaviour
 {
@@ -119,14 +120,41 @@ public class StageMapCSVread : MonoBehaviour
         StartCoroutine(ReadCsv(textFileName));
     }
 
+
+    public Text tex;
+
     IEnumerator ReadCsv(string textFileName)
     {
         Debug.Log(textFileName);
 
-        string path = Application.dataPath + "/StreamingAssets" + "/" + textFileName+".csv";
-        //string path = "jar:file://" + Application.dataPath + "!/assets" +"/" + textFileName+ ".csv";
+        Debug.Log(textFileName+"texFile");
+
+        Dictionary<string, string> systemInfo = new Dictionary<string, string>();
+
+        string path=null;
+
+        DeviceType deviceType;
+
+        
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName + ".csv";
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName + ".csv";
+        }
+
+
+
         WWW www = new WWW(path);
         yield return www;
+
+        Debug.Log(www.text+"wwtex");
         readCSVData(www.text, ref this.g_sdataArrays);
 
         convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);

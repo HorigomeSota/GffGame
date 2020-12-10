@@ -64,8 +64,8 @@ public class PlayerJump : MonoBehaviour
         //fallに変える
         //m_playerState.Fall();
         //Debug.Log("fallに変ええる");
-        m_audioManager.PlayClip("Jump");
-        Debug.Log("JumpSE");
+        m_audioManager.PlayClip("Jump",0);
+
 
         //JumpFlagをoff
         m_playerState.JumpFlagOff();

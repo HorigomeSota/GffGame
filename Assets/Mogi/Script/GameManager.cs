@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
         m_playerStateObject = GameObject.FindGameObjectWithTag("Player");
         m_CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
-        m_TimerObject=GameObject.FindGameObjectWithTag("TextTimer");
+        m_TimerObject=GameObject.FindGameObjectWithTag("Timer");
 
         //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             if (m_jumpinput)
             {
                 m_playerState.JumpFlagOn();
-                Debug.Log("ジャンプ");
+
                 m_jumpinput = false;
                 
             }
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         m_gamestarting = true;
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
-        m_audioManager.PlayClip("stage1");
+        m_audioManager.PlayClip("stage1",1);
         m_tim.TimerReset();
 
         Debug.Log("Start");
