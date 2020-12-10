@@ -32,6 +32,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
     /// </summary>
     public void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
+        if(m_triggerObj!=null)
         switch (m_triggerObj.tag)
         {
             case "Enemy"://敵に触れたとき(色が違うと死ぬ)

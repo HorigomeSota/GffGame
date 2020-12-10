@@ -17,11 +17,31 @@ public class StageSelecteButton : MonoBehaviour
         m_stageSelecteClass = m_stageSelecteTransform.GetComponent<StageSelecte>();
     }
 
+
     
     public void StageChange()
     {
         m_stageSelecteClass.StageTransition(m_stageNumber);
         
 
+    }
+
+    /// <summary>
+    /// ステージ番号を返す   
+    /// </summary>
+    /// <returns></returns>
+    public void GetStageNumber()
+    {
+        print(m_stageNumber);
+        //return m_stageNumber;
+    }
+
+    /// <summary>
+    /// ボタンにステージ番号をつける
+    /// </summary>
+    /// <param name="stageNumber"></param>
+    public void SetStageNumber(int stageNumber)
+    {
+        m_stageNumber = stageNumber;
     }
 }

@@ -9,8 +9,6 @@ public class Test : MonoBehaviour
     GameObject list;
 
     TimeData m_timeData;
-    
-
     int n;
     void Start()
     {
@@ -23,8 +21,17 @@ public class Test : MonoBehaviour
             GameObject listButton = Instantiate(listButtonPrefab) as GameObject;
             //Vertical Layout Group の子にする
             listButton.transform.SetParent(listTrs, false);
-            listButton.transform.Find("StageName").GetComponent<Text>().text = "STAGE"+(i+1).ToString();
-            m_timeData.LoadPlayerData();
+            if (i != 4)
+            {
+                listButton.transform.Find("StageName").GetComponent<Text>().text = "STAGE" + (i + 1).ToString();
+            }
+            else
+            {
+                listButton.transform.Find("StageName").GetComponent<Text>().text = "∞ENDLESS∞";
+            }
+
+            listButton.transform.GetComponent<StageSelecteButton>().SetStageNumber(i+1);
+            m_timeData.LoadPlayerData();//データ読み込み
 
             float g_time = m_timeData.GetBestScore();
             int m_minutes=default;
@@ -41,11 +48,15 @@ public class Test : MonoBehaviour
             //以下、追加---------
             n = i;
             //引数に何番目のボタンかを渡す
-            listButton.GetComponent<Button>().onClick.AddListener(() => MyOnClick(n));
+            //
+            //listButton.GetComponent<Button>().onClick.AddListener(() => MyOnClick(n));
         }
     }
+    
+    /*
     void MyOnClick(int index)
     {
         print(index);
     }
+    */
 }
