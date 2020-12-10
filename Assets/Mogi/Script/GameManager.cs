@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_playerState = m_playerStateObject.GetComponent<PlayerState>();
         m_UIManager = m_CanvasObject.GetComponent<UIManager>();
-        m_input = m_CanvasObject.GetComponent<SmartPhoneInput>();
+        m_input = m_CanvasObject.GetComponent<IInput>();
         m_tim = m_TimerObject.GetComponent<Timer>();
 
 
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameStart();
+        Invoke("GameStart",3f);
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             if (m_jumpinput)
             {
                 m_playerState.JumpFlagOn();
-                Debug.Log("ジャンプ");
+
                 m_jumpinput = false;
                 
             }
@@ -145,8 +145,12 @@ public class GameManager : MonoBehaviour
     private void GameStart()
     {
         m_gamestarting = true;
-        m_audioManager.PlayClip("Stage1",1);
+        m_playerState.SetGameStart();
+        GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
+        m_audioManager.PlayClip("stage1",1);
         m_tim.TimerReset();
+
+
     }
 
     /// <summary>

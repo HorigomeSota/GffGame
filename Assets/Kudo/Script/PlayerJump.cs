@@ -13,31 +13,30 @@ public class PlayerJump : MonoBehaviour
     /// ジャンプの向き
     /// </summary>
     private Vector3 m_jumpForce;
+
     /// <summary>
     /// プレイヤーのRigidbody
     /// </summary>
     private Rigidbody m_PlayerRigidbody;
+
     /// <summary>
     /// ジャンプの力
     /// </summary>
     [SerializeField] private float m_jumpPower;
 
-    [SerializeField]
-    private GameObject m_audioManagerObject;
-
+    /// <summary>
+    /// AudioManager取得用
+    /// </summary>
     [SerializeField]
     private AudioManager m_audioManager;
 
     private void Start()
     {
 
-        //ゲームオブジェクトFind
-        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
-
         //インスタンス化
         m_playerState = GetComponent<PlayerState>();
         m_PlayerRigidbody = GetComponent<Rigidbody>();
-        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
+        m_audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
 
 
         if (m_jumpForce== new Vector3(0,0,0))
@@ -66,7 +65,7 @@ public class PlayerJump : MonoBehaviour
         //m_playerState.Fall();
         //Debug.Log("fallに変ええる");
         m_audioManager.PlayClip("Jump",0);
-        Debug.Log("JumpSE");
+
 
         //JumpFlagをoff
         m_playerState.JumpFlagOff();

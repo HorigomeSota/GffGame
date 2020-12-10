@@ -69,7 +69,7 @@ public class TimeData : MonoBehaviour
     public void SavePlayerData()
     {
         StreamWriter writer;
-        Debug.Log(g_playingtime);
+
         playerData.BestScore = g_playingtime;
         string jsonstr = JsonUtility.ToJson(playerData);
         writer = new StreamWriter(Application.dataPath + "/save" +m_saveStageNumber+ ".json", false);

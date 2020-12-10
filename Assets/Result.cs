@@ -20,7 +20,7 @@ public class Result : MonoBehaviour
     {
         if (m_playerState.GetDeathFlag())
         {
-            Debug.Log("GAMEOVER");
+
             GameOver();
             
         }
@@ -31,6 +31,6 @@ public class Result : MonoBehaviour
     {
 
         m_timeData.SavePlayerData(); 
-        Debug.Log("保存した");
+
     }
 }

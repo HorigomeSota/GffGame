@@ -77,7 +77,7 @@ public class PlayerFall : MonoBehaviour
 
 
         }
-        else
+        else if(m_playerState.GetTriggerObj() == null)
         {
             m_playerState.Fall();
 
@@ -89,10 +89,6 @@ public class PlayerFall : MonoBehaviour
        
 
     }
-    //着地時の処理
-    private void Landing()
-    {
-        m_playerState.Move();
-    }
+   
 
 }
