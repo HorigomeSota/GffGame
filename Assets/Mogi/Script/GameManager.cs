@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         m_audioManager.PlayClip("stage1",1);
         m_tim.TimerReset();
 
-        Debug.Log("Start");
+
     }
 
     /// <summary>

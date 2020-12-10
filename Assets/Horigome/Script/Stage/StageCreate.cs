@@ -209,7 +209,7 @@ public class StageCreate : MonoBehaviour
         transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
 
         GetComponent<StageMapCSVread>().MapCsvRead(g_stage);
-        Debug.Log(g_stage + "g_stage");
+
     }
 
     /// <summary>

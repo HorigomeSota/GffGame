@@ -24,18 +24,24 @@ public class GameController : MonoBehaviour
         m_titleRootObj.SetActive(false);
 
         m_StageRootObj.SetActive(false);
+
+        m_GameRootObj.SetActive(true);
     }
     private void TitleObjOn()
     {
         m_GameRootObj.SetActive(false);
 
         m_StageRootObj.SetActive(false);
+
+        m_titleRootObj.SetActive(true);
     }
     private void StageObjOn()
     {
         m_titleRootObj.SetActive(false);
 
         m_GameRootObj.SetActive(false);
+
+        m_StageRootObj.SetActive(true);
     }
 
 }

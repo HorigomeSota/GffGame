@@ -6,7 +6,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 {
     private GameObject m_triggerObj;
 
-    private GameObject m_triggerObjBefore;
+    private float m_triggerObjBeforePositionX;
 
     private int m_playerColor;
 
@@ -23,9 +23,10 @@ public class PlayerTriggerColorCheck : MonoBehaviour
     private void Update()
     {
         //触れているオブジェクトとプレイヤーの色取得
-        m_playerColor = m_playerState.GetColor();
+        
         m_triggerObj = m_playerState.GetTriggerObj();
-        if(m_triggerObj!=null&&m_triggerObj!=m_triggerObjBefore) ColorCheck();
+        
+        if(m_triggerObj!=null&&m_triggerObj.transform.position.x!=m_triggerObjBeforePositionX) ColorCheck();
 
     }
 
@@ -34,15 +35,17 @@ public class PlayerTriggerColorCheck : MonoBehaviour
     /// </summary>
     public void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
-        if(m_triggerObj!=null)
+        m_playerColor = m_playerState.GetColor();
+        if (m_triggerObj!=null)
+
         switch (m_triggerObj.tag)
         {
             case "Enemy"://敵に触れたとき(色が違うと死ぬ)
 
                 if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
                 {
-
-                }
+                        GetComponent<PlayerState>().Move();//ステイトをmoveに変更
+                    }
                 else {
                     GetComponent<PlayerState>().DeathFlagOn();
                 }//ステイトをデスにする
@@ -81,19 +84,23 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                 if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
                 {
                     GetComponent<PlayerState>().Move();//ステイトをmoveに変更
-                }
+
+
+                    }
                 else
                 {
 
                     GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
-                }
+
+                       
+                    }
 
                 break;
 
 
 
         }
-        m_triggerObjBefore = m_triggerObj;
+        m_triggerObjBeforePositionX = m_triggerObj.transform.position.x;
 
     }
 

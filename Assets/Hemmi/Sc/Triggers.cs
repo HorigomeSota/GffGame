@@ -75,7 +75,8 @@ public class Triggers : MonoBehaviour
         }
         m_triggerStays[m_priorityEnter] = other.gameObject;
         m_prioritys[m_priorityEnter] = m_priorityEnter;
-        if (m_priorityMax > m_priorityEnter)//今触れたやつの優先度が保持している奴の優先度より高いなら、優先度一番高い奴として格納
+
+        if (m_priorityMax >= m_priorityEnter)//今触れたやつの優先度が保持している奴の優先度より高いなら、優先度一番高い奴として格納
         {
             m_priorityMax = m_priorityEnter;
             g_mostPriority = m_triggerStays[Array.IndexOf(m_triggerStays, other.gameObject)];

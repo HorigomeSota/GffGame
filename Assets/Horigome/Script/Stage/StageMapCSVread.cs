@@ -125,9 +125,7 @@ public class StageMapCSVread : MonoBehaviour
 
     IEnumerator ReadCsv(string textFileName)
     {
-        Debug.Log(textFileName);
 
-        Debug.Log(textFileName+"texFile");
 
         Dictionary<string, string> systemInfo = new Dictionary<string, string>();
 
@@ -154,7 +152,7 @@ public class StageMapCSVread : MonoBehaviour
         WWW www = new WWW(path);
         yield return www;
 
-        Debug.Log(www.text+"wwtex");
+
         readCSVData(www.text, ref this.g_sdataArrays);
 
         convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);

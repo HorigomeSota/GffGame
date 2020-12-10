@@ -85,9 +85,7 @@ public class StageOrder : MonoBehaviour
             }
 
             g_endlessCount++;
-            Debug.Log(g_stageOrder+ "g_stageOrder");
-            Debug.Log(m_stageNo+ "m_stageNo");
-            Debug.Log(g_nextStageNo+ "g_nextStageNo");
+
             return "Endless/"+ g_stageOrder[g_nextStageNo + m_stageNo];
         }
     }
