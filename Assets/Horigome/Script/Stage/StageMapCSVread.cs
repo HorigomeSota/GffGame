@@ -104,15 +104,6 @@ public class StageMapCSVread : MonoBehaviour
 
 
 
-    /// <summary>
-    /// CSV読み込んで準備
-    /// </summary>
-    public void PrepareStage(string path)
-    {
-        path = "/StreamingAssets/stages/" + path + ".csv";
-        readCSVData(Application.dataPath + path, ref this.g_sdataArrays);
-        convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
-    }
 
 
     public void MapCsvRead(string textFileName)
@@ -121,8 +112,9 @@ public class StageMapCSVread : MonoBehaviour
     }
 
 
-    public Text tex;
-
+    /// <summary>
+    /// CSV読み込んで準備
+    /// </summary>
     IEnumerator ReadCsv(string textFileName)
     {
 

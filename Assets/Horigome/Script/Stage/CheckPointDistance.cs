@@ -19,7 +19,7 @@ public class CheckPointDistance : MonoBehaviour
     void Update()
     {
         //距離が縮まったらステージ生成
-        if (this.transform.position.x - player.transform.position.x <= STAGE_CREATE_DIS&&m_start)
+        if (this.transform.position.x - player.transform.position.x <= STAGE_CREATE_DIS)
         {
             GetComponent<StageCreate>().Generate();
         }

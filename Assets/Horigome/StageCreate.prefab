@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1564289071673424085}
   - component: {fileID: 1564289071673424086}
   - component: {fileID: 1564289071673424087}
-  - component: {fileID: 1564289071673424105}
   - component: {fileID: 1564289071673424104}
   m_Layer: 0
   m_Name: StageCreate
@@ -116,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fcb5f119177e745942fe5ae68f918b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tex: {fileID: 0}
 --- !u!114 &1564289071673424086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,19 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec57121d2bd3f7448915cb25de51edcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1564289071673424105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564289071673424080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0fbed2ea943b44a87c97f16b26f035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firststage: 2
 --- !u!114 &1564289071673424104
 MonoBehaviour:
   m_ObjectHideFlags: 0

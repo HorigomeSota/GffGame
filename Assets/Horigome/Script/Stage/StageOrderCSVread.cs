@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class StageOrderCSVread : MonoBehaviour
 {
 
-    string m_csvData;
 
 
     private void Start()
@@ -75,23 +74,13 @@ public class StageOrderCSVread : MonoBehaviour
 
     }
 
+    
+
+
     /// <summary>
     /// CSV読み込んで準備
     /// </summary>
-
-    public string[] PrepareStageOrder()
-    {
-
-
-        readCSVData(m_csvData, ref this.g_oredrDataArrays);
-
-        return g_oredrDataArrays;
-
-    }
-
-
-
-    IEnumerator  ReadCsv()
+    IEnumerator ReadCsv()
     {
         
         string textFileName = "Order.csv";

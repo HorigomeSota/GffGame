@@ -71,8 +71,6 @@ public class PlayerFall : MonoBehaviour
             }
 
 
-            //moveに戻す
-            //Invoke("Landing", 0.2f);
             
 
 

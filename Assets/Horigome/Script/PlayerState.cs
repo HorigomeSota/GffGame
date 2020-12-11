@@ -7,6 +7,7 @@ public class PlayerState : MonoBehaviour
     //ゲームがスタートしているかどうか
     private bool m_gameStart=false;
 
+    /// <summary>ゲームがスタートしたらオン</summary>
     public void SetGameStart()
     {
         m_gameStart = true;
@@ -149,6 +150,7 @@ public class PlayerState : MonoBehaviour
 
     private void Update()
     {
+        //現在のスピード取得
         speed = GetComponent<Rigidbody>().velocity.x;
 
 

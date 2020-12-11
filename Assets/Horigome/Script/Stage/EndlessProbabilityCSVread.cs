@@ -115,15 +115,12 @@ public class EndlessProbabilityCSVread : MonoBehaviour
         GetComponent<StageOrder>().SetEndlessProbability(iarrays);
     }
 
+    
+   
+
     /// <summary>
     /// CSV読み込んで準備
     /// </summary>
-    public void PrepareProbability()
-    {
-        readCSVData(Application.dataPath + "/StreamingAssets/stages/EndlessProbability.csv", ref this.g_probabilityDataArrays);
-        convert2DArrayType(ref this.g_probabilityDataArrays, ref this.g_probabilityDatas, this.g_height, this.g_width);
-    }
-
     IEnumerator ReadCsv()
     {
         string textFileName = "EndlessProbability.csv";
