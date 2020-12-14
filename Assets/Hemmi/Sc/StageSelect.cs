@@ -63,9 +63,6 @@ public class StageSelect : MonoBehaviour
             float g_bestTime = m_timeData.GetBestTime(i);
             float g_secondTime = m_timeData.GetSecondTime(i);
             float g_thirdTime = m_timeData.GetThirdTime(i);
-            Debug.Log("i=" + i + "ベストスコア" + m_timeData.GetBestTime(i));
-            Debug.Log("セカンドスコア" + m_timeData.GetSecondTime(i));
-            Debug.Log("サードスコア" + m_timeData.GetThirdTime(i));
             int m_bestMinutes=default;
             int m_secondMinutes=default;
             int m_thirdMinutes=default;

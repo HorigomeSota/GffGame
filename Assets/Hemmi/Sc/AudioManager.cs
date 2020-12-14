@@ -65,6 +65,7 @@ public class AudioManager : MonoBehaviour
 
         //インスタンス化
         m_audioSources=GetComponents<AudioSource>();
+        PlayClip("Stage1", 1);
     }
 
     private void PlayBGM()

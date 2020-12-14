@@ -13,6 +13,8 @@ public class Triggers : MonoBehaviour
     [SerializeField] private GameObject m_player;//プレイヤー取得
     bool m_nullFrag = false;
 
+    bool g_triggerFlore=false;
+
     [SerializeField]
     private GameObject m_audioManagerObject;
     AudioManager m_audioManager;
@@ -71,6 +73,7 @@ public class Triggers : MonoBehaviour
                 break;
             case "Floor":
                 m_priorityEnter = 4;
+                g_triggerFlore = true;
                 break;
         }
         m_triggerStays[m_priorityEnter] = other.gameObject;
@@ -102,6 +105,7 @@ public class Triggers : MonoBehaviour
                 break;
             case "Floor":
                 m_priorityExit = 4;
+                g_triggerFlore = false;
                 break;
         }
         if (other.gameObject == m_triggerStays[m_priorityExit])//離れたオブジェクトと触れていたオブジェクトが一致していたら
@@ -146,5 +150,11 @@ public class Triggers : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    public bool GetFloreFlag()
+    {
+        return g_triggerFlore;
     }
 }

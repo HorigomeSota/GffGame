@@ -25,7 +25,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         //触れているオブジェクトとプレイヤーの色取得
         
         m_triggerObj = m_playerState.GetTriggerObj();
-        
+
         if(m_triggerObj!=null&&m_triggerObj.transform.position.x!=m_triggerObjBeforePositionX) ColorCheck();
 
     }
@@ -36,39 +36,45 @@ public class PlayerTriggerColorCheck : MonoBehaviour
     public void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
         m_playerColor = m_playerState.GetColor();
-        if (m_triggerObj!=null)
-
-        switch (m_triggerObj.tag)
+        if (m_triggerObj != null)
         {
-            case "Enemy"://敵に触れたとき(色が違うと死ぬ)
+            switch (m_triggerObj.tag)
+            {
+                case "Enemy"://敵に触れたとき(色が違うと死ぬ)
 
-                if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
-                {
-                        GetComponent<PlayerState>().Move();//ステイトをmoveに変更
+                    if (GetComponent<Triggers>().GetFloreFlag())
+                    {
+                        GetComponent<PlayerState>().Move();
                     }
-                else {
-                    GetComponent<PlayerState>().DeathFlagOn();
-                }//ステイトをデスにする
 
-                break;
+                    if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
+                    {
+                        
+                    }
+                    else
+                    {
+                        GetComponent<PlayerState>().DeathFlagOn();
+                    }//ステイトをデスにする
 
-            case "Shortcut"://ショートカットに当たった時(同じ色だと発動)
+                    break;
 
-                if (m_triggerObj.GetComponent<Shortcut>().GetColor() == m_playerColor)
-                {
-                    GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
-                }
+                case "Shortcut"://ショートカットに当たった時(同じ色だと発動)
 
-                break;
+                    if (m_triggerObj.GetComponent<Shortcut>().GetColor() == m_playerColor)
+                    {
+                        GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
+                    }
 
-            case "Panel"://パネルに当たった時(同じ色だと発動)
+                    break;
 
-                if (m_triggerObj.GetComponent<Panel>().GetColor() == m_playerColor)
-                {
-                    GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
-                }
+                case "Panel"://パネルに当たった時(同じ色だと発動)
 
-                break;
+                    if (m_triggerObj.GetComponent<Panel>().GetColor() == m_playerColor)
+                    {
+                        GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
+                    }
+
+                    break;
                 /*
             case "ToleranceValue"://許容値に当たった時(同じ色だと発動)
 
@@ -79,28 +85,31 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                 break;
                 */
-            case "Floor"://フロアに当たった時(同じ色だとmove,違う色だとスピードダウン)
+                case "Floor"://フロアに当たった時(同じ色だとmove,違う色だとスピードダウン)
 
-                if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
-                {
-                    GetComponent<PlayerState>().Move();//ステイトをmoveに変更
+                    if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
+                    {
+                        GetComponent<PlayerState>().Move();//ステイトをmoveに変更
 
 
                     }
-                else
-                {
+                    else
+                    {
 
-                    GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
+                        GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
 
-                       
+
                     }
 
-                break;
+                    break;
 
 
 
+            }
+            m_triggerObjBeforePositionX = m_triggerObj.transform.position.x;
         }
-        m_triggerObjBeforePositionX = m_triggerObj.transform.position.x;
+
+        
 
     }
 
