@@ -14,6 +14,7 @@ TagManager:
   - TextTimer
   - Canvas
   - Timer
+  - StageSelecte
   layers:
   - Default
   - TransparentFX
