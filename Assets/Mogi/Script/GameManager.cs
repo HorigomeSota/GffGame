@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
         m_gamestarting = true;
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
-        m_audioManager.PlayClip("stage1",1);
+        m_audioManager.PlayClip("stage",1);
         m_tim.TimerReset();
 
 

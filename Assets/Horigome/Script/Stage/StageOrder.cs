@@ -6,8 +6,9 @@ public class StageOrder : MonoBehaviour
 {
     //ステージの順番とファイル名
     string[] g_stageOrder;
+
     //次のステージ番号
-    private int g_nextStageNo;
+    [SerializeField] private int g_nextStageNo;
 
     //レベルに応じた確率の2次元配列
     int[,] g_endlessProbability;
@@ -37,8 +38,6 @@ public class StageOrder : MonoBehaviour
     public string GetNextStage()
     {
         
-
-
         //エンドレスモードじゃないとき次のステージのファイル名取得
         if (!g_endless)
         {
@@ -99,19 +98,33 @@ public class StageOrder : MonoBehaviour
     }
    */
 
-
-
     public void SetStageOrder(string[] stargeOrder)
     {
         g_stageOrder = stargeOrder;
+    }
+
+    /// <summary>
+    /// ステージ一覧取得用メソッド
+    /// </summary>
+    /// <returns></returns>
+    public string[] GetStageOrder()
+    {
+        return g_stageOrder;
+    }
+
+    /// <summary>
+    /// 現在のステージの番号取得用メソッド
+    /// </summary>
+    /// <returns></returns>
+    public int GetStageNumber()
+    {
+        return g_nextStageNo-2;
     }
 
     public void SetEndlessProbability(int[,] EndlessProbability)
     {
         g_endlessProbability = EndlessProbability;
     }
-
-
 
     private void Start()
     {
