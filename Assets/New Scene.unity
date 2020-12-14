@@ -1156,6 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055e2697f439317439281c9243a57205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stageOrder: {fileID: 0}
   m_saveStageNumber: 0
   m_saveTime: 0
 --- !u!4 &812812065
@@ -1733,6 +1734,16 @@ PrefabInstance:
         type: 3}
       propertyPath: tex
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564289071673424086, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: g_nextStageNo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564289071673424105, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: firststage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46475b66e2419ac4e970919716ca102c, type: 3}

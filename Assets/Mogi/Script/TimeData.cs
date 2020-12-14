@@ -40,7 +40,7 @@ public class TimeData : MonoBehaviour
     /// <summary>
     /// 記録比較用メソッド
     /// </summary>
-    public void TimeCompare()
+    private void TimeCompare()
     {
         /*
         g_resultTime = g_playingtime;
@@ -49,7 +49,23 @@ public class TimeData : MonoBehaviour
             g_stageBestTimes[key] = g_playingtime;
         }
         */
-
+        if (g_playingtime < playerData.saveBestTimes[m_stageOrder.GetStageNumber()])//もしタイムが最高記録なら
+        {
+            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
+            playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = playerData.saveBestTimes[m_stageOrder.GetStageNumber()];
+            playerData.saveBestTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
+        }
+        //二番目だったら
+        else if (playerData.saveBestTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveSecondTimes[m_stageOrder.GetStageNumber()])
+        {
+            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
+            playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
+        }
+        //三番目だったら
+        else if(playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveThirdTimes[m_stageOrder.GetStageNumber()])
+        {
+            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
+        }
 
     }
     /// <summary>
@@ -89,9 +105,7 @@ public class TimeData : MonoBehaviour
         StreamWriter writer;
         playerData.BestScore = g_playingtime;
         LoadPlayerData();
-        Debug.Log(m_stageOrder.GetStageNumber()+"げっとすてーじなんばー");
-        Debug.Log(playerData.saveBestTimes[m_stageOrder.GetStageNumber()]);
-        playerData.saveBestTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
+        TimeCompare();
         string jsonstr = JsonUtility.ToJson(playerData);
         
         writer = new StreamWriter(Application.dataPath + "/save" +".json", false);
@@ -118,9 +132,22 @@ public class TimeData : MonoBehaviour
         g_bestScore = playerData.BestScore;
     }
 
-    public float GetBestScore()
+    public float GetBestTime(int stageNumber)
     {
-        return g_bestScore;
+        LoadPlayerData();
+        return playerData.saveBestTimes[stageNumber];
+    }
+
+    public float GetSecondTime(int stageNumber)
+    {
+        LoadPlayerData();
+        return playerData.saveSecondTimes[stageNumber];
+    }
+
+    public float GetThirdTime(int stageNumber)
+    {
+        LoadPlayerData();
+        return playerData.saveThirdTimes[stageNumber];
     }
 
 }

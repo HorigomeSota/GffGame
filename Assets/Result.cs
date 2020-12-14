@@ -7,6 +7,7 @@ public class Result : MonoBehaviour
     PlayerState m_playerState;
     TimeData m_timeData;
 
+    private bool m_gameOver=true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,11 @@ public class Result : MonoBehaviour
     //GameOver処理かく(今はデータ保存の疎通確認したいので未完成,そのうちだれかやろう)
     private void GameOver()
     {
-
-        m_timeData.SavePlayerData(); 
+        if (m_gameOver)
+        {
+            m_timeData.SavePlayerData();
+            m_gameOver = false;
+        }
 
     }
 }
