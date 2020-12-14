@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 public class TimeData : MonoBehaviour
 {
+
+
     [System.Serializable]
     public class PlayerData
     {
@@ -36,15 +38,19 @@ public class TimeData : MonoBehaviour
     }
 
     /// <summary>
-    /// 最高記録を比較してセット
+    /// 記録比較用メソッド
     /// </summary>
     public void TimeCompare()
     {
+        /*
         g_resultTime = g_playingtime;
         if (g_stageBestTimes[key] > g_playingtime)
         {
             g_stageBestTimes[key] = g_playingtime;
         }
+        */
+
+
     }
     /// <summary>
     /// 直近のゲームのTimeを取得用
@@ -81,12 +87,14 @@ public class TimeData : MonoBehaviour
     public void SavePlayerData()
     {
         StreamWriter writer;
-
         playerData.BestScore = g_playingtime;
+        LoadPlayerData();
+        Debug.Log(m_stageOrder.GetStageNumber()+"げっとすてーじなんばー");
         Debug.Log(playerData.saveBestTimes[m_stageOrder.GetStageNumber()]);
         playerData.saveBestTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
         string jsonstr = JsonUtility.ToJson(playerData);
-        writer = new StreamWriter(Application.dataPath + "/save" +m_saveStageNumber+ ".json", false);
+        
+        writer = new StreamWriter(Application.dataPath + "/save" +".json", false);
         writer.Write(jsonstr);
         writer.Flush();
         writer.Close();
@@ -100,7 +108,7 @@ public class TimeData : MonoBehaviour
     {
         
         StreamReader reader;
-        Debug.Log("/save"  + datastr + ".json");
+        Debug.Log("/save"  + ".json");
         reader = new StreamReader(Application.dataPath + "/save"  + ".json");
         datastr = reader.ReadToEnd();
         reader.Close();
