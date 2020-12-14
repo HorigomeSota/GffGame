@@ -14,6 +14,10 @@ TagManager:
   - TextTimer
   - Canvas
   - Timer
+  - TitleRoot
+  - GameRoot
+  - StageRoot
+  - GameManager
   layers:
   - Default
   - TransparentFX

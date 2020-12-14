@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SmartPhoneInput :MonoBehaviour,IInput
 {
@@ -10,26 +11,85 @@ public class SmartPhoneInput :MonoBehaviour,IInput
     /// <summary>trueの時、色を変える</summary>
     private bool m_colorCheck = false;
 
+    /// <summary>Sceneナンバー</summary>
+    private int g_sceneNum = 0;
+   
+
     /// <summary>カメラを取得</summary>
-    public Camera camera_object;
+    private Camera camera_object;
 
     /// <summary>レイキャストが当たったものを取得する入れ物</summary>
-    private RaycastHit hit; 
+    private RaycastHit m_hit;
 
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //マウスがクリックされたら
-        {
-            Ray ray = camera_object.ScreenPointToRay(Input.mousePosition); //マウスのポジションを取得してRayに代入
+        camera_object = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
-            if (Physics.Raycast(ray, out hit))  //マウスのポジションからRayを投げて何かに当たったらhitに入れる
+        //マウスがクリックされたら
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            //マウスのポジションを取得してRayに代入
+            Ray ray = camera_object.ScreenPointToRay(Input.mousePosition); 
+
+            //マウスのポジションからRayを投げて何かに当たったらhitに入れる
+            if (Physics.Raycast(ray, out m_hit)) 
             {
-                string objectName = hit.collider.gameObject.name; //オブジェクト名を取得して変数に入れる
-                Debug.Log(objectName); //オブジェクト名をコンソールに表示
+                //オブジェクト名を取得して変数に入れる
+                string objectName = m_hit.collider.gameObject.name;
+                ObjectCheck(objectName);
+                
             }
         }
     }
+
+
+    private void ObjectCheck(string name)
+    {
+        switch (name)
+        {
+            //右側がタップされたとき　m_jumpCheck　をtrue
+            case ("RightTap"):
+
+                m_jumpCheck = true;
+
+                break;
+
+            //左側がタップされたとき　m_colorCheck　をtrue
+            case ("LeftTap"):
+
+                m_colorCheck = true;
+
+                break;
+                
+            case ("ToTitle"):
+
+                g_sceneNum = 0;
+
+                break;
+
+            case ("ToStageSelect"):
+
+                g_sceneNum = 1;
+
+                break;
+
+           
+            case ("ToGame_Clone"):
+
+                g_sceneNum = 2;
+
+                break;
+
+        }
+    }
+
+    
+    public int SceneCheck()
+    {
+        return g_sceneNum;
+    }
+
     public bool JumpCheck()
     {
         return m_jumpCheck;
@@ -46,20 +106,5 @@ public class SmartPhoneInput :MonoBehaviour,IInput
         m_jumpCheck = false;
     }
 
-    //右側がタップされたとき　m_jumpCheck　をtrue
-    public void RightScreenTap()
-    {
-        m_jumpCheck = true;
-    }
-
-    //左側がタップされたとき　m_colorCheck　をtrue
-    public void LeftScreenTap()
-    {
-
-        m_colorCheck = true;
-     }
-
-
-    
 
 }

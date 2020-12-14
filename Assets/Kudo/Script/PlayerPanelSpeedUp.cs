@@ -48,6 +48,8 @@ public class PlayerPanelSpeedUp : MonoBehaviour
     {
         if (m_playerState.GetPanelSpeedUpFlag() == true) {
 
+            Debug.Log("panel");
+
             //PanelSpeedUpFlagをoff
             m_playerState.PanelSpeedUpFlagOff();
             PanelSpeedUp();

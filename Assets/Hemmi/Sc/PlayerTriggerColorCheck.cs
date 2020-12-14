@@ -36,39 +36,42 @@ public class PlayerTriggerColorCheck : MonoBehaviour
     public void ColorCheck()//自分の色と、オブジェクトの色比較。一つのオブジェクトでは一回のみ判定するようにした
     {
         m_playerColor = m_playerState.GetColor();
-        if (m_triggerObj!=null)
-
-        switch (m_triggerObj.tag)
+        if (m_triggerObj != null)
         {
-            case "Enemy"://敵に触れたとき(色が違うと死ぬ)
+            switch (m_triggerObj.tag)
+            {
+                case "Enemy"://敵に触れたとき(色が違うと死ぬ)
 
-                if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
-                {
+                    if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
+                    {
                         GetComponent<PlayerState>().Move();//ステイトをmoveに変更
                     }
-                else {
-                    GetComponent<PlayerState>().DeathFlagOn();
-                }//ステイトをデスにする
+                    else
+                    {
+                        GetComponent<PlayerState>().DeathFlagOn();
+                    }//ステイトをデスにする
 
-                break;
+                    break;
 
-            case "Shortcut"://ショートカットに当たった時(同じ色だと発動)
+                case "Shortcut"://ショートカットに当たった時(同じ色だと発動)
 
-                if (m_triggerObj.GetComponent<Shortcut>().GetColor() == m_playerColor)
-                {
-                    GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
-                }
+                    if (m_triggerObj.GetComponent<Shortcut>().GetColor() == m_playerColor)
+                    {
+                        GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
+                    }
 
-                break;
+                    break;
 
-            case "Panel"://パネルに当たった時(同じ色だと発動)
+                case "Panel"://パネルに当たった時(同じ色だと発動)
 
-                if (m_triggerObj.GetComponent<Panel>().GetColor() == m_playerColor)
-                {
-                    GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
-                }
+                    if (m_triggerObj.GetComponent<Panel>().GetColor() == m_playerColor)
+                    {
+                        GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
 
-                break;
+                        Debug.Log("スピードアップpン");
+                    }
+
+                    break;
                 /*
             case "ToleranceValue"://許容値に当たった時(同じ色だと発動)
 
@@ -79,29 +82,32 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                 break;
                 */
-            case "Floor"://フロアに当たった時(同じ色だとmove,違う色だとスピードダウン)
+                case "Floor"://フロアに当たった時(同じ色だとmove,違う色だとスピードダウン)
 
-                if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
-                {
-                    GetComponent<PlayerState>().Move();//ステイトをmoveに変更
+                    if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
+                    {
+                        GetComponent<PlayerState>().Move();//ステイトをmoveに変更
 
 
                     }
-                else
-                {
+                    else
+                    {
 
-                    GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
+                        GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
 
-                       
+
                     }
 
-                break;
+                    break;
 
 
+
+            }
+            m_triggerObjBeforePositionX = m_triggerObj.transform.position.x;
 
         }
-        m_triggerObjBeforePositionX = m_triggerObj.transform.position.x;
-
     }
+
+        
 
 }

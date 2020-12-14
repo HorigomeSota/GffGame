@@ -92,10 +92,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        Invoke("GameStart",3f);
-    }
 
     /// <summary>
     /// 時間を計ってTimerに時間の加算を頼む、送られた時間をUIManagerへ
@@ -142,7 +138,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// ゲームのスタート
     /// </summary>
-    private void GameStart()
+    public void GameStart()
     {
         m_gamestarting = true;
         m_playerState.SetGameStart();

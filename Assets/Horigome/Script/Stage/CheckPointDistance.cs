@@ -28,7 +28,12 @@ public class CheckPointDistance : MonoBehaviour
 
     public void StartCreate()
     {
-        m_start = true;
+        if (m_start == false)
+        {
+            player.transform.position = new Vector3(0, 5, -0.4f);
+            m_start = true;
+        }
+        
     }
 
 }

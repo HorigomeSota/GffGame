@@ -41,7 +41,6 @@ public class PlayerFall : MonoBehaviour
             addGravity += 2f;
 
 
-
             //下方向に力を加える
             m_playerRigidbody.AddForce(Vector3.down * (gravity+addGravity));
 

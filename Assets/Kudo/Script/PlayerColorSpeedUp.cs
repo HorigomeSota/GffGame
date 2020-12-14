@@ -89,21 +89,19 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
         if (m_judgment < m_justTolerance * m_playerState.GetTriggerObj().transform.localScale.x)
         {
-            Debug.Log("Just");
             m_speed = 50;
         }
 
 
         else if (m_judgment < m_goodTolerance * m_playerState.GetTriggerObj().transform.localScale.x) 
         {
-            Debug.Log("Good");
             m_speed = 40;
         }
         
 
         else if (m_judgment < m_okTolerance * m_playerState.GetTriggerObj().transform.localScale.x) 
         {
-            Debug.Log("Ok");
+
             m_speed = 30;
         }
 
