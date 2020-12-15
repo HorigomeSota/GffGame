@@ -310,7 +310,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.647
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -406,7 +406,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.676
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1298,6 +1298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055e2697f439317439281c9243a57205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stageOrder: {fileID: 0}
   m_saveStageNumber: 0
   m_saveTime: 0
 --- !u!4 &812812065
@@ -1942,6 +1943,48 @@ PrefabInstance:
       propertyPath: tex
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB0Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: 8d53ec9a52b86774ba3cf3f57496cbc4,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB15Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: 2ea0a8870c67d7140af0b0a19a347f86,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB30Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: 57d252c045e9fee468274b295aa84145,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB45Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: 48095004e60423e4ab1d706bc610462e,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB60Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: baf7dc828f34aad409cd6be59c4a9bbf,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB75Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: 74842f7d86bec3b49ae295c83c03538e,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: panelB90Obj
+      value: 
+      objectReference: {fileID: 5662944324400823739, guid: c9a43f18b8c9aa045af55965bce171db,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46475b66e2419ac4e970919716ca102c, type: 3}
 --- !u!1 &1956280851

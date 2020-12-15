@@ -104,7 +104,7 @@ public class PlayerState : MonoBehaviour
     //カラーチェンジフラグ
     private bool g_colorChange = false;
     /// <summary>プレイヤーのカラーチェンジフラグをオンにする</summary>
-    public void ColorChangeFlagOn() { g_colorChange = true; }
+    public void ColorChangeFlagOn() { if(!g_death)g_colorChange = true; }
     /// <summary>プレイヤーのカラーチェンジフラグ取得</summary>
     /// <returns>true=カラーチェンジしたい</returns>
     public bool GetColorChangeFlag() { return g_colorChange; }
