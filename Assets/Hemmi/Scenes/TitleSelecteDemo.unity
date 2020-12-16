@@ -1343,6 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055e2697f439317439281c9243a57205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_stageOrder: {fileID: 0}
   m_saveStageNumber: 3
   m_saveTime: 0
 --- !u!1 &1187758330
@@ -1982,6 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5652a4f9e3b704642be8cca140b1521f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  g_nextStageNo: 0
 --- !u!114 &2097477439
 MonoBehaviour:
   m_ObjectHideFlags: 0
