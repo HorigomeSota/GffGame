@@ -11,11 +11,13 @@ public class PlayerTriggerColorCheck : MonoBehaviour
     private int m_playerColor;
 
     private PlayerState m_playerState;
+    private Triggers m_triggers;
 
     // Start is called before the first frame update
     void Start()
     {
         m_playerState = GetComponent<PlayerState>();
+        m_triggers = GetComponent<Triggers>();
     }
 
 
@@ -27,7 +29,16 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         m_triggerObj = m_playerState.GetTriggerObj();
 
         if(m_triggerObj!=null&&m_triggerObj.transform.position.x!=m_triggerObjBeforePositionX) ColorCheck();
-
+        if (m_triggers.GetFlore()!=null)
+        {
+            GameObject flore = m_triggers.GetFlore();
+            m_playerColor = m_playerState.GetColor();
+            if (flore.GetComponent<Floor>().GetColor() == m_playerColor)
+            {
+                m_playerState.FloreFlagON();
+            }
+            else m_playerState.FloreFlagOFF();
+        }
     }
 
     /// <summary>
@@ -40,6 +51,10 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         {
             switch (m_triggerObj.tag)
             {
+                case "FallDeath":
+                    GetComponent<PlayerState>().DeathFlagOn();
+                    break;
+
                 case "Enemy"://敵に触れたとき(色が違うと死ぬ)
 
                     if (GetComponent<Triggers>().GetFloreFlag())

@@ -15,6 +15,7 @@ TagManager:
   - Canvas
   - Timer
   - StageSelecte
+  - FallDeath
   layers:
   - Default
   - TransparentFX
