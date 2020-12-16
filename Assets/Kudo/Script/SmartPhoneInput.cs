@@ -81,6 +81,11 @@ public class SmartPhoneInput :MonoBehaviour,IInput
 
                 break;
 
+            case ("Retry"):
+
+                g_sceneNum = 3;
+
+                break;
         }
     }
 
