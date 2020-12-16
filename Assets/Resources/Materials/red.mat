@@ -8,15 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: red
+<<<<<<< HEAD
   m_Shader: {fileID: 210, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> f607a21a7f1df6ab6abb8fb5a4cf6660077a6555
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _EMISSION
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - ALWAYS
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -57,6 +60,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+<<<<<<< HEAD
+=======
+    - PixelSnap: 0
+>>>>>>> f607a21a7f1df6ab6abb8fb5a4cf6660077a6555
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
@@ -71,6 +78,10 @@ Material:
     - _DistortionStrengthScaled: 0
     - _DstBlend: 0
     - _EmissionEnabled: 1
+<<<<<<< HEAD
+=======
+    - _EnableExternalAlpha: 0
+>>>>>>> f607a21a7f1df6ab6abb8fb5a4cf6660077a6555
     - _FlipbookMode: 0
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -92,4 +103,9 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 0.7490196, g: 0.023529412, b: 0, a: 1}
     - _EmissionColor: {r: 0.5, g: 0, b: 0.03137255, a: 1}
+<<<<<<< HEAD
+=======
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+>>>>>>> f607a21a7f1df6ab6abb8fb5a4cf6660077a6555
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
