@@ -68,7 +68,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     {
                         GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
 
-                        Debug.Log("スピードアップpン");
+
                     }
 
                     break;

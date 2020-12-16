@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private GameObject m_titleRootObj;
-    private GameObject m_GameRootObj;
-    private GameObject m_StageRootObj;
-    private GameObject m_CanvasObject;
+    [SerializeField] private GameObject m_titleRootObj=default;
+    [SerializeField] private GameObject m_GameRootObj=default;
+    [SerializeField] private GameObject m_StageRootObj=default;
+    [SerializeField] private GameObject m_CanvasObject=default;
 
     private GameObject m_gameManager;
 
@@ -15,11 +15,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        m_titleRootObj = GameObject.FindWithTag("TitleRoot");
-        m_GameRootObj = GameObject.FindWithTag("GameRoot");
-        m_StageRootObj = GameObject.FindWithTag("StageRoot");
-        m_CanvasObject=GameObject.FindGameObjectWithTag("Canvas");
-
+      
         m_GameRootObj.SetActive(false);
 
         m_StageRootObj.SetActive(false);

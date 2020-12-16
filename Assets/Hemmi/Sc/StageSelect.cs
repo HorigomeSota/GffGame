@@ -23,16 +23,15 @@ public class StageSelect : MonoBehaviour
         m_stageOrder = GameObject.Find("StageCreate").GetComponent<StageOrder>();
         m_stageName=m_stageOrder.GetStageOrder();
         int m_a = 0;
-        string m_stageNameTop = m_stageName[m_a].Substring(0,1);
+        string m_stageNameTop = default;//= m_stageName[m_a].Substring(0,1);
 
 
         //エンドレスまでのステージ数を取得
         while (m_stageNameTop != "E")
         {
             m_a++;
-            Debug.Log(m_a + "m_a");
             m_stageNameTop = m_stageName[m_a].Substring(0, 1);
-            Debug.Log(m_stageNameTop);
+
         }
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
         list = GameObject.Find("List");

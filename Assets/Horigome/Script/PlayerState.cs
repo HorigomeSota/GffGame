@@ -40,9 +40,16 @@ public class PlayerState : MonoBehaviour
 
     //触れているゲームオブジェクト
     private GameObject g_triggerObject;
+
+    //床オブジェクトに触れているかどうか
+    private GameObject g_floorFlag;
+
+
+
     /// <summary>プレイヤーに触れているゲームオブジェクトを渡す</summary>
     /// <param name="triggerObj">触れているゲームオブジェクト</param>
-    public void SetTriggerObj(GameObject triggerObj) { g_triggerObject = triggerObj; }
+    /// 
+        public void SetTriggerObj(GameObject triggerObj) { g_triggerObject = triggerObj; }
     /// <summary>プレイヤーに触れているゲームオブジェクトを取得</summary>
     /// <returns>触れているゲームオブジェクト</returns>
     public GameObject GetTriggerObj() { return g_triggerObject; }

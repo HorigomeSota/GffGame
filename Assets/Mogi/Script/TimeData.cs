@@ -122,12 +122,12 @@ public class TimeData : MonoBehaviour
     {
         
         StreamReader reader;
-        Debug.Log("/save"  + ".json");
+
         reader = new StreamReader(Application.dataPath + "/save"  + ".json");
         datastr = reader.ReadToEnd();
         reader.Close();
         playerData = JsonUtility.FromJson<PlayerData>(datastr); // ロードしたデータで上書き
-        Debug.Log(playerData.saveBestTimes + "のデータをロードしました");
+
         g_stageBestTimes = playerData.saveBestTimes;
         g_bestScore = playerData.BestScore;
     }
