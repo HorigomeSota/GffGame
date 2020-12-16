@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -45,7 +46,12 @@ public class GameController : MonoBehaviour
                 GameObjOn();
 
                 break;
-            
+
+            case 3:
+
+                Retry();
+
+                break;
         }
         
     }
@@ -82,4 +88,8 @@ public class GameController : MonoBehaviour
         m_StageRootObj.SetActive(true);
     }
 
+    private void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
