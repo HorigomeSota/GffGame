@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PostPro Scene.unity
+    path: Assets/Scenes/PostPro Scene.unity
     guid: 2abd0309f8eb2c6439209c71e686b9eb
   m_configObjects: {}
