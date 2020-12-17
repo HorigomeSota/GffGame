@@ -30,9 +30,8 @@ public class StageSelect : MonoBehaviour
         while (m_stageNameTop != "E")
         {
             m_a++;
-            Debug.Log(m_a + "m_a");
             m_stageNameTop = m_stageName[m_a].Substring(0, 1);
-            Debug.Log(m_stageNameTop);
+
         }
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
         list = GameObject.Find("List");
