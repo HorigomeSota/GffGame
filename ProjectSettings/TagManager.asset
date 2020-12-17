@@ -14,6 +14,10 @@ TagManager:
   - TextTimer
   - Canvas
   - Timer
+  - TitleRoot
+  - GameRoot
+  - StageRoot
+  - GameManager
   - StageSelecte
   - FallDeath
   layers:
@@ -26,7 +30,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - PosPro
   - 
   - 
   - 
