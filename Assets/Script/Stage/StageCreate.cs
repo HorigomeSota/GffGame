@@ -121,10 +121,10 @@ public class StageCreate : MonoBehaviour
                         Instantiate(floorBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
                         break;
                     case TOLERANCE_A:
-                        Instantiate(toleranceAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(toleranceAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(90,-90,0));
                         break;
                     case TOLERANCE_B:
-                        Instantiate(toleranceBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(toleranceBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(90, 90, 0));
                         break;
                     case ENEMY_A:
                         Instantiate(enemyAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);

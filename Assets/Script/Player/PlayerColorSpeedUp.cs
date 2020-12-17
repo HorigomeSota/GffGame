@@ -15,11 +15,16 @@ public class PlayerColorSpeedUp : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_speed;
 
-    [SerializeField] private float m_justTolerance;
-    [SerializeField] private float m_goodTolerance;
-    [SerializeField] private float m_okTolerance;
+    const float m_justTolerance=0.1f;
+    const float m_goodTolerance=0.25f;
+    const float m_okTolerance=0.5f;
 
     private float m_judgment;
+
+    /// <summary>
+    /// 許容範囲値
+    /// </summary>
+    const float m_tolerance = 0.5f;
 
 
     [SerializeField]
@@ -38,9 +43,6 @@ public class PlayerColorSpeedUp : MonoBehaviour
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_playerState = GetComponent<PlayerState>();
 
-        m_justTolerance = 0.1f;
-        m_goodTolerance = 0.25f;
-        m_okTolerance = 0.5f;
        
 
         if (m_speed == 0)
@@ -67,7 +69,7 @@ public class PlayerColorSpeedUp : MonoBehaviour
             //許容範囲の計算
             m_judgment = Mathf.Abs(m_playerState.GetTriggerObj().transform.position.x - transform.position.x);
             //範囲内　かつ　前の色と今の色が同じとき、trueを返す
-            if ( m_playerState.GetTriggerObj().tag == "ToleranceValue" && m_playerState.GetTriggerObj().transform.localScale.x / 2 >= m_judgment && m_playerState.GetColor() != m_playerState.GetTriggerObj().GetComponent<ToleranceValue>().GetColor()) return true;
+            if ( m_playerState.GetTriggerObj().tag == "ToleranceValue" && m_tolerance >= m_judgment && m_playerState.GetColor() != m_playerState.GetTriggerObj().GetComponent<ToleranceValue>().GetColor()) return true;
             else 
             {
                 return false;
@@ -87,19 +89,19 @@ public class PlayerColorSpeedUp : MonoBehaviour
         
 
 
-        if (m_judgment < m_justTolerance * m_playerState.GetTriggerObj().transform.localScale.x)
+        if (m_judgment < m_justTolerance )
         {
             m_speed = 50;
         }
 
 
-        else if (m_judgment < m_goodTolerance * m_playerState.GetTriggerObj().transform.localScale.x) 
+        else if (m_judgment < m_goodTolerance) 
         {
             m_speed = 40;
         }
         
 
-        else if (m_judgment < m_okTolerance * m_playerState.GetTriggerObj().transform.localScale.x) 
+        else if (m_judgment < m_okTolerance) 
         {
 
             m_speed = 30;

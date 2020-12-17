@@ -4432,6 +4432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  g_triggerObject: {fileID: 0}
   g_colorChangeNow: 0
   g_playerStatus: 4
 --- !u!54 &5844198973587289993
@@ -4479,9 +4480,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 0
-  m_justTolerance: 0
-  m_goodTolerance: 0
-  m_okTolerance: 0
   m_audioManagerObject: {fileID: 0}
   m_audioManager: {fileID: 0}
 --- !u!114 &5844198973587289996
@@ -5191,6 +5189,18 @@ PrefabInstance:
       propertyPath: panelB90Obj
       value: 
       objectReference: {fileID: 5662944324400823739, guid: c9a43f18b8c9aa045af55965bce171db,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: toleranceAObj
+      value: 
+      objectReference: {fileID: 3837368269547905466, guid: b655874af46f1e44ea8eae1cc2f651fd,
+        type: 3}
+    - target: {fileID: 1564289071673424084, guid: 46475b66e2419ac4e970919716ca102c,
+        type: 3}
+      propertyPath: toleranceBObj
+      value: 
+      objectReference: {fileID: 2761009633099422916, guid: 6d20396f6053a484a8697b16b7ca35ab,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46475b66e2419ac4e970919716ca102c, type: 3}

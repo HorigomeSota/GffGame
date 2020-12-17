@@ -39,7 +39,7 @@ public class PlayerState : MonoBehaviour
     public float GetSpeed() { return speed; }
 
     //触れているゲームオブジェクト
-    private GameObject g_triggerObject;
+    [SerializeField] private GameObject g_triggerObject;
 
     //床オブジェクトに触れているかどうか
     private GameObject g_floorFlag;

@@ -52,7 +52,7 @@ public class PlayerFall : MonoBehaviour
 
         }
 
-        Debug.Log(m_playerRigidbody.velocity.y);
+
 
     }
 
