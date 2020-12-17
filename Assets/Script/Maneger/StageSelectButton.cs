@@ -15,8 +15,6 @@ public class StageSelectButton : MonoBehaviour
 
     }
 
-
-
     /// <summary>
     /// ステージ番号を返す   
     /// </summary>
@@ -33,6 +31,6 @@ public class StageSelectButton : MonoBehaviour
     /// <param name="stageNumber"></param>
     public void SetStageNumber(int stageNumber)
     {
-        m_stageNumber = stageNumber;
+        m_stageNumber = stageNumber-1;
     }
 }

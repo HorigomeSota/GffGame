@@ -23,15 +23,16 @@ public class StageSelect : MonoBehaviour
         m_stageOrder = GameObject.Find("StageCreate").GetComponent<StageOrder>();
         m_stageName=m_stageOrder.GetStageOrder();
         int m_a = 0;
-        string m_stageNameTop = default;//= m_stageName[m_a].Substring(0,1);
+        string m_stageNameTop=default;
 
 
         //エンドレスまでのステージ数を取得
         while (m_stageNameTop != "E")
         {
             m_a++;
+            Debug.Log(m_a + "m_a");
             m_stageNameTop = m_stageName[m_a].Substring(0, 1);
-
+            Debug.Log(m_stageNameTop);
         }
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
         list = GameObject.Find("List");
@@ -55,8 +56,8 @@ public class StageSelect : MonoBehaviour
             }
             listButton.transform.GetComponent<StageSelectButton>().SetStageNumber(i+1);
 
-            //読み込んだステージ数に応じて横の長さを伸ばす
-            listRectTrs.sizeDelta = new Vector2(listRectTrs.sizeDelta.x+300 , listRectTrs.sizeDelta.y);
+            //読み込んだステージ数に応じて横の長さを伸ばす(ここのXの値は要調整)
+            listRectTrs.sizeDelta = new Vector2(listRectTrs.sizeDelta.x+350 , listRectTrs.sizeDelta.y);
             m_timeData.LoadPlayerData();//データ読み込み
 
             float g_bestTime = m_timeData.GetBestTime(i);
