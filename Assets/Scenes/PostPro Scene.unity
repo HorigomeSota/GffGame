@@ -1622,27 +1622,27 @@ MonoBehaviour:
   BlurMask: {fileID: 2800000, guid: 74ab4394b0e842143bf0f7f14ba8f55e, type: 3}
   Bloom: 1
   BloomColor: {r: 1, g: 1, b: 1, a: 1}
-  BloomAmount: 1.86
-  BloomDiffuse: 1
+  BloomAmount: 1.53
+  BloomDiffuse: 0.44
   BloomThreshold: 0
   BloomSoftness: 0
   LUT: 1
-  LutAmount: 0.56
+  LutAmount: 0.83
   SourceLut: {fileID: 2800000, guid: 721017178fc4f324aae148977215c5ae, type: 3}
   ImageFiltering: 1
   Color: {r: 1, g: 1, b: 1, a: 1}
   Contrast: 0
-  Brightness: 0.08
-  Saturation: 0.41
-  Exposure: -0.08
-  Gamma: 0.03
-  Sharpness: 0.1
+  Brightness: -0.02
+  Saturation: 1
+  Exposure: -0.59
+  Gamma: 0.12
+  Sharpness: 0
   ChromaticAberration: 1
   Offset: 0
-  FishEyeDistortion: -1
-  GlitchAmount: 0.19
+  FishEyeDistortion: -0.56
+  GlitchAmount: 0.1
   Distortion: 1
-  LensDistortion: 0.32
+  LensDistortion: 0
   Vignette: 1
   VignetteColor: {r: 0, g: 0, b: 0, a: 1}
   VignetteAmount: 0
@@ -4500,8 +4500,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   g_mostPriority: {fileID: 0}
-  m_prioritys: 0000000000000000000000000000000000000000
+  m_prioritys: 000000000000000000000000000000000000000000000000
   m_player: {fileID: 0}
   m_audioManagerObject: {fileID: 5844198973635442074}
 --- !u!114 &5844198973587289997
@@ -5033,7 +5034,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &5844198973747047610
 GameObject:
   m_ObjectHideFlags: 0
