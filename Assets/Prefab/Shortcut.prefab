@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4015193636474678824}
   - component: {fileID: 1455069837968857442}
   - component: {fileID: 2226946047042684027}
+  - component: {fileID: -7200150815442766697}
   m_Layer: 0
   m_Name: Shortcut
   m_TagString: Shortcut
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 89ea84b0208fda64fbe50401a4e92a6c, type: 2}
+  - {fileID: 2100000, guid: 0dc9f2c64168c2f45a3b1a3c90b7dcef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,3 +92,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7200150815442766697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634217948032184214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882724c06cff143469385a5036654a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0

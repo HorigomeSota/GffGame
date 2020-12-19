@@ -12,6 +12,15 @@ TagManager:
   - Data
   - AudioManager
   - TextTimer
+  - Canvas
+  - Timer
+  - TitleRoot
+  - GameRoot
+  - StageRoot
+  - GameManager
+  - StageSelecte
+  - FallDeath
+  - Input
   layers:
   - Default
   - TransparentFX
