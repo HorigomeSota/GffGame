@@ -114,8 +114,8 @@ public class StageOrderCSVread : MonoBehaviour
 
         GetComponent<StageOrder>().SetStageOrder(g_oredrDataArrays);
 
-        
-        GetComponent<StageMapCSVread>().MapCsvRead(GetComponent<StageOrder>().GetNextStage());
+
+        //GetComponent<StageMapCSVread>().MapCsvRead(GetComponent<StageOrder>().GetNextStage());
         yield break;
     }
 }

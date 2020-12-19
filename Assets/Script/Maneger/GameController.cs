@@ -8,9 +8,29 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject m_titleRootObj=default;
     [SerializeField] private GameObject m_GameRootObj=default;
     [SerializeField] private GameObject m_StageRootObj=default;
-    [SerializeField] private GameObject m_CanvasObject=default;
+    [SerializeField] private GameObject m_inputObj=default;
+    [SerializeField] private GameObject m_stageCreate = default;
 
     private GameObject m_gameManager;
+    /// <summary>
+    /// 0
+    /// </summary>
+    const int m_titleSceneNum = 0;
+    /// <summary>
+    /// 1
+    /// </summary>
+    const int m_stageSerectSceneNum = 1;
+    /// <summary>
+    /// 2
+    /// </summary>
+    const int m_gameSceneNum = 2;
+    /// <summary>
+    /// 3
+    /// </summary>
+    const int m_retryNum = 3;
+
+    /// <summary>1フレーム前に取得した値 </summary>
+    private int m_beforeNum=0; //初期化
 
     IInput m_input;
 
@@ -21,43 +41,78 @@ public class GameController : MonoBehaviour
 
         m_StageRootObj.SetActive(false);
 
-        m_input = m_CanvasObject.GetComponent<IInput>();
+        m_input = m_inputObj.GetComponent<IInput>();
 
     }
     private void Update()
     {
-
+       
         switch (m_input.SceneCheck())
         {
-            case 0:
+            case m_titleSceneNum:
 
-                TitleObjOn();
-
-                break;
-
-            case 1:
-
-                StageObjOn();
-
-                break;
-
-            case 2:
-
-                GameObjOn();
+                if (m_titleSceneNum!=m_beforeNum)
+                {
+                    TitleObjOn();
+                    m_beforeNum = m_titleSceneNum;
+                }
+                
 
                 break;
 
-            case 3:
+            case m_stageSerectSceneNum:
 
-                Retry();
+                if (m_stageSerectSceneNum != m_beforeNum)
+                {
+                    StageObjOn();
+                    m_beforeNum = m_stageSerectSceneNum;
+                }
+               
+
+                break;
+
+            case m_gameSceneNum:
+
+                if ( m_gameSceneNum != m_beforeNum)
+                {
+
+                    m_stageCreate.GetComponent<StageOrder>().SetFirstStage(m_input.ChoiceObj().GetComponent<StageSelectButton>().GetStageNumber());
+
+                    m_stageCreate.GetComponent<StageMapCSVread>().MapCsvRead(m_stageCreate.GetComponent<StageOrder>().GetNextStage());
+
+                    m_beforeNum = m_gameSceneNum;
+
+                }
+
+                if (m_stageCreate.GetComponent<StageMapCSVread>().GetReadEndFlag() == true)
+                {
+                    m_stageCreate.GetComponent<StageMapCSVread>().ReadEndFlagOff();
+                    GameObjOn();
+                }
+
+                break;
+
+            case m_retryNum:
+
+                if (m_retryNum != m_beforeNum)
+                {
+                    Retry();
+                    m_beforeNum = m_retryNum;
+                }
+                
+                
 
                 break;
         }
         
     }
 
+    
+
     private void GameObjOn()
     {
+       
+
         m_titleRootObj.SetActive(false);
 
         m_StageRootObj.SetActive(false);

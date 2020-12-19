@@ -42,6 +42,25 @@ public class StageMapCSVread : MonoBehaviour
         return g_width;
     }
 
+    //読み込み終了検知フラグ
+    private bool g_readEnd = false;
+
+    /// <summary>
+    /// 読み込み終了検知フラグ　オフ
+    /// </summary>
+    public void ReadEndFlagOff()
+    {
+        g_readEnd = false;
+    }
+
+    /// <summary>
+    /// 読み込み終了検知フラグ　取得
+    /// </summary>
+    public bool GetReadEndFlag()
+    {
+        return g_readEnd;
+    }
+
     /// <summary>
     /// CSVデータを文字列型２次元配列に変換する
     /// </summary>
@@ -109,6 +128,7 @@ public class StageMapCSVread : MonoBehaviour
     public void MapCsvRead(string textFileName)
     {
         StartCoroutine(ReadCsv(textFileName));
+
     }
 
 
@@ -148,6 +168,8 @@ public class StageMapCSVread : MonoBehaviour
         readCSVData(www.text, ref this.g_sdataArrays);
 
         convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
+
+        g_readEnd = true;
 
         yield break;
     }

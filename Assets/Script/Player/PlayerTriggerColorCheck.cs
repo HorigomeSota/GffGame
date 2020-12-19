@@ -6,7 +6,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 {
     private GameObject m_triggerObj;
 
-    private float m_triggerObjBeforePositionX;
+    private Transform m_triggerObjBeforeTransform;
 
     private int m_playerColor;
 
@@ -28,7 +28,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         
         m_triggerObj = m_playerState.GetTriggerObj();
         
-        if(m_triggerObj!=null&&m_triggerObj.transform.position.x!=m_triggerObjBeforePositionX) ColorCheck();
+        if(m_triggerObj!=null&&m_triggerObj.transform!= m_triggerObjBeforeTransform) ColorCheck();
         if (m_triggers.GetFlore()!=null)
         {
             GameObject flore = m_triggers.GetFlore();
@@ -70,10 +70,10 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                 case "Shortcut"://ショートカットに当たった時(同じ色だと発動)
 
-                    if (m_triggerObj.GetComponent<Shortcut>().GetColor() == m_playerColor)
-                    {
-                        GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
-                    }
+                   
+                   
+                     GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
+
 
                     break;
 
@@ -83,6 +83,8 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     {
                         GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
 
+
+                        Debug.Log("ok");
 
                     }
 
@@ -118,7 +120,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
 
             }
-            m_triggerObjBeforePositionX = m_triggerObj.transform.position.x;
+            m_triggerObjBeforeTransform = m_triggerObj.transform;
 
         }
     }

@@ -59,11 +59,11 @@ public class PlayerBoost : MonoBehaviour
 
         if (m_playerState.GetBoostFlag())
         {
-            
+            m_playerState.BoostFlagOff();
             boostSwich = true;
             m_playerState.Boost();
             StartCoroutine("Boost");
-            m_audioManager.PlayClip("Boost",0);
+            
         }
 
     }
@@ -83,15 +83,18 @@ public class PlayerBoost : MonoBehaviour
 
     IEnumerator Boost()
     {
-        Debug.Log("sutat");
+        m_audioManager.PlayClip("Boost", 0);
+
         //時間待ち
         yield return new WaitForSeconds(boostTime);
 
-        Debug.Log("end");
         boostSwich = false;
-        m_playerState.BoostFlagOff();
 
         yield break;
     }
 
+    private void AudoPlay()
+    {
+
+    }
 }

@@ -122,6 +122,7 @@ public class StageSelect : MonoBehaviour
         }
     }
     
+
     /*
     void MyOnClick(int index)
     {

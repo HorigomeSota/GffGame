@@ -221,7 +221,7 @@ public class StageCreate : MonoBehaviour
 
 
         //if (g_stage == null) { g_stage = "Stage01"; }
-       // GetComponent<StageMapCSVread>().PrepareStage(g_stage);
+        //GetComponent<StageMapCSVread>().PrepareStage(g_stage);
         CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth());
 
     }

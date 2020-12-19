@@ -12,17 +12,19 @@ public class StageSelectButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Vector3 objectSize = gameObject.GetComponent<RectTransform>().sizeDelta;
+        BoxCollider collider = GetComponent<BoxCollider>();
+        collider.size = objectSize;
     }
 
     /// <summary>
     /// ステージ番号を返す   
     /// </summary>
     /// <returns></returns>
-    public void GetStageNumber()
+    public int GetStageNumber()
     {
-        print(m_stageNumber);
-        //return m_stageNumber;
+
+        return m_stageNumber;
     }
 
     /// <summary>

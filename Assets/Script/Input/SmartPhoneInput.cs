@@ -21,6 +21,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
     /// <summary>レイキャストが当たったものを取得する入れ物</summary>
     private RaycastHit m_hit;
 
+    private GameObject m_hitObj;
 
     private void Update()
     {
@@ -35,11 +36,17 @@ public class SmartPhoneInput :MonoBehaviour,IInput
             //マウスのポジションからRayを投げて何かに当たったらhitに入れる
             if (Physics.Raycast(ray, out m_hit)) 
             {
+                //オブジェクトを取得して変数に入れる
+                m_hitObj = m_hit.collider.gameObject;
+
                 //オブジェクト名を取得して変数に入れる
-                string objectName = m_hit.collider.gameObject.name;
+                string objectName = m_hitObj.name;
+
                 ObjectCheck(objectName);
                 
             }
+
+
         }
     }
 
@@ -75,7 +82,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
                 break;
 
            
-            case ("ToGame_Clone"):
+            case ("ToGame(Clone)"):
 
                 g_sceneNum = 2;
 
@@ -111,5 +118,8 @@ public class SmartPhoneInput :MonoBehaviour,IInput
         m_jumpCheck = false;
     }
 
-
+    public GameObject ChoiceObj()
+    {
+        return m_hitObj;
+    }
 }
