@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    GameObject playerObj;
     Transform playerTransform;
     const float PLAYER_CAMERA_DIFFERENCE = 7f;
     const float TOP_LIMIT = 5f;
     const float UNDER_LIMIT = 5f;
 
-    const float ZOOM_IN_SPEED = 0.05f;
-    const float ZOOM_IN_SIZE = 1.5f;
+    const float ZOOM_IN_SPEED = 0.02f;
+    const float ZOOM_IN_SIZE = 1.2f;
 
     const float ZOOM_OUT_SPEED = 0.08f;
 
@@ -21,13 +22,17 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = playerObj.transform;
         g_zooming = false;
         g_initialSize = GetComponent<Camera>().orthographicSize;
     }
 
     void Update()
     {
+        if(playerObj.GetComponent<PlayerState>().GetPlayerStatus() == 5) { g_zooming = true; }
+        else { g_zooming = false; }
+
         transform.position = new Vector3(playerTransform.position.x + PLAYER_CAMERA_DIFFERENCE, transform.position.y, transform.position.z);
 
         if (playerTransform.position.y - transform.position.y >= TOP_LIMIT) { transform.position = new Vector3(transform.position.x, playerTransform.position.y - TOP_LIMIT, transform.position.z); }
@@ -59,20 +64,5 @@ public class CameraMove : MonoBehaviour
                 GetComponent<Camera>().orthographicSize = g_initialSize;
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
-    public void ZoomIn()
-    {
-        g_zooming = true;
-    }
-
-    public void ZoomOut()
-    {
-        g_zooming = false;
     }
 }
