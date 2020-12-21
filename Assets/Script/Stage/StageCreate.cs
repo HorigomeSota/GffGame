@@ -33,6 +33,27 @@ public class StageCreate : MonoBehaviour
     [SerializeField]
     const int FLOORB_ENEMYB = 1131;
 
+    //パネルの角度
+    [SerializeField]
+    const int panelAngle0 = 0;
+    [SerializeField]
+    const int panelAngle15 = 15;
+    //パネルの角度=0
+    [SerializeField]
+    const int panelAngle30 = 30;
+    //パネルの角度=0
+    [SerializeField]
+    const int panelAngle45 = 45;
+    //パネルの角度=0
+    [SerializeField]
+    const int panelAngle60 = 60;
+    //パネルの角度=0
+    [SerializeField]
+    const int panelAngle75 = 75;
+    //パネルの角度=0
+    [SerializeField]
+    const int panelAngle90 = 90;
+
     #region GameObject panelAObj
     [SerializeField]
     GameObject panelA0Obj = default;
@@ -138,48 +159,62 @@ public class StageCreate : MonoBehaviour
 
                     #region case PANEL_A
                     case PANEL_A_0:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle0);
                         break;
                     case PANEL_A_15:
-                        Instantiate(panelA15Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle15);
                         break;
                     case PANEL_A_30:
-                        Instantiate(panelA30Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle30);
                         break;
                     case PANEL_A_45:
-                        Instantiate(panelA45Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle45);
                         break;
                     case PANEL_A_60:
-                        Instantiate(panelA60Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle60);
                         break;
                     case PANEL_A_75:
-                        Instantiate(panelA75Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle75);
                         break;
                     case PANEL_A_90:
-                        Instantiate(panelA90Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90));
+                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle90);
                         break;
                     #endregion
                     #region case PANEL_B
                     case PANEL_B_0:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle0);
                         break;
                     case PANEL_B_15:
-                        Instantiate(panelB15Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle15);
                         break;
                     case PANEL_B_30:
-                        Instantiate(panelB30Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle30);
                         break;
                     case PANEL_B_45:
-                        Instantiate(panelB45Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle45);
                         break;
                     case PANEL_B_60:
-                        Instantiate(panelB60Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle60);
                         break;
                     case PANEL_B_75:
-                        Instantiate(panelB75Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle75);
                         break;
                     case PANEL_B_90:
-                        Instantiate(panelB90Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0,0,panelAngle90));
+                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle90);
                         break;
                     #endregion
 

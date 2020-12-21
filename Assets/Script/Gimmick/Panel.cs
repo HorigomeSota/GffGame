@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Panel : Gimmick
 {
-    private Vector3 g_forceVecter = new Vector3(0, 0, 0);
+    private Vector3 g_forceVecter = default;
 
     private Vector3[] m_forceVecter3s =
     {
@@ -18,10 +18,14 @@ public class Panel : Gimmick
         new Vector3(0,1,0)      //90度
     };
 
-    [SerializeField] private int m_panelRotation = 0;//ここに角度を入れると、オブジェクトの角度も、向きも、全部求めて変更するよ！
+    private int m_panelRotation = 0;//ここに角度を入れると、オブジェクトの角度も、向きも、全部求めて変更するよ！
     // Start is called before the first frame update
-    private void Awake()
+    public void SetAngler(int rotarion)
     {
+
+        print(rotarion);
+        
+        m_panelRotation = rotarion;
         transform.Rotate(new Vector3(0, 0, m_panelRotation));//オブジェクトの角度変更
         switch (m_panelRotation)//角度に応じて、パネルのforceの向きを決める
         {
@@ -51,8 +55,12 @@ public class Panel : Gimmick
 
             case 90:
                 g_forceVecter = m_forceVecter3s[6];
+
                 break;
         }
+        print(g_forceVecter);
+
+
     }
     
 
