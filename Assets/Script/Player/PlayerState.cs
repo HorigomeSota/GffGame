@@ -77,6 +77,8 @@ public class PlayerState : MonoBehaviour
     public void FloreFlagON() { m_triggerFlore = true;}
     public void FloreFlagOFF() { m_triggerFlore = true;}
 
+    public bool GetFlore() { return m_triggerFlore; }
+
     //ジャンプフラグ
     private bool g_jump = false;
 
@@ -87,8 +89,7 @@ public class PlayerState : MonoBehaviour
         if (!g_boost &&
             g_playerStatus != PlayerStatus.fall &&
             g_playerStatus != PlayerStatus.cSpeeddown &&
-            !g_death&&
-            m_triggerFlore
+            !g_death
             )
         { g_jump = true; }
     }

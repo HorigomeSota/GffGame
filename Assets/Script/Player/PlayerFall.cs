@@ -81,7 +81,7 @@ public class PlayerFall : MonoBehaviour
 
 
         }
-        else if(m_playerState.GetTriggerObj() == null)
+        else if(m_playerState.GetTriggerObj() == null&& !m_playerState.GetFlore())
         {
             m_playerState.Fall();
 
