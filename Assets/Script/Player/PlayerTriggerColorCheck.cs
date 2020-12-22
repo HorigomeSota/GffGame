@@ -67,7 +67,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                     if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
                     {
-                        GetComponent<PlayerState>().Move();//ステイトをmoveに変更
+
                     }
                     else
                     {
