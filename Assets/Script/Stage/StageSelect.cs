@@ -31,7 +31,7 @@ public class StageSelect : MonoBehaviour
         {
             m_a++;
             m_stageNameTop = m_stageName[m_a].Substring(0, 1);
-
+            print(m_a + "こここお");
         }
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
         list = GameObject.Find("List");
@@ -49,14 +49,15 @@ public class StageSelect : MonoBehaviour
             {
                 listButton.transform.Find("StageName").GetComponent<Text>().text = "STAGE" + (i + 1).ToString();
             }
-            else
+            
+            if(i==m_a)
             {
                 listButton.transform.Find("StageName").GetComponent<Text>().text = "∞ENDLESS∞";
             }
             listButton.transform.GetComponent<StageSelectButton>().SetStageNumber(i+1);
 
             //読み込んだステージ数に応じて横の長さを伸ばす(ここのXの値は要調整)
-            listRectTrs.sizeDelta = new Vector2(listRectTrs.sizeDelta.x+350 , listRectTrs.sizeDelta.y);
+            listRectTrs.sizeDelta = new Vector2(listRectTrs.sizeDelta.x+370 , listRectTrs.sizeDelta.y);
             m_timeData.LoadPlayerData();//データ読み込み
 
             float g_bestTime = m_timeData.GetBestTime(i);

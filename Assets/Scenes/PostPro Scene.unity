@@ -795,7 +795,7 @@ Camera:
   far clip plane: 1000
   field of view: 26.991467
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1628,12 +1628,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2186704401242511629, guid: ab7f4ffd23b13c640be5e3783fd53944,
-        type: 3}
-      propertyPath: listButtonPrefab
-      value: 
-      objectReference: {fileID: 9007916684648225891, guid: a15fef6da1325f542a2b462bface78ce,
-        type: 3}
     - target: {fileID: 2186704401242511628, guid: ab7f4ffd23b13c640be5e3783fd53944,
         type: 3}
       propertyPath: m_HorizontalScrollbar
@@ -1644,6 +1638,12 @@ PrefabInstance:
       propertyPath: m_Horizontal
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2186704401242511629, guid: ab7f4ffd23b13c640be5e3783fd53944,
+        type: 3}
+      propertyPath: listButtonPrefab
+      value: 
+      objectReference: {fileID: 9007916684648225891, guid: a15fef6da1325f542a2b462bface78ce,
+        type: 3}
     - target: {fileID: 2186704401322706379, guid: ab7f4ffd23b13c640be5e3783fd53944,
         type: 3}
       propertyPath: m_Padding.m_Left
@@ -1653,6 +1653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Padding.m_Top
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186704401322706379, guid: ab7f4ffd23b13c640be5e3783fd53944,
+        type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab7f4ffd23b13c640be5e3783fd53944, type: 3}
