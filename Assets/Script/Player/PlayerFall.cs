@@ -39,29 +39,19 @@ public class PlayerFall : MonoBehaviour
         if (m_playerState.GetPlayerStatus() == 1 && m_playerRigidbody.velocity.y > -30f)
         {
 
-
-
             addGravity += 2f;
             //下方向に力を加える
             m_playerRigidbody.AddForce(Vector3.down * (gravity + addGravity));
-
-
-           
-
-
-
         }
-
-
 
     }
 
     private void LateUpdate()
     {
 
-        if (m_playerState.GetTriggerObj() != null&& (m_playerState.GetTriggerObj().tag=="Floor"|| m_playerState.GetTriggerObj().tag == "ToleranceValue"))
+        if (m_playerState.GetTriggerObj() != null && (m_playerState.GetFlore() || m_playerState.GetTriggerObj().tag == "ToleranceValue"))
         {
-            
+
             //床のy座標取得
             m_playerTransformLimit = m_playerState.GetTriggerObj().transform.position.y;
 
@@ -71,20 +61,19 @@ public class PlayerFall : MonoBehaviour
 
                 m_playerRigidbody.velocity = new Vector3(m_playerRigidbody.velocity.x, 0, m_playerRigidbody.velocity.z);
 
-                
+
                 m_playerState.Move();
                 addGravity = 0;
             }
 
 
-            
+
 
 
         }
-        else if(m_playerState.GetTriggerObj() == null)
+        else if (m_playerState.GetTriggerObj() == null && !m_playerState.GetFlore())
         {
             m_playerState.Fall();
-
         }
         
 

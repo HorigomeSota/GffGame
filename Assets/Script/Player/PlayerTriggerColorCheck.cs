@@ -29,16 +29,24 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         m_triggerObj = m_playerState.GetTriggerObj();
         
         if(m_triggerObj!=null&&m_triggerObj.transform!= m_triggerObjBeforeTransform) ColorCheck();
-        if (m_triggers.GetFlore()!=null)
+        if (m_triggers.GetFlore() != null) //フロアに触れているかどうか見る
         {
             GameObject flore = m_triggers.GetFlore();
             m_playerColor = m_playerState.GetColor();
+            m_playerState.FloreFlagON();
+
             if (flore.GetComponent<Floor>().GetColor() == m_playerColor)
             {
-                m_playerState.FloreFlagON();
+                GetComponent<PlayerState>().Move();
+
             }
-            else m_playerState.FloreFlagOFF();
+            else
+            {
+                GetComponent<PlayerState>().ColorSpeedDown();
+            }
+
         }
+        else m_playerState.FloreFlagOFF();
     }
 
     /// <summary>
@@ -111,8 +119,6 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     {
 
                         GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
-
-
                     }
 
                     break;
@@ -123,6 +129,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
             m_triggerObjBeforeTransform = m_triggerObj.transform;
 
         }
+
     }
 
         

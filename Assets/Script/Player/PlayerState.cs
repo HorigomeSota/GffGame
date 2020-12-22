@@ -71,11 +71,13 @@ public class PlayerState : MonoBehaviour
     /// <returns>true=死んでる false=生きてる</returns>
     public bool GetDeathFlag() { return g_death; }
 
-    private bool m_triggerFlore;
+    [SerializeField] private bool m_triggerFlore=false;
 
     
     public void FloreFlagON() { m_triggerFlore = true;}
-    public void FloreFlagOFF() { m_triggerFlore = true;}
+    public void FloreFlagOFF() { m_triggerFlore = false;}
+
+    public bool GetFlore() { return m_triggerFlore; }
 
     //ジャンプフラグ
     private bool g_jump = false;
@@ -87,8 +89,7 @@ public class PlayerState : MonoBehaviour
         if (!g_boost &&
             g_playerStatus != PlayerStatus.fall &&
             g_playerStatus != PlayerStatus.cSpeeddown &&
-            !g_death&&
-            m_triggerFlore
+            !g_death
             )
         { g_jump = true; }
     }

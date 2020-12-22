@@ -161,12 +161,10 @@ public class Triggers : MonoBehaviour
         }
     }
 
-
-    public bool GetFloreFlag()
-    {
-        return g_triggerFlore;
-    }
-
+    /// <summary>
+    /// フロアの情報はべつにして渡す(同時接触による落下防止のため)
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetFlore()
     {
         return m_triggerStays[5];
