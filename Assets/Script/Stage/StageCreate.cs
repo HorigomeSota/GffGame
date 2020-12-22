@@ -167,30 +167,37 @@ public class StageCreate : MonoBehaviour
                     case PANEL_A_0:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle0);
+
                         break;
                     case PANEL_A_15:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle15);
+
                         break;
                     case PANEL_A_30:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle30);
+
                         break;
                     case PANEL_A_45:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle45);
+
                         break;
                     case PANEL_A_60:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle60);
+
                         break;
                     case PANEL_A_75:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle75);
+
                         break;
                     case PANEL_A_90:
                         panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle90);
+
                         break;
                     #endregion
                     #region case PANEL_B
