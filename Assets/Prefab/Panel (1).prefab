@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
-  m_panelRotation: 0
 --- !u!1001 &5281394482328019894
 PrefabInstance:
   m_ObjectHideFlags: 0

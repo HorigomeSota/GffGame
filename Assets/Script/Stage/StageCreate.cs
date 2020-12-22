@@ -6,6 +6,9 @@ using UnityEngine;
 public class StageCreate : MonoBehaviour
 {
     [SerializeField]
+    Transform stageRootObj = default;
+
+    [SerializeField]
     GameObject floorAObj= default;
     const int FLOOR_A = 10;
     [SerializeField]
@@ -56,7 +59,7 @@ public class StageCreate : MonoBehaviour
 
     #region GameObject panelAObj
     [SerializeField]
-    GameObject panelA0Obj = default;
+    GameObject panelAObjPfb = default;
     const int PANEL_A_0 = 4000;
     [SerializeField]
     GameObject panelA15Obj = default;
@@ -79,7 +82,7 @@ public class StageCreate : MonoBehaviour
     #endregion
     #region GameObject panelBObj
     [SerializeField]
-    GameObject panelB0Obj = default;
+    GameObject panelBObjPfb = default;
     const int PANEL_B_0 = 4100;
     [SerializeField]
     GameObject panelB15Obj = default;
@@ -109,6 +112,9 @@ public class StageCreate : MonoBehaviour
     const int CHECKPOINT = 100;
 
     GameObject checkPointObject = default;
+
+    GameObject panelBObj = default;
+    GameObject panelAObj = default;
 
     //CSVの名前
     private string g_stage;
@@ -159,62 +165,62 @@ public class StageCreate : MonoBehaviour
 
                     #region case PANEL_A
                     case PANEL_A_0:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle0);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle0);
                         break;
                     case PANEL_A_15:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle15);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle15);
                         break;
                     case PANEL_A_30:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle30);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle30);
                         break;
                     case PANEL_A_45:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle45);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle45);
                         break;
                     case PANEL_A_60:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle60);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle60);
                         break;
                     case PANEL_A_75:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle75);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle75);
                         break;
                     case PANEL_A_90:
-                        Instantiate(panelA0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90));
-                        panelA0Obj.GetComponent<Panel>().SetAngler(panelAngle90);
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
+                        panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle90);
                         break;
                     #endregion
                     #region case PANEL_B
                     case PANEL_B_0:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle0);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle0);
                         break;
                     case PANEL_B_15:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle15);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle15);
                         break;
                     case PANEL_B_30:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle30);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle30);
                         break;
                     case PANEL_B_45:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle45);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle45);
                         break;
                     case PANEL_B_60:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle60);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle60);
                         break;
                     case PANEL_B_75:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle75);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle75);
                         break;
                     case PANEL_B_90:
-                        Instantiate(panelB0Obj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0,0,panelAngle90));
-                        panelB0Obj.GetComponent<Panel>().SetAngler(panelAngle90);
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
+                        panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle90);
                         break;
                     #endregion
 
