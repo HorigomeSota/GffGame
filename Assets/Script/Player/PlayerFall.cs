@@ -39,16 +39,10 @@ public class PlayerFall : MonoBehaviour
         if (m_playerState.GetPlayerStatus() == 1 && m_playerRigidbody.velocity.y > -30f)
         {
 
-
-
             addGravity += 2f;
             //下方向に力を加える
             m_playerRigidbody.AddForce(Vector3.down * (gravity + addGravity));
-
-
         }
-
-
 
     }
 
@@ -80,7 +74,6 @@ public class PlayerFall : MonoBehaviour
         else if (m_playerState.GetTriggerObj() == null && !m_playerState.GetFlore())
         {
             m_playerState.Fall();
-            print("フォール");
         }
         
 
