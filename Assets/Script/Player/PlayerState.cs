@@ -71,11 +71,11 @@ public class PlayerState : MonoBehaviour
     /// <returns>true=死んでる false=生きてる</returns>
     public bool GetDeathFlag() { return g_death; }
 
-    private bool m_triggerFlore;
+    [SerializeField] private bool m_triggerFlore=false;
 
     
     public void FloreFlagON() { m_triggerFlore = true;}
-    public void FloreFlagOFF() { m_triggerFlore = true;}
+    public void FloreFlagOFF() { m_triggerFlore = false;}
 
     public bool GetFlore() { return m_triggerFlore; }
 

@@ -46,10 +46,6 @@ public class PlayerFall : MonoBehaviour
             m_playerRigidbody.AddForce(Vector3.down * (gravity + addGravity));
 
 
-           
-
-
-
         }
 
 
@@ -59,9 +55,9 @@ public class PlayerFall : MonoBehaviour
     private void LateUpdate()
     {
 
-        if (m_playerState.GetTriggerObj() != null&& (m_playerState.GetTriggerObj().tag=="Floor"|| m_playerState.GetTriggerObj().tag == "ToleranceValue"))
+        if (m_playerState.GetTriggerObj() != null && (m_playerState.GetFlore() || m_playerState.GetTriggerObj().tag == "ToleranceValue"))
         {
-            
+
             //床のy座標取得
             m_playerTransformLimit = m_playerState.GetTriggerObj().transform.position.y;
 
@@ -71,20 +67,20 @@ public class PlayerFall : MonoBehaviour
 
                 m_playerRigidbody.velocity = new Vector3(m_playerRigidbody.velocity.x, 0, m_playerRigidbody.velocity.z);
 
-                
+
                 m_playerState.Move();
                 addGravity = 0;
             }
 
 
-            
+
 
 
         }
-        else if(m_playerState.GetTriggerObj() == null&& !m_playerState.GetFlore())
+        else if (m_playerState.GetTriggerObj() == null && !m_playerState.GetFlore())
         {
             m_playerState.Fall();
-
+            print("フォール");
         }
         
 

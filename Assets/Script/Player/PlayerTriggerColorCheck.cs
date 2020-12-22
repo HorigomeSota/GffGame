@@ -29,7 +29,7 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         m_triggerObj = m_playerState.GetTriggerObj();
         
         if(m_triggerObj!=null&&m_triggerObj.transform!= m_triggerObjBeforeTransform) ColorCheck();
-        if (m_triggers.GetFlore() != null)
+        if (m_triggers.GetFlore() != null) //フロアに触れているかどうか見る
         {
             GameObject flore = m_triggers.GetFlore();
             m_playerColor = m_playerState.GetColor();

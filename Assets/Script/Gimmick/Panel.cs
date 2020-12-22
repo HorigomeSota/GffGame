@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Panel : Gimmick
 {
-    private Vector3 g_forceVecter = default;
+    [SerializeField] private Vector3 g_forceVecter = default;
+
+    [SerializeField]private int m_rotation;
 
     private Vector3[] m_forceVecter3s =
     {
@@ -22,7 +24,7 @@ public class Panel : Gimmick
     // Start is called before the first frame update
     public void SetAngler(int rotarion)
     {
-
+        m_rotation = rotarion;
         print(rotarion);
         
         m_panelRotation = rotarion;
@@ -70,6 +72,7 @@ public class Panel : Gimmick
     /// <returns></returns>
     public Vector3 GetVector()
     {
+        print(g_forceVecter+"aaa");
         return g_forceVecter;
     }
 
