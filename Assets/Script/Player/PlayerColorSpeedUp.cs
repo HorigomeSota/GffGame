@@ -72,7 +72,12 @@ public class PlayerColorSpeedUp : MonoBehaviour
             //許容範囲の計算
             m_judgment = Mathf.Abs(m_playerState.GetTriggerObj().transform.position.x - transform.position.x);
             //範囲内　かつ　前の色と今の色が同じとき、trueを返す
-            if ( m_playerState.GetTriggerObj().tag == "ToleranceValue" && m_tolerance >= m_judgment && m_playerState.GetColor() != m_playerState.GetTriggerObj().GetComponent<ToleranceValue>().GetColor()) return true;
+            if (m_playerState.GetTriggerObj().tag == "ToleranceValue" && m_tolerance >= m_judgment && m_playerState.GetColor() != m_playerState.GetTriggerObj().GetComponent<ToleranceValue>().GetColor()) 
+            {
+                StartCoroutine(SpeedUpAnim());
+                return true;
+
+            } 
             else 
             {
                 return false;
@@ -89,8 +94,6 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
     private void ColorSpeedUp()
     {
-
-        m_playerAnim.SpeedUpAnimOn();
 
         if (m_judgment < m_justTolerance )
         {
@@ -115,7 +118,20 @@ public class PlayerColorSpeedUp : MonoBehaviour
         
         m_PlayerRigidbody.AddForce(Vector3.right * m_speed, ForceMode.Impulse);
 
-        m_playerAnim.SpeedUpAnimOff();
+        
     }
 
+
+    private IEnumerator SpeedUpAnim()
+    {
+        m_playerAnim.DashAnimOn();
+
+        yield return new WaitForSeconds(0.1f);
+
+        m_playerAnim.DashAnimOff();
+
+        yield break;
+    }
 }
+
+

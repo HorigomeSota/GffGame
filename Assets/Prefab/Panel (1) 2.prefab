@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6445305376132844485
 Transform:
@@ -105,5 +105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
-  m_power: 10
   m_panelRotation: 30

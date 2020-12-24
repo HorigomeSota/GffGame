@@ -33,14 +33,14 @@ public class PlayerAnim : MonoBehaviour
         m_anim.SetBool("DashAnim", false);
     }
 
-    public void SpeedUpAnimOn()
+    public void UpAnimOn()
     {
-        m_anim.SetBool("SpeedUpAnim", true);
+        m_anim.SetBool("UpAnim", true);
     }
 
-    public void SpeedUpAnimOff()
+    public void UpAnimOff()
     {
-        m_anim.SetBool("SpeedUpAnim",false);
+        m_anim.SetBool("UpAnim",false);
     }
 
 
