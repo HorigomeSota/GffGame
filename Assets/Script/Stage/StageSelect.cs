@@ -31,7 +31,7 @@ public class StageSelect : MonoBehaviour
         {
             m_a++;
             m_stageNameTop = m_stageName[m_a].Substring(0, 1);
-            print(m_a + "こここお");
+
         }
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
         list = GameObject.Find("List");

@@ -30,6 +30,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     private AudioManager m_audioManager;
 
+    PlayerAnim m_playerAnim;
     
 
     private void Start()
@@ -39,7 +40,7 @@ public class PlayerJump : MonoBehaviour
         m_playerState = GetComponent<PlayerState>();
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-
+        m_playerAnim = GetComponent<PlayerAnim>();
 
         if (m_jumpForce== new Vector3(0,0,0))
         m_jumpForce = new Vector3(0, 1, 0);
@@ -53,7 +54,12 @@ public class PlayerJump : MonoBehaviour
     {
         if (m_playerState.GetJumpFlag() == true) 
         {
+            m_playerAnim.JunpAnimOn();
             Jump();
+        }
+        else
+        {
+            m_playerAnim.JunpAnimOff();
         }
         
     }

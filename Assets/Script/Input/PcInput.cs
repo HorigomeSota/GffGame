@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SmartPhoneInput :MonoBehaviour,IInput
-{
-    /// <summary>trueの時、ジャンプする </summary>
+public class PcInput : MonoBehaviour, IInput
+{ /// <summary>trueの時、ジャンプする </summary>
     private bool g_jumpCheck = false;
 
     /// <summary>trueの時、色を変える</summary>
@@ -13,7 +11,6 @@ public class SmartPhoneInput :MonoBehaviour,IInput
 
     /// <summary>Sceneナンバー</summary>
     private int g_sceneNum = 0;
-   
 
     /// <summary>カメラを取得</summary>
     private Camera camera_object;
@@ -28,13 +25,13 @@ public class SmartPhoneInput :MonoBehaviour,IInput
         camera_object = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
         //マウスがクリックされたら
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
         {
             //マウスのポジションを取得してRayに代入
-            Ray ray = camera_object.ScreenPointToRay(Input.mousePosition); 
+            Ray ray = camera_object.ScreenPointToRay(Input.mousePosition);
 
             //マウスのポジションからRayを投げて何かに当たったらhitに入れる
-            if (Physics.Raycast(ray, out m_hit)) 
+            if (Physics.Raycast(ray, out m_hit))
             {
                 //オブジェクトを取得して変数に入れる
                 g_hitObj = m_hit.collider.gameObject;
@@ -43,32 +40,33 @@ public class SmartPhoneInput :MonoBehaviour,IInput
                 string objectName = g_hitObj.name;
 
                 ObjectCheck(objectName);
-                
+
             }
 
 
         }
-    }
 
+
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            g_jumpCheck = true;
+            print("jj");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            g_colorCheck = true;
+            print("ff");
+        }
+    }
 
     private void ObjectCheck(string name)
     {
         switch (name)
         {
-            //右側がタップされたとき　m_jumpCheck　をtrue
-            case ("RightTap"):
+           
 
-                g_jumpCheck = true;
-
-                break;
-
-            //左側がタップされたとき　m_colorCheck　をtrue
-            case ("LeftTap"):
-
-                g_colorCheck = true;
-
-                break;
-                
             case ("ToTitle"):
 
                 g_sceneNum = 0;
@@ -81,7 +79,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
 
                 break;
 
-           
+
             case ("ToGame(Clone)"):
 
                 g_sceneNum = 2;
@@ -96,7 +94,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
         }
     }
 
-    
+
     public int SceneCheck()
     {
         return g_sceneNum;

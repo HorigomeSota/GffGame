@@ -33,6 +33,8 @@ public class PlayerColorSpeedUp : MonoBehaviour
     [SerializeField]
     private AudioManager m_audioManager;
 
+    PlayerAnim m_playerAnim;
+
     private void Start()
     {
         //ゲームオブジェクトFind
@@ -42,8 +44,9 @@ public class PlayerColorSpeedUp : MonoBehaviour
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_playerState = GetComponent<PlayerState>();
+        m_playerAnim = GetComponent<PlayerAnim>();
 
-       
+
 
         if (m_speed == 0)
             m_speed = 10;
@@ -86,8 +89,8 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
     private void ColorSpeedUp()
     {
-        
 
+        m_playerAnim.SpeedUpAnimOn();
 
         if (m_judgment < m_justTolerance )
         {
@@ -109,8 +112,10 @@ public class PlayerColorSpeedUp : MonoBehaviour
 
 
         m_audioManager.PlayClip("SpeedUp",0);
+        
         m_PlayerRigidbody.AddForce(Vector3.right * m_speed, ForceMode.Impulse);
 
+        m_playerAnim.SpeedUpAnimOff();
     }
 
 }
