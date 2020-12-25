@@ -21,6 +21,7 @@ TagManager:
   - StageSelecte
   - FallDeath
   - Input
+  - ConcentratedLine
   layers:
   - Default
   - TransparentFX
