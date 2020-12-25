@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeathCheck : MonoBehaviour
 {
     [SerializeField, Header("GameOverUI")]
-    GameObject retryButtonObj = default;
+    GameObject gameOversceneObj = default;
     [SerializeField, Header("PLayer")]
     GameObject playerObj = default;
 
@@ -13,7 +13,7 @@ public class DeathCheck : MonoBehaviour
     {
         if (playerObj.GetComponent<PlayerState>().GetDeathFlag())
         {
-            retryButtonObj.SetActive(true);
+            gameOversceneObj.SetActive(true);
         }
     }
 }
