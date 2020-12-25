@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 10eaea89e56308c478c7c85efd72f677
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Beon
+  fontNames:
+  - Beon
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0f8d554a81c1ca14c93f322bd621abbf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
