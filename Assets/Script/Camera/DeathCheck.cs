@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathCheck : MonoBehaviour
 {
-    [SerializeField, Header("リトライボタン")]
+    [SerializeField, Header("GameOverUI")]
     GameObject retryButtonObj = default;
     [SerializeField, Header("PLayer")]
     GameObject playerObj = default;
