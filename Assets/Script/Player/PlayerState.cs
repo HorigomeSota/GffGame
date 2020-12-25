@@ -7,6 +7,7 @@ public class PlayerState : MonoBehaviour
     //ゲームがスタートしているかどうか
     private bool m_gameStart=false;
 
+
     /// <summary>ゲームがスタートしたらオン</summary>
     public void SetGameStart()
     {
@@ -65,6 +66,7 @@ public class PlayerState : MonoBehaviour
         {
             g_death = true;
             g_playerStatus = PlayerStatus.none;
+
         }
     }
     /// <summary>プレイヤーの死んだフラグ取得</summary>
