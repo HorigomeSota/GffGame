@@ -71,7 +71,7 @@ public class PlayerFall : MonoBehaviour
 
 
         }
-        else if (m_playerState.GetTriggerObj() == null && !m_playerState.GetFlore())
+        else if (/*(m_playerState.GetTriggerObj().tag == null|| m_playerState.GetTriggerObj().tag == "Enemy")  &&*/ !m_playerState.GetFlore())
         {
             m_playerState.Fall();
         }

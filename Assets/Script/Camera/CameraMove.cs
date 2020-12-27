@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    ParticleSystem concentratedLineParticle = default;
+
     GameObject playerObj;
     Transform playerTransform;
     const float PLAYER_CAMERA_DIFFERENCE = 7f;
@@ -26,11 +28,19 @@ public class CameraMove : MonoBehaviour
         playerTransform = playerObj.transform;
         g_zooming = false;
         g_initialSize = GetComponent<Camera>().orthographicSize;
+        concentratedLineParticle = GameObject.FindGameObjectWithTag("ConcentratedLine").GetComponent<ParticleSystem>();
     }
 
     void Update()
     {
-        if(playerObj.GetComponent<PlayerState>().GetPlayerStatus() == 5) { g_zooming = true; }
+        if (playerObj.GetComponent<PlayerState>().GetPlayerStatus() == 5)
+        {
+            g_zooming = true;
+            if (!concentratedLineParticle.isPlaying)
+            {
+                concentratedLineParticle.Play();
+            }
+        }
         else { g_zooming = false; }
 
         transform.position = new Vector3(playerTransform.position.x + PLAYER_CAMERA_DIFFERENCE, transform.position.y, transform.position.z);
@@ -38,26 +48,53 @@ public class CameraMove : MonoBehaviour
         if (playerTransform.position.y - transform.position.y >= TOP_LIMIT) { transform.position = new Vector3(transform.position.x, playerTransform.position.y - TOP_LIMIT, transform.position.z); }
         if (transform.position.y - playerTransform.position.y >= UNDER_LIMIT) { transform.position = new Vector3(transform.position.x, playerTransform.position.y + UNDER_LIMIT, transform.position.z); }
 
+        //if (g_zooming)
+        //{
+        //    if (GetComponent<Camera>().orthographicSize - ZOOM_IN_SPEED > g_initialSize - ZOOM_IN_SIZE && GetComponent<Camera>().orthographicSize - ZOOM_IN_SPEED > 0f)
+        //    {
+        //        GetComponent<Camera>().orthographicSize -= ZOOM_IN_SPEED;
+        //    }
+        //    else if (GetComponent<Camera>().orthographicSize - ZOOM_IN_SPEED > 0f)
+        //    {
+        //        GetComponent<Camera>().orthographicSize = g_initialSize - ZOOM_IN_SIZE;
+        //    }
+        //    else
+        //    {
+        //        GetComponent<Camera>().orthographicSize = 0f;
+        //    }
+        //}
+        //else
+        //{
+        //    if (GetComponent<Camera>().orthographicSize + ZOOM_OUT_SPEED < g_initialSize)
+        //    {
+        //        GetComponent<Camera>().orthographicSize += ZOOM_OUT_SPEED;
+        //    }
+        //    else
+        //    {
+        //        GetComponent<Camera>().orthographicSize = g_initialSize;
+        //    }
+        //}
+
         if (g_zooming)
         {
-            if (GetComponent<Camera>().orthographicSize - ZOOM_IN_SPEED > g_initialSize - ZOOM_IN_SIZE && GetComponent<Camera>().orthographicSize - ZOOM_IN_SPEED > 0f)
+            if (GetComponent<Camera>().orthographicSize + ZOOM_IN_SPEED < g_initialSize + ZOOM_IN_SIZE && GetComponent<Camera>().orthographicSize + ZOOM_IN_SPEED > 0f)
             {
-                GetComponent<Camera>().orthographicSize -= ZOOM_IN_SPEED;
+                GetComponent<Camera>().orthographicSize += ZOOM_IN_SPEED;
             }
-            else if (GetComponent<Camera>().orthographicSize - ZOOM_IN_SPEED > 0f)
-            {
-                GetComponent<Camera>().orthographicSize = g_initialSize - ZOOM_IN_SIZE;
-            }
+            //else if (GetComponent<Camera>().orthographicSize + ZOOM_IN_SPEED > 0f)
+            //{
+            //    GetComponent<Camera>().orthographicSize = g_initialSize + ZOOM_IN_SIZE;
+            //}
             else
             {
-                GetComponent<Camera>().orthographicSize = 0f;
+                GetComponent<Camera>().orthographicSize = g_initialSize + ZOOM_IN_SIZE;
             }
         }
         else
         {
-            if (GetComponent<Camera>().orthographicSize + ZOOM_OUT_SPEED < g_initialSize)
+            if (GetComponent<Camera>().orthographicSize - ZOOM_OUT_SPEED > g_initialSize)
             {
-                GetComponent<Camera>().orthographicSize += ZOOM_OUT_SPEED;
+                GetComponent<Camera>().orthographicSize -= ZOOM_OUT_SPEED;
             }
             else
             {
