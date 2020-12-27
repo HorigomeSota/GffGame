@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool m_playAudio;
 
+    public bool timerStop=false;
 
     private void Awake()
     {
@@ -135,8 +136,12 @@ public class GameManager : MonoBehaviour
             //タイマーカウント呼び出し
             m_tim.TimerCount(Time.deltaTime);
 
-            //UIManagerでタイマー表示
-            m_UIManager.TimerOutput();
+            if (!timerStop)
+            {
+                //UIManagerでタイマー表示
+                m_UIManager.TimerOutput();
+            }
+            
         }
 
         if (m_playerState.GetDeathFlag() == true) GameEnd();

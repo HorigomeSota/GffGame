@@ -34,6 +34,8 @@ public class PlayerBoost : MonoBehaviour
     [SerializeField]
     private AudioManager m_audioManager;
 
+    [SerializeField]
+    private GameObject m_boostEfect;
     private void Start()
     {
 
@@ -45,7 +47,7 @@ public class PlayerBoost : MonoBehaviour
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_playerState = GetComponent<PlayerState>();
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
-
+        m_boostEfect = transform.GetChild(0).gameObject;
 
 
         if (m_speed == 0)
@@ -65,7 +67,7 @@ public class PlayerBoost : MonoBehaviour
 
             boostSwich = true;
             m_playerState.Boost();
-            StartCoroutine("Boost");
+            StartCoroutine(Boost());
             
         }
 
@@ -86,7 +88,7 @@ public class PlayerBoost : MonoBehaviour
 
     IEnumerator Boost()
     {
-        
+        m_boostEfect.SetActive(true);
 
         //時間待ち
         yield return new WaitForSeconds(boostTime);
@@ -94,6 +96,7 @@ public class PlayerBoost : MonoBehaviour
         boostSwich = false;
 
         m_playerState.BoostFlagOff();
+        m_boostEfect.SetActive(false);
 
         yield break;
     }

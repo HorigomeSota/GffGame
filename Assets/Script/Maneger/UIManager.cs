@@ -57,4 +57,13 @@ public class UIManager : MonoBehaviour
         timerText.GetComponent<Text>().text =m_minutes.ToString("00")+":"+ m_seconds.ToString("00") + ":" + m_comma.ToString("00");
         return;
     }
+
+    public int getSecond()
+    {
+        return m_seconds;
+    }
+    public int getComma()
+    {
+        return m_comma;
+    }
 }
