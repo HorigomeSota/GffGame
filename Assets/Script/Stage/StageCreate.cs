@@ -96,13 +96,28 @@ public class StageCreate : MonoBehaviour
     const int SHORTCUT = 50;
 
     [SerializeField]
-    GameObject checkPointObj = default;
+    GameObject checkPointPfb = default;
     const int CHECKPOINT = 100;
 
     GameObject checkPointObject = default;
 
     GameObject panelBObj = default;
     GameObject panelAObj = default;
+
+    private void Awake()
+    {
+        //プレハブ取得
+        floorAObj = Resources.Load<GameObject>("Prefab/Floor0");
+        floorBObj = Resources.Load<GameObject>("Prefab/Floor1");
+        toleranceAObj = Resources.Load<GameObject>("Prefab/ToleranceValue0");
+        toleranceBObj = Resources.Load<GameObject>("Prefab/ToleranceValue1");
+        enemyAObj = Resources.Load<GameObject>("Prefab/Enemy0");
+        enemyBObj = Resources.Load<GameObject>("Prefab/Enemy1");
+        panelAObjPfb = Resources.Load<GameObject>("Prefab/Panel0");
+        panelBObjPfb = Resources.Load<GameObject>("Prefab/Panel1");
+        shortcutObj = Resources.Load<GameObject>("Prefab/Shortcut");
+        checkPointPfb = Resources.Load<GameObject>("Prefab/CheckPoint");
+    }
 
     //CSVの名前
     private string g_stage;
@@ -220,7 +235,7 @@ public class StageCreate : MonoBehaviour
                     #endregion
 
                     case CHECKPOINT:
-                        checkPointObject = Instantiate(checkPointObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        checkPointObject = Instantiate(checkPointPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
                         break;
 
                     case FLOORA_ENEMYA:
@@ -255,10 +270,6 @@ public class StageCreate : MonoBehaviour
     {
         g_stage = GetComponent<StageOrder>().GetNextStage();
 
-
-        //if (g_stage == null) { g_stage = "Stage01"; }
-        //GetComponent<StageMapCSVread>().PrepareStage(g_stage);
         CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth());
-
     }
 }
