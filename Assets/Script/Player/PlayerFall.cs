@@ -27,6 +27,8 @@ public class PlayerFall : MonoBehaviour
 
     private float addGravity=0;
 
+    const float speedMax=-30f;
+
     private void Start()
     {
         m_playerRigidbody = GetComponent<Rigidbody>();
@@ -36,7 +38,7 @@ public class PlayerFall : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (m_playerState.GetPlayerStatus() == 1 && m_playerRigidbody.velocity.y > -30f)
+        if (m_playerState.GetPlayerStatus() == 1 && m_playerRigidbody.velocity.y > speedMax)
         {
 
             addGravity += 2f;
