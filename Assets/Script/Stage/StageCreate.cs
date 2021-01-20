@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class StageCreate : MonoBehaviour
@@ -129,6 +127,7 @@ public class StageCreate : MonoBehaviour
     {
         g_stage = stageName;
     }
+
 
     /// <summary>
     /// ステージ、ブロック生成
@@ -260,7 +259,7 @@ public class StageCreate : MonoBehaviour
         transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
 
         GetComponent<StageMapCSVread>().MapCsvRead(g_stage);
-
+        
     }
 
     /// <summary>

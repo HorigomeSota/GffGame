@@ -20,12 +20,22 @@ public class StageOrder : MonoBehaviour
     int g_endlessCount;
 
     /// <summary>
+    /// 色設定スクリプト
+    /// </summary>
+    StageColorPattern _colorPattern;
+
+    private void Awake()
+    {
+        _colorPattern = GameObject.FindGameObjectWithTag("StageColor").GetComponent<StageColorPattern>();
+    }
+
+    /// <summary>
     /// 最初のステージ番号（0オリジン）※endlessを指定したらエンドレスモードから
     /// </summary>
     /// <param name="firstStage"></param>
     public void SetFirstStage(int firstStage)
     {
-
+        _colorPattern.SetColors((StageColorPattern.Colors)firstStage, (StageColorPattern.Colors)firstStage+1);
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
         g_nextStageNo = firstStage;
@@ -44,6 +54,7 @@ public class StageOrder : MonoBehaviour
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
+            _colorPattern.SetColors((StageColorPattern.Colors)g_nextStageNo-1, (StageColorPattern.Colors)g_nextStageNo);
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
@@ -88,15 +99,6 @@ public class StageOrder : MonoBehaviour
             return "Endless/"+ g_stageOrder[g_nextStageNo + m_stageNo];
         }
     }
-
-   /* void Awake()
-    {
-       // g_endless = false;
-        g_stageOrder= GetComponent<StageOrderCSVread>().PrepareStageOrder();
-       // GetComponent<EndlessProbabilityCSVread>().StartCoroutine("ReadCsv()");
-       g_endlessProbability = GetComponent<EndlessProbabilityCSVread>().GetProbabilityDatas();
-    }
-   */
 
     public void SetStageOrder(string[] stargeOrder)
     {

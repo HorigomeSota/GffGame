@@ -18,11 +18,13 @@ public class TestColorChangeScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             _colorPattern.SetColors(StageColorPattern.Colors.PinkPurple, StageColorPattern.Colors.Yellow);
+            _colorPattern.SetColorPlayer();
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            _colorPattern.SetColors(StageColorPattern.Colors.Red, StageColorPattern.Colors.Blue);
+            _colorPattern.SetColors(StageColorPattern.Colors.Blue, StageColorPattern.Colors.Red);
+            _colorPattern.SetColorPlayer();
         }
     }
 }
