@@ -1352,6 +1352,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b0c8eedb7b4b148b2d830fdcf06603, type: 3}
+--- !u!1 &353454150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 353454152}
+  - component: {fileID: 353454151}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &353454151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353454150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6b919a16aea9145bbbd5376536394a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_updateInterval: 0.5
+--- !u!4 &353454152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353454150}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.563817, y: -4.0187187, z: 101.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &364489882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1500,6 +1544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 500988233}
   - component: {fileID: 500988232}
+  - component: {fileID: 500988234}
   m_Layer: 0
   m_Name: StageColorPattern
   m_TagString: StageColor
@@ -1530,12 +1575,20 @@ MonoBehaviour:
   _floorBRenderer: {fileID: 0}
   _toleranceARenderer: {fileID: 0}
   _toleranceBRenderer: {fileID: 0}
+  _toleranceMaterials:
+  - {fileID: 0}
+  - {fileID: 0}
   _enemyARenderer: {fileID: 0}
   _enemyBRenderer: {fileID: 0}
-  _panelARenderer: {fileID: 0}
-  _panelBRenderer: {fileID: 0}
+  _panelARenderer:
+  - {fileID: 0}
+  _panelBRenderer:
+  - {fileID: 0}
   _playerObj: {fileID: 0}
-  _playerRenderer: {fileID: 0}
+  _playerRendererA: {fileID: 0}
+  _playerRendererB: {fileID: 0}
+  _playerMatA: {fileID: 0}
+  _playerMatB: {fileID: 0}
 --- !u!4 &500988233
 Transform:
   m_ObjectHideFlags: 0
@@ -1550,6 +1603,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &500988234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500988231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd1f3f1d286d1e41b1aa9c0e93f75eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &517353395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9723,8 +9788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4096007ecd9ce5458269e46bc7838c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialA: {fileID: 0}
-  materialB: {fileID: 0}
+  _materialA: {fileID: 0}
+  _materialB: {fileID: 0}
   m_audioManagerObject: {fileID: 0}
   m_audioManager: {fileID: 0}
 --- !u!114 &5844198973587289998

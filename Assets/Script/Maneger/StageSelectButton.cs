@@ -23,7 +23,6 @@ public class StageSelectButton : MonoBehaviour
     /// <returns></returns>
     public int GetStageNumber()
     {
-
         return m_stageNumber;
     }
 

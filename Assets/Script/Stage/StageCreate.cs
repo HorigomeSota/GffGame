@@ -127,8 +127,6 @@ public class StageCreate : MonoBehaviour
     {
         g_stage = stageName;
     }
-
-
     /// <summary>
     /// ステージ、ブロック生成
     /// </summary>
@@ -257,9 +255,7 @@ public class StageCreate : MonoBehaviour
             }
         }
         transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
-
         GetComponent<StageMapCSVread>().MapCsvRead(g_stage);
-        
     }
 
     /// <summary>
@@ -268,7 +264,6 @@ public class StageCreate : MonoBehaviour
     public void Generate()
     {
         g_stage = GetComponent<StageOrder>().GetNextStage();
-
         CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth());
     }
 }

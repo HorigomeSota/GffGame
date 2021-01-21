@@ -3,7 +3,7 @@
 /// <summary>
 /// ステージとプレイヤーの色の組み合わせスクリプト
 /// </summary>
-public class StageColorPattern : MonoBehaviour
+public class StageColorChange : MonoBehaviour
 {
     /// <summary>
     /// 色一覧
@@ -16,12 +16,13 @@ public class StageColorPattern : MonoBehaviour
         LightGreen = 3,
         Orange = 4,
         PinkPurple = 5,
+        LightBlue=6,
     }
 
     /// <summary>
     /// 色に対応したマテリアル
     /// </summary>
-    [SerializeField]private Material[] _materials = new Material[6];
+    [SerializeField]private Material[] _materials;
 
     /// <summary>
     /// 色セットするステージのオブジェクトのレンダラー
@@ -50,6 +51,8 @@ public class StageColorPattern : MonoBehaviour
         _playerRendererB = _playerObj.GetComponent<Renderer>();
         _colorChange = _playerObj.GetComponent<PlayerColorChange>();
 
+        _materials = new Material[30];
+
         //プレハブ取得
         _materials[0] = Resources.Load<Material>("Materials/Blue");
         _materials[1] = Resources.Load<Material>("Materials/Red");
@@ -57,6 +60,7 @@ public class StageColorPattern : MonoBehaviour
         _materials[3] = Resources.Load<Material>("Materials/LightGreenMat");
         _materials[4] = Resources.Load<Material>("Materials/OrangeMat");
         _materials[5] = Resources.Load<Material>("Materials/PinkPurpleMat");
+        _materials[6] = Resources.Load<Material>("Materials/LightBlue");
         _playerMatA = Resources.Load<Material>("Materials/PlayerMatA");
         _playerMatB = Resources.Load<Material>("Materials/PlayerMatB");
 
