@@ -104,6 +104,9 @@ public class StageCreate : MonoBehaviour
     GameObject panelBObj = default;
     GameObject panelAObj = default;
 
+    const float prefabScaleX = 1f;
+    const float prefabScaleY = 1f;
+
     private void Awake()
     {
         //プレハブ取得
@@ -142,117 +145,120 @@ public class StageCreate : MonoBehaviour
         {
             for (int j = 0; j < wid; j++)
             {
+                float prefabPositionX = transform.position.x + j * prefabScaleX;
+                float prefabPositionY = (transform.position.y + hgt - 1 - i) * prefabScaleY;
+
                 switch (arrays[i, j])
                 {
                     case FLOOR_A:
-                        Instantiate(floorAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(floorAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case FLOOR_B:
-                        Instantiate(floorBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(floorBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case TOLERANCE_A:
-                        Instantiate(toleranceAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(90,-90,0));
+                        Instantiate(toleranceAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(90,-90,0));
                         break;
                     case TOLERANCE_B:
-                        Instantiate(toleranceBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(90, 90, 0));
+                        Instantiate(toleranceBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(90, 90, 0));
                         break;
                     case ENEMY_A:
-                        Instantiate(enemyAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(enemyAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case ENEMY_B:
-                        Instantiate(enemyBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(enemyBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case SHORTCUT:
-                        Instantiate(shortcutObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(shortcutObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
 
                     #region case PANEL_A
                     case PANEL_A_0:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle0);
 
                         break;
                     case PANEL_A_15:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX , prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle15);
 
                         break;
                     case PANEL_A_30:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle30);
 
                         break;
                     case PANEL_A_45:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle45);
 
                         break;
                     case PANEL_A_60:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle60);
 
                         break;
                     case PANEL_A_75:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle75);
 
                         break;
                     case PANEL_A_90:
-                        panelAObj = Instantiate(panelAObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
+                        panelAObj = Instantiate(panelAObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
                         panelAObj.transform.GetComponent<Panel>().SetRotation(panelAngle90);
 
                         break;
                     #endregion
                     #region case PANEL_B
                     case PANEL_B_0:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle0)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle0);
                         break;
                     case PANEL_B_15:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle15)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle15);
                         break;
                     case PANEL_B_30:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle30)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle30);
                         break;
                     case PANEL_B_45:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle45)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle45);
                         break;
                     case PANEL_B_60:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle60)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle60);
                         break;
                     case PANEL_B_75:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle75)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle75);
                         break;
                     case PANEL_B_90:
-                        panelBObj = Instantiate(panelBObjPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
+                        panelBObj = Instantiate(panelBObjPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.Euler(0, 0, panelAngle90)) as GameObject;
                         panelBObj.transform.GetComponent<Panel>().SetRotation(panelAngle90);
                         break;
                     #endregion
 
                     case CHECKPOINT:
-                        checkPointObject = Instantiate(checkPointPfb, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        checkPointObject = Instantiate(checkPointPfb, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
 
                     case FLOORA_ENEMYA:
-                        Instantiate(floorAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
-                        Instantiate(enemyAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(floorAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        Instantiate(enemyAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case FLOORA_ENEMYB:
-                        Instantiate(floorAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
-                        Instantiate(enemyBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(floorAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        Instantiate(enemyBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case FLOORB_ENEMYA:
-                        Instantiate(floorBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
-                        Instantiate(enemyAObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(floorBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        Instantiate(enemyAObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                     case FLOORB_ENEMYB:
-                        Instantiate(floorBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
-                        Instantiate(enemyBObj, new Vector3(transform.position.x + j, transform.position.y + hgt - 1 - i, transform.position.z), Quaternion.identity);
+                        Instantiate(floorBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        Instantiate(enemyBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
                 }
             }

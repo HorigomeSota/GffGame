@@ -36,25 +36,9 @@ public class Triggers : MonoBehaviour
             loopCount--;
         }
     }
-    private void FixedUpdate()
+    private void Update()
     {
         m_playerState.SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出すm_player.GetComponent<プレイヤーステイト>().呼び出すやつ(g_mostPriority);
-        /*
-         int m_nullLoop = 4;
-        while (m_nullLoop >= 0)
-        {
-            if (m_triggerStays[m_priorityExit] == null)
-            {
-            }
-            else
-            {
-                m_nullFrag = true;
-                m_nullLoop = -1;
-            }
-            m_nullLoop--;
-        }
-        */
-
     }
     private void OnTriggerEnter(Collider other)//触れたオブジェクトを配列に追加
     {
