@@ -5,35 +5,62 @@ using UnityEngine.UI;
 
 public class GoalEfect : MonoBehaviour
 {
-    private GameObject goal1;
-    private GameObject goal2;
-    private GameObject goal3;
-    private GameObject goal4;
-    private GameObject goal5;
-    private GameObject goal6;
-    [SerializeField]
+    /// <summary>
+    /// 花火エフェクト青
+    /// </summary>
+    private GameObject fireworkBluePrefab;
+    /// <summary>
+    /// 花火拡散エフェクト黄
+    /// </summary>
+    private GameObject fireworkYellowPrfab;
+    /// <summary>
+    /// ゲームマネージャー
+    /// </summary>
     private GameObject gameManager;
-
-    [SerializeField]
-    private Text textefect;
-
-    [SerializeField]
-    private Text text;
-
-    [SerializeField]
-    private GameObject canvas;
-
+    /// <summary>
+    /// ステージクリア後に表示するタイマーテキスト
+    /// </summary>
+    private Text resultTimerText;
+   　/// <summary>
+    /// タイマーテキスト
+    /// </summary>
+    private Text timerText;
+    /// <summary>
+    /// ゲーム画面のキャンバス
+    /// </summary>
+    private GameObject gameSceneCanvas;
+    
     private StageColorChange _colorChange;
+
+    const int efectQuantity = 9;
+
+    const string gameManagerTag = "GameManager";
+
+    const string timerTextTag = "TextTimer";
+
+    const string resultTimerTextTag = "ResultTimer";
+
+    const string gameCanvasTag = "GameCanvas";
+
+    const string stageColorTag = "StageColor";
+
+    const string prefabFolderName = "Prefab";
+
+    const string particlesFolderName = "Particles";
+
+    const string fireworkBlueName = "FireworksBlue";
+
+    const string fireworkYellowClusterName = "FireworksYellow";
 
     void Start()
     {
-        goal1 = transform.GetChild(0).gameObject;
-        goal2 = transform.GetChild(1).gameObject;
-        goal3 = transform.GetChild(2).gameObject;
-        goal4 = transform.GetChild(3).gameObject;
-        goal5 = transform.GetChild(4).gameObject;
-        goal6 = transform.GetChild(5).gameObject;
-        _colorChange = GameObject.FindGameObjectWithTag("StageColor").GetComponent<StageColorChange>();
+        fireworkBluePrefab = Resources.Load<GameObject>(prefabFolderName+"/"+particlesFolderName+"/"+fireworkBlueName);
+        fireworkYellowPrfab = Resources.Load<GameObject>(prefabFolderName + "/" + particlesFolderName + "/" + fireworkYellowClusterName);
+        resultTimerText = GameObject.FindWithTag(resultTimerTextTag).GetComponent<Text>();
+        timerText = GameObject.FindWithTag(timerTextTag).GetComponent<Text>();
+        gameManager = GameObject.FindWithTag(gameManagerTag);
+        gameSceneCanvas = GameObject.FindWithTag(gameCanvasTag);
+        _colorChange = GameObject.FindGameObjectWithTag(stageColorTag).GetComponent<StageColorChange>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,22 +75,23 @@ public class GoalEfect : MonoBehaviour
 
     IEnumerator Goal()
     {
-        canvas.GetComponent<Animator>().SetBool("Clear", true);
+        gameSceneCanvas.GetComponent<Animator>().SetBool("Clear", true);
 
-        textefect.text = text.text;
+        resultTimerText.text = timerText.text;
 
-        goal1.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        goal2.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        goal3.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        goal4.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        goal5.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        goal6.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
+        int efectDistance = 0;
+
+        for (int count = 0; count < efectQuantity; count++)
+        {
+
+
+            efectDistance += 10;
+
+            Instantiate(fireworkBluePrefab, new Vector3(transform.position.x + efectDistance, transform.position.y, transform.position.z), Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+
+
+        }
 
         yield break;
     }

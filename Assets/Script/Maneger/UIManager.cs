@@ -12,8 +12,7 @@ public class UIManager : MonoBehaviour
     const string m_datatag = "Data";
 
     //　タイマー表示用テキスト
-    [SerializeField]
-    GameObject timerText;
+    private GameObject timerText;
     private int m_minutes;
     /// <summary>
     /// 秒数

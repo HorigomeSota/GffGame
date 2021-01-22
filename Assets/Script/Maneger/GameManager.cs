@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         //ゲームオブジェクトFind
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
         m_playerStateObject = GameObject.FindGameObjectWithTag("Player");
-        m_CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
+        m_CanvasObject = GameObject.FindGameObjectWithTag("GameCanvas");
         m_inputObj=GameObject.FindGameObjectWithTag("Input");
         m_TimerObject =GameObject.FindGameObjectWithTag("Timer");
 
