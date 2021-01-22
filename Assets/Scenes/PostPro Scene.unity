@@ -1598,14 +1598,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae91d04f0b29ac4399be57dd354e4e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorARenderer: {fileID: 0}
-  floorBRenderer: {fileID: 0}
-  toleranceARenderer: {fileID: 0}
-  toleranceBRenderer: {fileID: 0}
-  enemyARenderer: {fileID: 0}
-  enemyBRenderer: {fileID: 0}
-  panelARenderer: {fileID: 0}
-  panelBRenderer: {fileID: 0}
+  _materials: []
+  _floorARenderer: {fileID: 0}
+  _floorBRenderer: {fileID: 0}
+  _toleranceARenderer: {fileID: 0}
+  _toleranceBRenderer: {fileID: 0}
+  _toleranceMaterials:
+  - {fileID: 0}
+  - {fileID: 0}
+  _enemyARenderer: {fileID: 0}
+  _enemyBRenderer: {fileID: 0}
+  _panelARenderer:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _panelBRenderer:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _playerObj: {fileID: 0}
+  _playerRendererA: {fileID: 0}
+  _playerRendererB: {fileID: 0}
+  _playerMatA: {fileID: 0}
+  _playerMatB: {fileID: 0}
 --- !u!4 &500988233
 Transform:
   m_ObjectHideFlags: 0
@@ -3171,6 +3186,36 @@ Transform:
   - {fileID: 1869138264}
   m_Father: {fileID: 0}
   m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &915639994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 915639995}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &915639995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915639994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 355.5, y: 200, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &922914563 stripped
 RectTransform:
@@ -9884,8 +9929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4096007ecd9ce5458269e46bc7838c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialBlue: {fileID: 2100000, guid: 89ea84b0208fda64fbe50401a4e92a6c, type: 2}
-  materialRed: {fileID: 2100000, guid: b0970a45e03a3904bbe08b4a59953627, type: 2}
+  _materialA: {fileID: 0}
+  _materialB: {fileID: 0}
   m_audioManagerObject: {fileID: 0}
   m_audioManager: {fileID: 0}
 --- !u!114 &5844198973587289998
