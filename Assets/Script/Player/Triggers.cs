@@ -39,7 +39,6 @@ public class Triggers : MonoBehaviour
     private void Update()
     {
         m_playerState.SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出す
-
     }
     private void OnTriggerEnter(Collider other)//触れたオブジェクトを配列に追加
     {

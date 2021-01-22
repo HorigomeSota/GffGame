@@ -58,7 +58,6 @@ public class GoalEfect : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         goal3.SetActive(true);
         yield return new WaitForSeconds(0.3f);
-
         goal4.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         goal5.SetActive(true);
