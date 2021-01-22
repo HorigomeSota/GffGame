@@ -23,6 +23,8 @@ public class GoalEfect : MonoBehaviour
     [SerializeField]
     private GameObject canvas;
 
+    private StageColorChange _colorChange;
+
     void Start()
     {
         goal1 = transform.GetChild(0).gameObject;
@@ -31,9 +33,7 @@ public class GoalEfect : MonoBehaviour
         goal4 = transform.GetChild(3).gameObject;
         goal5 = transform.GetChild(4).gameObject;
         goal6 = transform.GetChild(5).gameObject;
-
-        
-        
+        _colorChange = GameObject.FindGameObjectWithTag("StageColor").GetComponent<StageColorChange>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,7 +43,7 @@ public class GoalEfect : MonoBehaviour
             StartCoroutine(Goal());
             gameManager.GetComponent<GameManager>().timerStop = true;
         }
-        
+        _colorChange.SetColorPlayer();
     }
 
     IEnumerator Goal()
@@ -58,7 +58,6 @@ public class GoalEfect : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         goal3.SetActive(true);
         yield return new WaitForSeconds(0.3f);
-
         goal4.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         goal5.SetActive(true);

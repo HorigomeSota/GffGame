@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class PlayerColorChange : MonoBehaviour
 {
-    [SerializeField] private Material materialBlue;
-    [SerializeField] private Material materialRed;
+    [SerializeField] private Material _materialA;
+    [SerializeField] private Material _materialB;
 
+    public Material MaterialA
+    {
+        get { return _materialA; }
+        set { _materialA = value; }
+    }
+
+    public Material MaterialB
+    {
+        get { return _materialB; }
+        set { _materialB = value; }
+    }
 
     [SerializeField]
     private GameObject m_audioManagerObject;
@@ -26,8 +37,8 @@ public class PlayerColorChange : MonoBehaviour
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
 
         //マテリアル参照
-        materialBlue = Resources.Load<Material>("Materials/Blue");
-        materialRed = Resources.Load<Material>("Materials/Red");
+        _materialA = Resources.Load<Material>("Materials/PlayerMatA");
+        _materialB = Resources.Load<Material>("Materials/PlayerMatB");
 
         //インスタンス化
         m_playerState = GetComponent<PlayerState>();
@@ -49,16 +60,14 @@ public class PlayerColorChange : MonoBehaviour
             {
                 //Debug.Log("げっとからー"+m_playerState.GetColor());
                 //色（見た目）変える
-                m_renderer.material = materialBlue;
+                m_renderer.material = _materialA;
             }
             else
             {
                 //Debug.Log("げっとからー" + m_playerState.GetColor());
                 //色（見た目）変える
-                m_renderer.material = materialRed;
+                m_renderer.material = _materialB;
             }
-            
-            
         }
     }
 }

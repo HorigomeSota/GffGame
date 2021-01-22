@@ -16,17 +16,6 @@ public class Result : MonoBehaviour
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (m_playerState.GetDeathFlag())
-        {
-
-            GameOver();
-            
-        }
-    }
-
     //GameOver処理かく(今はデータ保存の疎通確認したいので未完成,そのうちだれかやろう)
     private void GameOver()
     {
@@ -35,6 +24,5 @@ public class Result : MonoBehaviour
             m_timeData.SavePlayerData();
             m_gameOver = false;
         }
-
     }
 }
