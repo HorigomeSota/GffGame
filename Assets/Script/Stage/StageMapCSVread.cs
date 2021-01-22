@@ -173,4 +173,125 @@ public class StageMapCSVread : MonoBehaviour
 
         yield break;
     }
+
+    /// <summary>
+    /// ステージ間のCSVデータを文字列型２次元配列に変換する
+    /// </summary>
+    /// <param name="path">ファイルパス</param>
+    /// <param name="sdata">2次元配列（文字型）</param>
+    private void readIntervalCSVData(string strStream, ref string[,] sdata)
+    {
+
+        // StringSplitOptionを設定(要はカンマとカンマに何もなかったら格納しないことにする)
+        StringSplitOptions option = StringSplitOptions.RemoveEmptyEntries;
+
+        // 行に分ける
+        string[] lines = strStream.Split(new char[] { '\r', '\n' }, option);
+
+        // カンマ分けの準備(区分けする文字を設定する)
+        char[] spliter = new char[1] { ',' };
+
+        // 行数設定
+        int h = lines.Length;
+        // 列数設定
+        int w = lines[0].Split(spliter, option).Length;
+
+        // 返り値の2次元配列の要素数を設定
+        sdata = new string[h, w];
+
+        // 行データを切り分けて,2次元配列へ変換する
+        for (int i = 0; i < h; i++)
+        {
+            string[] splitedData = lines[i].Split(spliter, option);
+
+            for (int j = 0; j < w; j++)
+            {
+                sdata[i, j] = splitedData[j];
+            }
+        }
+
+        // 確認表示用の変数(行数、列数)を格納する
+        this.g_intervalHeight = h;
+        this.g_intervalWidth = w;
+    }
+
+    /// <summary>
+    /// ステージ間のCSV読み込んで準備
+    /// </summary>
+    IEnumerator ReadIntervalCsv(string textFileName)
+    {
+
+
+        Dictionary<string, string> systemInfo = new Dictionary<string, string>();
+
+        string path = null;
+
+        DeviceType deviceType;
+
+
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName + ".csv";
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName + ".csv";
+        }
+
+
+
+        WWW www = new WWW(path);
+        yield return www;
+
+
+        readIntervalCSVData(www.text, ref this.g_intervaldataArrays);
+
+        convert2DArrayType(ref this.g_intervaldataArrays, ref this.g_intervalMapDatas, this.g_intervalHeight, this.g_intervalWidth);
+
+        yield break;
+    }
+
+    private int[,] g_intervalMapDatas;
+
+    // CSVから切り分けられたステージ間の文字列型２次元配列データ 
+    private string[,] g_intervaldataArrays;
+
+    //ステージ間の行数
+    private int g_intervalHeight = 0;
+    /// <summary>
+    /// ステージ間の行数取得
+    /// </summary>
+    /// <returns>ステージ間の行数</returns>
+    public int GetIntervalHeight()
+    {
+        return g_intervalHeight;
+    }
+    //ステージ間の列数
+    private int g_intervalWidth = 0;
+    /// <summary>
+    /// ステージ間の列数取得
+    /// </summary>
+    /// <returns>ステージ間の列数</returns>
+    public int GetIntervalWidth()
+    {
+        return g_intervalWidth;
+    }
+
+    /// <summary>
+    /// ステージ間のマップデータ取得（2次元配列）
+    /// </summary>
+    /// <returns>マップの配列</returns>
+    public int[,] GetIntervalMapDatas()
+    {
+        return g_intervalMapDatas;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(ReadIntervalCsv("Interval"));
+    }
 }
