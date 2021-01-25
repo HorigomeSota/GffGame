@@ -33,12 +33,6 @@ public class Panel : Gimmick
     {
         g_forceVecter = default;
 
-
-
-        Debug.Log(m_panelRotation+"ローテーション");
-
-       // transform.Rotate(new Vector3(0, 0, m_panelRotation));//オブジェクトの角度変更
-
         switch (m_panelRotation)//角度に応じて、パネルのforceの向きを決める
         {
             case 0:

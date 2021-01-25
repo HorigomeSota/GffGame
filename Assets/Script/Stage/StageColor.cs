@@ -15,11 +15,10 @@ public class StageColor : MonoBehaviour
     /// <param name="stageNumber">ステージ番号</param>
     public void StageColorChangeNow(int stageNumber)
     {
-        Debug.Log(stageNumber + "stageNumber");
+
         switch (stageNumber-2)
         {
             case 0:
-                Debug.Log("stage1の色設定");
                 _colorChange.SetColors(global::StageColorChange.Colors.Blue, global::StageColorChange.Colors.Red);
                 break;
 
@@ -49,11 +48,6 @@ public class StageColor : MonoBehaviour
 
             case 7:
                 _colorChange.SetColors(global::StageColorChange.Colors.PinkPurple, global::StageColorChange.Colors.LightBlue);
-                break;
-
-            default:
-                Debug.Log("default");
-                _colorChange.SetColors(global::StageColorChange.Colors.Blue, global::StageColorChange.Colors.Red);
                 break;
         }
     }

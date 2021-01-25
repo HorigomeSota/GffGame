@@ -78,7 +78,6 @@ public class StageColorChange : MonoBehaviour
     /// <param name="colorsB">色2</param>
     public void SetColors(Colors colorsA, Colors colorsB)
     {
-        Debug.Log("ええええ");
         _toleranceMaterials[0] = _materials[(int)colorsA];
         _toleranceMaterials[1] = _materials[(int)colorsB];
         _floorARenderer.material = _materials[(int)colorsA];
