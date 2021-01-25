@@ -109,6 +109,16 @@ public class StageCreate : MonoBehaviour
     private bool _firstStage = true;
 
     /// <summary>
+    /// ステージオーダースクリプト
+    /// </summary>
+    StageOrder _stageOrder;
+
+    /// <summary>
+    /// CSV読み込みスクリプト
+    /// </summary>
+    StageMapCSVread _stageMapCSVread;
+
+    /// <summary>
     /// 死んだときに流す
     /// </summary>
     public void GameOver()
@@ -129,6 +139,9 @@ public class StageCreate : MonoBehaviour
         panelBObjPfb = Resources.Load<GameObject>("Prefab/Panel1");
         shortcutObj = Resources.Load<GameObject>("Prefab/Shortcut");
         checkPointPfb = Resources.Load<GameObject>("Prefab/CheckPoint");
+
+        _stageOrder = GetComponent<StageOrder>();
+        _stageMapCSVread = GetComponent<StageMapCSVread>();
     }
 
     //CSVの名前
@@ -284,12 +297,13 @@ public class StageCreate : MonoBehaviour
     /// </summary>
     public void Generate()
     {
-        g_stage = GetComponent<StageOrder>().GetNextStage();
-        if (!_firstStage&&!GetComponent<StageOrder>().GetEndlessNow())
+        g_stage = _stageOrder.GetNextStage();
+        _stageOrder.NextStageColor();
+        if (!_firstStage&&!_stageOrder.GetEndlessNow())
         {
-            CreateMap(GetComponent<StageMapCSVread>().GetIntervalMapDatas(), GetComponent<StageMapCSVread>().GetIntervalHeight(), GetComponent<StageMapCSVread>().GetIntervalWidth(), 1);
+            CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }
         else { _firstStage = false; }
-        CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth(), 0);
+        CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth(), 0);
     }
 }
