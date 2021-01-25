@@ -36,24 +36,21 @@ public class StageColorChange : MonoBehaviour
     [SerializeField] private Renderer _enemyBRenderer = default;
     [SerializeField] private Renderer[] _panelARenderer = new Renderer[3];
     [SerializeField] private Renderer[] _panelBRenderer = new Renderer[3];
-
     [SerializeField] private GameObject _playerObj;
-    [SerializeField] private Renderer _playerRendererA;
-    [SerializeField] private Renderer _playerRendererB;
     [SerializeField] private Material _playerMatA;
     [SerializeField] private Material _playerMatB;
+    [SerializeField] private Color _matAColor;
+    [SerializeField] private Color _matBColor;
     private PlayerColorChange _colorChange;
 
     private void Awake()
     {
         _playerObj = GameObject.FindGameObjectWithTag("Player");
-        _playerRendererA = _playerObj.GetComponent<Renderer>();
-        _playerRendererB = _playerObj.GetComponent<Renderer>();
         _colorChange = _playerObj.GetComponent<PlayerColorChange>();
 
         _materials = new Material[30];
 
-        //プレハブ取得
+        //Resources取得
         _materials[0] = Resources.Load<Material>("Materials/Blue");
         _materials[1] = Resources.Load<Material>("Materials/Red");
         _materials[2] = Resources.Load<Material>("Materials/LemonYellowMat");
@@ -73,7 +70,6 @@ public class StageColorChange : MonoBehaviour
         _panelARenderer = Resources.Load<GameObject>("Prefab/Panel0").transform.Find("Panel").GetComponentsInChildren<Renderer>();
         _panelBRenderer = Resources.Load<GameObject>("Prefab/Panel1").transform.Find("Panel").GetComponentsInChildren<Renderer>();
 
-        SetColorPlayer();
     }
 
     /// <summary>
@@ -83,6 +79,7 @@ public class StageColorChange : MonoBehaviour
     /// <param name="colorsB">色2</param>
     public void SetColors(Colors colorsA, Colors colorsB)
     {
+        Debug.Log("ええええ");
         _toleranceMaterials[0] = _materials[(int)colorsA];
         _toleranceMaterials[1] = _materials[(int)colorsB];
         _floorARenderer.material = _materials[(int)colorsA];
@@ -97,8 +94,8 @@ public class StageColorChange : MonoBehaviour
         _panelBRenderer[0].material = _materials[(int)colorsB];
         _panelBRenderer[1].material = _materials[(int)colorsB];
         _panelBRenderer[2].material = _materials[(int)colorsB];
-        _playerMatA.color = _materials[(int)colorsA].color;
-        _playerMatB.color = _materials[(int)colorsB].color;
+        _matAColor = _materials[(int)colorsA].color;
+        _matBColor = _materials[(int)colorsB].color;
     }
 
     /// <summary>
@@ -108,6 +105,8 @@ public class StageColorChange : MonoBehaviour
     /// <param name="colorsB">色2</param>
     public void SetColorPlayer()
     {
+        _playerMatA.color = _matAColor;
+        _playerMatB.color = _matBColor;
         Debug.Log("プレイヤーの色変えたよ");
         _colorChange.MaterialA = _playerMatA;
         _colorChange.MaterialB = _playerMatB;
