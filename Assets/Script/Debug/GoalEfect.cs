@@ -43,7 +43,6 @@ public class GoalEfect : MonoBehaviour
             StartCoroutine(Goal());
             gameManager.GetComponent<GameManager>().timerStop = true;
         }
-        _colorChange.SetColorPlayer();
     }
 
     IEnumerator Goal()
