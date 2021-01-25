@@ -108,6 +108,14 @@ public class StageCreate : MonoBehaviour
     //一番最初のステージ生成
     private bool _firstStage = true;
 
+    /// <summary>
+    /// 死んだときに流す
+    /// </summary>
+    public void GameOver()
+    {
+        _firstStage = true;
+    }
+
     private void Awake()
     {
         //プレハブ取得
@@ -277,7 +285,7 @@ public class StageCreate : MonoBehaviour
     public void Generate()
     {
         g_stage = GetComponent<StageOrder>().GetNextStage();
-        if (!_firstStage)
+        if (!_firstStage&&!GetComponent<StageOrder>().GetEndlessNow())
         {
             CreateMap(GetComponent<StageMapCSVread>().GetIntervalMapDatas(), GetComponent<StageMapCSVread>().GetIntervalHeight(), GetComponent<StageMapCSVread>().GetIntervalWidth(), 1);
         }

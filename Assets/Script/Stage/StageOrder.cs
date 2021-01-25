@@ -16,6 +16,15 @@ public class StageOrder : MonoBehaviour
     //エンドレスモードかどうか
     bool g_endless;
 
+    /// <summary>
+    /// エンドレスモードかどうか
+    /// </summary>
+    /// <returns>true=エンドレス中,false=エンドレスじゃない</returns>
+    public bool GetEndlessNow()
+    {
+        return g_endless;
+    }
+
     //エンドレスモードで何回生成したか
     int g_endlessCount;
 
