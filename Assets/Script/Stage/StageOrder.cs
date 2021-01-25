@@ -48,12 +48,13 @@ public class StageOrder : MonoBehaviour
     public void SetFirstStage(int firstStage)
     {
         Debug.Log("firstStage" + firstStage);
-        //ステージの色設定
-        _stageColor.StageColorChangeNow(firstStage);
-        _colorChange.SetColorPlayer();
+
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
         g_nextStageNo = firstStage;
+        //ステージの色設定
+        NextStageColor();        
+        _colorChange.SetColorPlayer();
     }
 
     /// <summary>
@@ -65,8 +66,8 @@ public class StageOrder : MonoBehaviour
         //エンドレスモードじゃないとき次のステージのファイル名取得
         if (!g_endless)
         {
+            Debug.Log("個々に買いはいる");
             string m_nextStage;
-            _stageColor.StageColorChangeNow(g_nextStageNo);
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
@@ -146,5 +147,13 @@ public class StageOrder : MonoBehaviour
     private void Start()
     {
         g_endlessCount = 1;
+    }
+
+    /// <summary>
+    /// 次のステージの色変える
+    /// </summary>
+    public void NextStageColor()
+    {
+        _stageColor.StageColorChangeNow(g_nextStageNo);
     }
 }

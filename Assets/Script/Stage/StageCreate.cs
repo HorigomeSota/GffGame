@@ -102,6 +102,16 @@ public class StageCreate : MonoBehaviour
     const float prefabScaleX = 1f;
     const float prefabScaleY = 1f;
 
+    /// <summary>
+    /// ステージオーダースクリプト
+    /// </summary>
+    StageOrder _stageOrder;
+
+    /// <summary>
+    /// CSVread読み込みスクリプト
+    /// </summary>
+    StageMapCSVread _stageMapCSVread;
+
     private void Awake()
     {
         //プレハブ取得
@@ -115,6 +125,9 @@ public class StageCreate : MonoBehaviour
         panelBObjPfb = Resources.Load<GameObject>("Prefab/Panel1");
         shortcutObj = Resources.Load<GameObject>("Prefab/Shortcut");
         checkPointPfb = Resources.Load<GameObject>("Prefab/CheckPoint");
+
+        _stageOrder = GetComponent<StageOrder>();
+        _stageMapCSVread = GetComponent<StageMapCSVread>();
     }
 
     //CSVの名前
@@ -266,7 +279,8 @@ public class StageCreate : MonoBehaviour
     /// </summary>
     public void Generate()
     {
-        g_stage = GetComponent<StageOrder>().GetNextStage();
-        CreateMap(GetComponent<StageMapCSVread>().GetStageMapDatas(), GetComponent<StageMapCSVread>().GetHeight(), GetComponent<StageMapCSVread>().GetWidth());
+        g_stage = _stageOrder.GetNextStage();
+        _stageOrder.NextStageColor();
+        CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth());
     }
 }

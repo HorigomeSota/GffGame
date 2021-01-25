@@ -38,13 +38,11 @@ public class PlayerTriggerColorCheck : MonoBehaviour
             if (flore.GetComponent<Floor>().GetColor() == m_playerColor)
             {
                 GetComponent<PlayerState>().Move();
-
             }
             else
             {
                 GetComponent<PlayerState>().ColorSpeedDown();
             }
-
         }
         else m_playerState.FloreFlagOFF();
     }
@@ -77,11 +75,8 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     break;
 
                 case "Shortcut"://ショートカットに当たった時(同じ色だと発動)
-
-                   
                    
                      GetComponent<PlayerState>().BoostFlagOn();//ステイトをショートカットのやつにする
-
 
                     break;
 
@@ -90,23 +85,10 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     if (m_triggerObj.GetComponent<Panel>().GetColor() == m_playerColor)
                     {
                         GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
-
-
-
-
                     }
 
                     break;
-                /*
-            case "ToleranceValue"://許容値に当たった時(同じ色だと発動)
 
-                if (m_triggerObj.GetComponent<Enemy>().GetColor() == m_playerColor)
-                {
-                    //ここじゃ使わないや
-                }
-
-                break;
-                */
                 case "Floor"://フロアに当たった時(同じ色だとmove,違う色だとスピードダウン)
 
                     if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
@@ -123,15 +105,8 @@ public class PlayerTriggerColorCheck : MonoBehaviour
 
                     break;
 
-
-
             }
             m_triggerObjBeforeTransform = m_triggerObj.transform;
-
         }
-
     }
-
-        
-
 }
