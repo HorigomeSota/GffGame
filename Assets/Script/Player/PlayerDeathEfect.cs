@@ -10,8 +10,6 @@ public class PlayerDeathEfect : MonoBehaviour
     [SerializeField]
     private GameObject m_deathEfect=default;
 
-    private GameObject m_efect=default;
-
     PlayerState playerState=default;
 
     SpriteRenderer playerSprite=default;

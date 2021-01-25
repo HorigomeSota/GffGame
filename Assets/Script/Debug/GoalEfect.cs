@@ -12,13 +12,13 @@ public class GoalEfect : MonoBehaviour
     private GameObject goal5;
     private GameObject goal6;
     [SerializeField]
-    private GameObject gameManager;
+    private GameObject _gameManagerObj;
 
     [SerializeField]
     private Text textefect;
 
     [SerializeField]
-    private Text text;
+    private Text _goalText;
 
     [SerializeField]
     private GameObject canvas;
@@ -41,7 +41,7 @@ public class GoalEfect : MonoBehaviour
         if (other.tag == "Player")
         {
             StartCoroutine(Goal());
-            gameManager.GetComponent<GameManager>().timerStop = true;
+            _gameManagerObj.GetComponent<GameManager>().timerStop = true;
         }
     }
 
@@ -49,7 +49,7 @@ public class GoalEfect : MonoBehaviour
     {
         canvas.GetComponent<Animator>().SetBool("Clear", true);
 
-        textefect.text = text.text;
+        textefect.text = _goalText.text;
 
         goal1.SetActive(true);
         yield return new WaitForSeconds(0.2f);
