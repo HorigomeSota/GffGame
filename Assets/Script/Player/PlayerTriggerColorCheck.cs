@@ -86,7 +86,6 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     {
                         GetComponent<PlayerState>().PanelSpeedUpFlagOn();//ステイトをパネルスピードアップにする
                     }
-
                     break;
 
                 case "Floor"://フロアに当たった時(同じ色だとmove,違う色だとスピードダウン)
@@ -94,17 +93,12 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     if (m_triggerObj.GetComponent<Floor>().GetColor() == m_playerColor)
                     {
                         GetComponent<PlayerState>().Move();//ステイトをmoveに変更
-
-
                     }
                     else
                     {
-
                         GetComponent<PlayerState>().ColorSpeedDown();//ステイトをスピードダウンに変更
                     }
-
                     break;
-
             }
             m_triggerObjBeforeTransform = m_triggerObj.transform;
         }

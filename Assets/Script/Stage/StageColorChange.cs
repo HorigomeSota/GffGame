@@ -69,7 +69,6 @@ public class StageColorChange : MonoBehaviour
         _enemyBRenderer = Resources.Load<GameObject>("Prefab/Enemy1").GetComponent<Renderer>();
         _panelARenderer = Resources.Load<GameObject>("Prefab/Panel0").transform.Find("Panel").GetComponentsInChildren<Renderer>();
         _panelBRenderer = Resources.Load<GameObject>("Prefab/Panel1").transform.Find("Panel").GetComponentsInChildren<Renderer>();
-
     }
 
     /// <summary>
@@ -107,7 +106,6 @@ public class StageColorChange : MonoBehaviour
     {
         _playerMatA.color = _matAColor;
         _playerMatB.color = _matBColor;
-        Debug.Log("プレイヤーの色変えたよ");
         _colorChange.MaterialA = _playerMatA;
         _colorChange.MaterialB = _playerMatB;
     }
