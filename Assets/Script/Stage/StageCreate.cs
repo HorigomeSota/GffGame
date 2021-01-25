@@ -4,9 +4,6 @@
 public class StageCreate : MonoBehaviour
 {
     [SerializeField]
-    Transform stageRootObj = default;
-
-    [SerializeField]
     GameObject floorAObj= default;
     const int FLOOR_A = 10;
     [SerializeField]

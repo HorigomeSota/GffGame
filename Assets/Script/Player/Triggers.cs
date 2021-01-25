@@ -63,8 +63,6 @@ public class Triggers : MonoBehaviour
                 m_priorityEnter = 5;
                 g_triggerFlore = true;
                 break;
-            default:
-                return;
         }
         m_triggerStays[m_priorityEnter] = other.gameObject;
         m_prioritys[m_priorityEnter] = m_priorityEnter;
@@ -77,6 +75,7 @@ public class Triggers : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)//離れたオブジェクトを配列から排除
     {
+        
         switch (other.gameObject.tag)
         {
             case "FallDeath":
@@ -99,9 +98,7 @@ public class Triggers : MonoBehaviour
                 m_priorityExit = 5;
                 g_triggerFlore = false;
                 break;
-
         }
-
         if (other.gameObject == m_triggerStays[m_priorityExit])//離れたオブジェクトと触れていたオブジェクトが一致していたら
         {
 

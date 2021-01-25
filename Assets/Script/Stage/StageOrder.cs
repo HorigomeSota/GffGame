@@ -48,6 +48,7 @@ public class StageOrder : MonoBehaviour
     public void SetFirstStage(int firstStage)
     {
         Debug.Log("firstStage" + firstStage);
+        //ステージの色設定
         _stageColor.StageColorChangeNow(firstStage);
         _colorChange.SetColorPlayer();
         //エンドレスモードの確認
