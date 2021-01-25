@@ -23,7 +23,6 @@ public class CheckPointDistance : MonoBehaviour
         {
             GetComponent<StageCreate>().Generate();
         }
-
     }
 
     public void StartCreate()
@@ -33,7 +32,5 @@ public class CheckPointDistance : MonoBehaviour
             player.transform.position = new Vector3(0, 50, -0.4f);
             m_start = true;
         }
-        
     }
-
 }

@@ -101,13 +101,11 @@ public class TestInput : MonoBehaviour,IInput
 
                 once = true;
             }
-
         }
         if (Input.GetMouseButton(0))
         {
             // ベクトルの引き算を行い、現在のタッチ位置とその１フレーム前のタッチ位置との差分を方向として代入
             mouseDiff = Input.mousePosition - mousePos;
-
             if(mouseDiff.y>tolerance&& once)
             {
                 g_jumpCheck = true;
@@ -116,8 +114,6 @@ public class TestInput : MonoBehaviour,IInput
         }
         if (Input.GetMouseButtonUp(0))
         {
-            print(mouseDiff + " + " + tolerance);
-
             if (mouseDiff.y <= tolerance)
             {
                 g_colorCheck = true;

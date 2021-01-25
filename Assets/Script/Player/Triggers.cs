@@ -36,10 +36,9 @@ public class Triggers : MonoBehaviour
             loopCount--;
         }
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        m_playerState.SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出すm_player.GetComponent<プレイヤーステイト>().呼び出すやつ(g_mostPriority);
-
+        m_playerState.SetTriggerObj(g_mostPriority);//プレイヤーのゲームオブジェクト受け取るやつ呼び出す
     }
     private void OnTriggerEnter(Collider other)//触れたオブジェクトを配列に追加
     {
@@ -76,8 +75,7 @@ public class Triggers : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)//離れたオブジェクトを配列から排除
     {
-
-
+        
         switch (other.gameObject.tag)
         {
             case "FallDeath":
@@ -99,7 +97,6 @@ public class Triggers : MonoBehaviour
             case "Floor":
                 m_priorityExit = 5;
                 g_triggerFlore = false;
-
                 break;
         }
         if (other.gameObject == m_triggerStays[m_priorityExit])//離れたオブジェクトと触れていたオブジェクトが一致していたら

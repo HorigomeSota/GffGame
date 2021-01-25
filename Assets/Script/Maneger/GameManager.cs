@@ -81,12 +81,17 @@ public class GameManager : MonoBehaviour
 
     public bool timerStop=false;
 
+    /// <summary>
+    /// タイマースクリプト
+    /// </summary>
+    private TimeData m_timeData;
+
     private void Awake()
     {
         //ゲームオブジェクトFind
         m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
         m_playerStateObject = GameObject.FindGameObjectWithTag("Player");
-        m_CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
+        m_CanvasObject = GameObject.FindGameObjectWithTag("GameCanvas");
         m_inputObj=GameObject.FindGameObjectWithTag("Input");
         m_TimerObject =GameObject.FindGameObjectWithTag("Timer");
 
@@ -96,8 +101,7 @@ public class GameManager : MonoBehaviour
         m_UIManager = m_CanvasObject.GetComponent<UIManager>();
         m_input = m_inputObj.GetComponent<IInput>();
         m_tim = m_TimerObject.GetComponent<Timer>();
-
-
+        m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
     }
 
 
@@ -113,8 +117,6 @@ public class GameManager : MonoBehaviour
 
             //Inputのカラーチェンジ呼び出し
             m_colorcheckinput = m_input.ColorCheck();
-
-
 
             //ジャンプとカラーチェンジの条件判定
             if (m_jumpinput)
@@ -157,8 +159,6 @@ public class GameManager : MonoBehaviour
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
         //m_audioManager.PlayClip("stage",1);
         m_tim.TimerReset();
-
-
     }
 
     /// <summary>
@@ -167,6 +167,7 @@ public class GameManager : MonoBehaviour
     public void GameEnd()
     {
         m_gamestarting = false;
+        m_timeData.SavePlayerData();
     }
 
 }

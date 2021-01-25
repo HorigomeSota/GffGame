@@ -48,16 +48,14 @@ public class PcInput : MonoBehaviour, IInput
 
 
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             g_jumpCheck = true;
-            print("jj");
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetMouseButtonDown(0))
         {
             g_colorCheck = true;
-            print("ff");
         }
     }
 

@@ -23,6 +23,9 @@ TagManager:
   - Input
   - ConcentratedLine
   - StageColor
+  - ResultTimer
+  - GameCanvas
+  - Goal
   layers:
   - Default
   - TransparentFX

@@ -4,8 +4,6 @@ using UnityEngine;
 using System.IO;
 public class TimeData : MonoBehaviour
 {
-
-
     [System.Serializable]
     public class PlayerData
     {
@@ -26,7 +24,6 @@ public class TimeData : MonoBehaviour
     private float g_resultTime;
     private float g_bestScore;
     private float g_scoreResult;
-    int key = default; 
 
     private string datastr = "ScoreData";
     
@@ -42,13 +39,6 @@ public class TimeData : MonoBehaviour
     /// </summary>
     private void TimeCompare()
     {
-        /*
-        g_resultTime = g_playingtime;
-        if (g_stageBestTimes[key] > g_playingtime)
-        {
-            g_stageBestTimes[key] = g_playingtime;
-        }
-        */
         if (g_playingtime < playerData.saveBestTimes[m_stageOrder.GetStageNumber()])//もしタイムが最高記録なら
         {
             playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
@@ -62,19 +52,11 @@ public class TimeData : MonoBehaviour
             playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
         }
         //三番目だったら
-        else if(playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveThirdTimes[m_stageOrder.GetStageNumber()])
+        else if (playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveThirdTimes[m_stageOrder.GetStageNumber()])
         {
             playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
         }
 
-    }
-    /// <summary>
-    /// 直近のゲームのTimeを取得用
-    /// </summary>
-    /// <returns></returns>
-    public float GetResult()
-    {
-        return g_resultTime;
     }
 
     /// <summary>
@@ -149,5 +131,4 @@ public class TimeData : MonoBehaviour
         LoadPlayerData();
         return playerData.saveThirdTimes[stageNumber];
     }
-
 }

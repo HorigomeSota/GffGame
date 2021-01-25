@@ -20,13 +20,25 @@ public class StageOrder : MonoBehaviour
     int g_endlessCount;
 
     /// <summary>
+    /// ステージの色変更系のスクリプトが入ってるオブジェクト
+    /// </summary>
+    GameObject _stageColorObject;
+
+    /// <summary>
     /// 色設定スクリプト
     /// </summary>
-    StageColorPattern _colorPattern;
+    StageColorChange _colorChange;
+
+    /// <summary>
+    /// ステージの色格納スクリプト
+    /// </summary>
+    StageColor _stageColor;
 
     private void Awake()
     {
-        _colorPattern = GameObject.FindGameObjectWithTag("StageColor").GetComponent<StageColorPattern>();
+        _stageColorObject = GameObject.FindGameObjectWithTag("StageColor");
+        _colorChange = _stageColorObject.GetComponent<StageColorChange>();
+        _stageColor = _stageColorObject.GetComponent<StageColor>();
     }
 
     /// <summary>
@@ -35,10 +47,14 @@ public class StageOrder : MonoBehaviour
     /// <param name="firstStage"></param>
     public void SetFirstStage(int firstStage)
     {
-        _colorPattern.SetColors((StageColorPattern.Colors)firstStage, (StageColorPattern.Colors)firstStage+1);
+        Debug.Log("firstStage" + firstStage);
+
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
         g_nextStageNo = firstStage;
+        //ステージの色設定
+        NextStageColor();        
+        _colorChange.SetColorPlayer();
     }
 
     /// <summary>
@@ -47,20 +63,20 @@ public class StageOrder : MonoBehaviour
     /// <returns>CSVファイル名</returns>
     public string GetNextStage()
     {
-        
         //エンドレスモードじゃないとき次のステージのファイル名取得
         if (!g_endless)
         {
+            Debug.Log("個々に買いはいる");
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
-            _colorPattern.SetColors((StageColorPattern.Colors)g_nextStageNo-1, (StageColorPattern.Colors)g_nextStageNo);
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
         //エンドレスモード時、確率によって生成ステージ決定
         else
         {
+            _stageColor.StageColorChangeNow(g_nextStageNo);
             int m_level=1;
             //現在のレベル確認（縦列）
             while (true)
@@ -131,5 +147,13 @@ public class StageOrder : MonoBehaviour
     private void Start()
     {
         g_endlessCount = 1;
+    }
+
+    /// <summary>
+    /// 次のステージの色変える
+    /// </summary>
+    public void NextStageColor()
+    {
+        _stageColor.StageColorChangeNow(g_nextStageNo);
     }
 }
