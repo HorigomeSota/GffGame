@@ -15,6 +15,8 @@ public class StartCheck : MonoBehaviour
     /// </summary>
     private GameObject gameSceneCanvas;
 
+    private Timer timer = default;
+
     const string gameManagerTag = "GameManager";
 
     const string timerTag = "Timer";
@@ -28,14 +30,18 @@ public class StartCheck : MonoBehaviour
         timerObject = GameObject.FindGameObjectWithTag(timerTag);
         gameManager = GameObject.FindWithTag(gameManagerTag);
         gameSceneCanvas = GameObject.FindWithTag(gameCanvasTag);
+        timer = timerObject.GetComponent<Timer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == PLAYERTAG)
         {
+            print("no");
             //タイマーリセット
-            timerObject.GetComponent<Timer>().TimerReset();
+            timer.TimerReset();
+            timer.StageStart();
+            gameManager.GetComponent<GameManager>().timerStop = false;
             //チェックポイント更新
             gameManager.GetComponent<GameManager>().SetCheckPoint(this.gameObject);
         }

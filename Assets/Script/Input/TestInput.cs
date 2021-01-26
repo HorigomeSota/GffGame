@@ -114,7 +114,7 @@ public class TestInput : MonoBehaviour,IInput
         }
         if (Input.GetMouseButtonUp(0))
         {
-            print(mouseDiff+ "mouseDiff");
+
 
             if (mouseDiff.y <= tolerance)
             {

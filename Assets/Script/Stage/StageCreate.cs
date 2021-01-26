@@ -108,6 +108,8 @@ public class StageCreate : MonoBehaviour
     const float prefabScaleX = 1f;
     const float prefabScaleY = 1f;
 
+    private bool _firstStage = default;
+
     /// <summary>
     /// ステージオーダースクリプト
     /// </summary>
@@ -136,6 +138,7 @@ public class StageCreate : MonoBehaviour
 
         _stageOrder = GetComponent<StageOrder>();
         _stageMapCSVread = GetComponent<StageMapCSVread>();
+        _firstStage = true;
     }
 
     //CSVの名前
@@ -154,7 +157,8 @@ public class StageCreate : MonoBehaviour
     /// <param name="arrays">csv</param>
     /// <param name="hgt">高さ</param>
     /// <param name="wid">長さ</param>
-    void CreateMap(int[,] arrays, int hgt, int wid)
+    /// <param name="stageOrInterval">stage=0,interval=1</param>
+    void CreateMap(int[,] arrays, int hgt, int wid, int stageOrInterval)
     {
         for (int i = 0; i < hgt; i++)
         {
@@ -284,6 +288,10 @@ public class StageCreate : MonoBehaviour
                 }
             }
         }
+        if (stageOrInterval == 0)
+        {
+            GetComponent<StageMapCSVread>().MapCsvRead(g_stage);
+        }
         transform.position = new Vector3(checkPointObject.transform.position.x + 1, checkPointObject.transform.position.y, checkPointObject.transform.position.z);
         GetComponent<StageMapCSVread>().MapCsvRead(g_stage);
     }
@@ -295,7 +303,12 @@ public class StageCreate : MonoBehaviour
     {
         g_stage = _stageOrder.GetNextStage();
         _stageOrder.NextStageColor();
-        CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth());
+        if (!_firstStage && !_stageOrder.GetEndlessNow())
+        {
+            CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
+        }
+        else { _firstStage = false; }
+        CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth(), 0);
     }
 
     public GameObject GetStartPosition()

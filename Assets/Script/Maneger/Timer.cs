@@ -25,7 +25,7 @@ class Timer : MonoBehaviour
     /// 秒数
     /// </summary>
     private float m_time;
-    private void Start()
+    private void Awake()
     {
         m_timedata = GameObject.FindGameObjectWithTag(m_datatag).GetComponent<TimeData>();
     }
@@ -35,6 +35,11 @@ class Timer : MonoBehaviour
     public void TimerReset()
     {
         m_time = 0;
+    }
+
+    public void StageStart()
+    {
+        m_timedata.ResetTimer();
     }
 
     /// <summary>

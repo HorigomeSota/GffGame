@@ -69,6 +69,11 @@ public class TimeData : MonoBehaviour
         return g_playingtime;
     }
 
+    public void ResetTimer()
+    {
+        g_playingtime = 0;
+    }
+
     /// <summary>
     /// UIから読み込む用
     /// </summary>
