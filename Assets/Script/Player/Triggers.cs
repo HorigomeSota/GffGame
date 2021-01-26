@@ -42,6 +42,7 @@ public class Triggers : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)//触れたオブジェクトを配列に追加
     {
+        if (other.gameObject.tag == "Goal") return;
         switch (other.gameObject.tag)
         {
             case "FallDeath":
