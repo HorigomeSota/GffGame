@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
     UIManager m_UIManager;
 
     /// <summary>
+    ///チェックポイントオブジェクト格納 
+    /// </summary>
+    private GameObject checkPoint = default;
+
+    /// <summary>
     /// Timer格納オブジェクト
     /// </summary>
     [SerializeField]
@@ -157,7 +162,6 @@ public class GameManager : MonoBehaviour
         m_gamestarting = true;
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
-        //m_audioManager.PlayClip("stage",1);
         m_tim.TimerReset();
     }
 
@@ -168,6 +172,11 @@ public class GameManager : MonoBehaviour
     {
         m_gamestarting = false;
         m_timeData.SavePlayerData();
+    }
+
+    public void SetCheckPoint(GameObject startObj)
+    {
+        checkPoint = startObj;
     }
 
 }

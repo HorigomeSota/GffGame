@@ -93,8 +93,14 @@ public class StageCreate : MonoBehaviour
     [SerializeField]
     GameObject checkPointPfb = default;
     const int CHECKPOINT = 100;
-
     GameObject checkPointObject = default;
+
+    private GameObject startObj = default;
+    const int START = 200;
+
+    private GameObject goalObj = default;
+    const int GOAL = 300;
+   
 
     GameObject panelBObj = default;
     GameObject panelAObj = default;
@@ -267,6 +273,12 @@ public class StageCreate : MonoBehaviour
                         Instantiate(floorBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         Instantiate(enemyBObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
+                    case START:
+                        Instantiate(startObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        break;
+                    case GOAL:
+                        Instantiate(goalObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        break;
                 }
             }
         }
@@ -282,5 +294,10 @@ public class StageCreate : MonoBehaviour
         g_stage = _stageOrder.GetNextStage();
         _stageOrder.NextStageColor();
         CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth());
+    }
+
+    public GameObject GetStartPosition()
+    {
+        return startObj;
     }
 }
