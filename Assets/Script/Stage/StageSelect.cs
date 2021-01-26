@@ -31,7 +31,6 @@ public class StageSelect : MonoBehaviour
         {
             m_a++;
             m_stageNameTop = m_stageName[m_a].Substring(0, 1);
-
         }
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
         list = GameObject.Find("List");
@@ -49,7 +48,6 @@ public class StageSelect : MonoBehaviour
             {
                 listButton.transform.Find("StageName").GetComponent<Text>().text = "STAGE" + (i + 1).ToString();
             }
-            
             if(i==m_a)
             {
                 listButton.transform.Find("StageName").GetComponent<Text>().text = "∞ENDLESS∞";

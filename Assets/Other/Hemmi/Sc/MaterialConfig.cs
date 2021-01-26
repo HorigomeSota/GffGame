@@ -21,8 +21,7 @@ public class MaterialConfig : MonoBehaviour
 
     [SerializeField]Material[] m_materials=new Material[10];
 
-    [SerializeField]private MaterialState m_materialState;
-
+    [SerializeField] private MaterialState m_materialState;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +35,6 @@ public class MaterialConfig : MonoBehaviour
         m_materials[7] = Resources.Load<Material>("Materials/White");
 
         MaterialSet();
-
     }
 
     /// <summary>
@@ -78,6 +76,5 @@ public class MaterialConfig : MonoBehaviour
                 GetComponent<Renderer>().material = m_materials[7];
                 break;
         }
-
     }
 }

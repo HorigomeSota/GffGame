@@ -42,6 +42,7 @@ public class Triggers : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)//触れたオブジェクトを配列に追加
     {
+        if (other.gameObject.tag == "Goal") return;
         switch (other.gameObject.tag)
         {
             case "FallDeath":
@@ -103,7 +104,6 @@ public class Triggers : MonoBehaviour
         }
         if (other.gameObject == m_triggerStays[m_priorityExit])//離れたオブジェクトと触れていたオブジェクトが一致していたら
         {
-
             m_triggerStays[m_priorityExit] = null;
             m_prioritys[m_priorityExit] = -1;
             //もし、なんのオブジェクトにも触れていなかったら、優先度を最低にするためのフラグON
