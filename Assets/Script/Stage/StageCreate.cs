@@ -131,6 +131,8 @@ public class StageCreate : MonoBehaviour
         panelBObjPfb = Resources.Load<GameObject>("Prefab/Panel1");
         shortcutObj = Resources.Load<GameObject>("Prefab/Shortcut");
         checkPointPfb = Resources.Load<GameObject>("Prefab/CheckPoint");
+        startObj = Resources.Load<GameObject>("Prefab/Start");
+        goalObj = Resources.Load<GameObject>("Prefab/Goal");
 
         _stageOrder = GetComponent<StageOrder>();
         _stageMapCSVread = GetComponent<StageMapCSVread>();

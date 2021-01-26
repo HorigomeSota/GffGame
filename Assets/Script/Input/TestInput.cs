@@ -33,7 +33,7 @@ public class TestInput : MonoBehaviour,IInput
 
     private void Start()
     {
-        tolerance = 0.5f;
+        tolerance = 25f;
     }
 
     private void Update()
@@ -114,6 +114,8 @@ public class TestInput : MonoBehaviour,IInput
         }
         if (Input.GetMouseButtonUp(0))
         {
+            print(mouseDiff+ "mouseDiff");
+
             if (mouseDiff.y <= tolerance)
             {
                 g_colorCheck = true;
