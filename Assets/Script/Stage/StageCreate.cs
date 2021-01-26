@@ -303,8 +303,12 @@ public class StageCreate : MonoBehaviour
     {
         g_stage = _stageOrder.GetNextStage();
         _stageOrder.NextStageColor();
+
+        print(_firstStage+ "_firstStage");
+        print(_stageOrder.GetEndlessNow() + "_stageOrder");
         if (!_firstStage && !_stageOrder.GetEndlessNow())
         {
+            Debug.Log("wwwwwwwwwwwwwww");
             CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }
         else { _firstStage = false; }
