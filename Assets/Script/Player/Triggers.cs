@@ -104,7 +104,6 @@ public class Triggers : MonoBehaviour
         }
         if (other.gameObject == m_triggerStays[m_priorityExit])//離れたオブジェクトと触れていたオブジェクトが一致していたら
         {
-
             m_triggerStays[m_priorityExit] = null;
             m_prioritys[m_priorityExit] = -1;
             //もし、なんのオブジェクトにも触れていなかったら、優先度を最低にするためのフラグON

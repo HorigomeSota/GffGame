@@ -20,12 +20,9 @@ public class PlayerTriggerColorCheck : MonoBehaviour
         m_triggers = GetComponent<Triggers>();
     }
 
-
-
     private void Update()
     {
         //触れているオブジェクトとプレイヤーの色取得
-        
         m_triggerObj = m_playerState.GetTriggerObj();
         
         if(m_triggerObj!=null&&m_triggerObj.transform!= m_triggerObjBeforeTransform) ColorCheck();

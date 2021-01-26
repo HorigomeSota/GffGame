@@ -302,13 +302,13 @@ public class StageCreate : MonoBehaviour
     public void Generate()
     {
         g_stage = _stageOrder.GetNextStage();
-        _stageOrder.NextStageColor();
         if (!_firstStage && !_stageOrder.GetEndlessNow())
         {
             CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }
         else { _firstStage = false; }
         CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth(), 0);
+        _stageOrder.NextStageColor();
     }
 
     public GameObject GetStartPosition()

@@ -75,7 +75,6 @@ public class StageOrder : MonoBehaviour
         //エンドレスモードじゃないとき次のステージのファイル名取得
         if (!g_endless)
         {
-            _stageColor.StageColorChangeNow(g_nextStageNo);
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
@@ -85,7 +84,6 @@ public class StageOrder : MonoBehaviour
         //エンドレスモード時、確率によって生成ステージ決定
         else
         {
-            _stageColor.StageColorChangeNow(g_nextStageNo+1);
             int m_level=1;
             //現在のレベル確認（縦列）
             while (true)
@@ -124,6 +122,7 @@ public class StageOrder : MonoBehaviour
             return "Endless/"+ g_stageOrder[g_nextStageNo + m_stageNo];
         }
     }
+
 
     public void SetStageOrder(string[] stargeOrder)
     {
@@ -166,8 +165,19 @@ public class StageOrder : MonoBehaviour
         _stageColor.StageColorChangeNow(g_nextStageNo);
     }
 
-    public void NextStageColor(bool first)
+    /// <summary>
+    /// 最初と最後は処理方法変えてはいる
+    /// </summary>
+    /// <param name="first"></param>
+    public void NextStageColor(bool firstOrEnd)
     {
-        _stageColor.StageColorChangeNow(g_nextStageNo+2);
+        if (firstOrEnd)
+        {
+            _stageColor.StageColorChangeNow(g_nextStageNo + 2);
+        }
+        else
+        {
+            _stageColor.StageColorChangeNow(g_nextStageNo + 1);
+        }
     }
 }
