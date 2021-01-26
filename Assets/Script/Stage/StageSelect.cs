@@ -77,10 +77,15 @@ public class StageSelect : MonoBehaviour
                 m_bestComma = 99;
             }
             else
-            if (m_bestSeconds >= 60)
             {
-                m_bestMinutes = m_bestSeconds / 60;
-                m_bestSeconds = m_bestSeconds % 60;
+                if (m_bestSeconds >= 60)
+                {
+                    m_bestMinutes = m_bestSeconds / 60;
+                    m_bestSeconds = m_bestSeconds % 60;
+                    
+                    
+                }
+                Debug.Log(g_bestTime % 1);
                 m_bestComma = (int)(g_bestTime % 1 * 100);
             }
 

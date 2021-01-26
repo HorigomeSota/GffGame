@@ -8,8 +8,6 @@ public class StageSelectButton : MonoBehaviour
     private Transform m_stageSelecteTransform;
     StageSelect m_stageSelecteClass;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         Vector3 objectSize = gameObject.GetComponent<RectTransform>().sizeDelta;

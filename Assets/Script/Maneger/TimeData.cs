@@ -56,7 +56,6 @@ public class TimeData : MonoBehaviour
         {
             playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
         }
-
     }
 
     /// <summary>
