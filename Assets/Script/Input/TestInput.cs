@@ -29,9 +29,11 @@ public class TestInput : MonoBehaviour,IInput
 
     private bool once = default;
 
+    private string objectName = default;
+
     private void Start()
     {
-        tolerance = 0.5f;
+        tolerance = 25f;
     }
 
     private void Update()
@@ -95,9 +97,7 @@ public class TestInput : MonoBehaviour,IInput
                 g_hitObj = m_hit.collider.gameObject;
 
                 //オブジェクト名を取得して変数に入れる
-                string objectName = g_hitObj.name;
-
-                ObjectCheck(objectName);
+                objectName = g_hitObj.name;
 
                 once = true;
             }
@@ -114,10 +114,16 @@ public class TestInput : MonoBehaviour,IInput
         }
         if (Input.GetMouseButtonUp(0))
         {
+
+
             if (mouseDiff.y <= tolerance)
             {
                 g_colorCheck = true;
+            }
 
+            if (mouseDiff.x<=tolerance&& mouseDiff.x >= -tolerance)
+            {
+                ObjectCheck(objectName);
             }
         }
     }

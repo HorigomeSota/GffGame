@@ -51,9 +51,10 @@ public class PlayerColorChange : MonoBehaviour
         if (m_playerState.GetColorChangeFlag())//cloroChangeのフラグがたっているか確認
         {
             m_TriggerColorCheck.ColorCheck();
-            m_playerState.ColorChange();
-
-            m_audioManager.PlayClip("ColorChange",0);
+            if (m_playerState.ColorChange())
+            {
+               m_audioManager.PlayClip("ColorChange", 0);
+            }
 
             //色情報取得
             if (m_playerState.GetColor() == 0)

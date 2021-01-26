@@ -64,6 +64,8 @@ public class Triggers : MonoBehaviour
                 m_priorityEnter = 5;
                 g_triggerFlore = true;
                 break;
+            default:
+                return;
         }
         m_triggerStays[m_priorityEnter] = other.gameObject;
         m_prioritys[m_priorityEnter] = m_priorityEnter;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GoalEfect : MonoBehaviour
+public class GoalCheck : MonoBehaviour
 {
     /// <summary>
     /// 花火エフェクト青
@@ -83,14 +83,10 @@ public class GoalEfect : MonoBehaviour
 
         for (int count = 0; count < efectQuantity; count++)
         {
-
-
             efectDistance += 10;
 
             Instantiate(fireworkBluePrefab, new Vector3(transform.position.x + efectDistance, transform.position.y, transform.position.z), Quaternion.identity);
             yield return new WaitForSeconds(0.3f);
-
-
         }
 
         yield break;

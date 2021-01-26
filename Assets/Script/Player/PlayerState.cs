@@ -17,17 +17,19 @@ public class PlayerState : MonoBehaviour
     //現在の色
     [SerializeField] private int color;
     /// <summary>Colorを変える</summary>
-    public void ColorChange()
+    public bool ColorChange()
     {
+        g_colorChange = false;
         //生きている間だけ色を変える
-        if (!g_death)
+        if (!g_death && GetComponent<Rigidbody>().velocity.x != 0)
         {
             if (color == 0) { color = 1; }
             else { color = 0; }
-            g_colorChange = false;
             g_colorChangeNow = true;
+            return true;
         }
-        
+
+        return false;
     }
     /// <summary>プレイヤーの色取得</summary>
     /// <returns>0か1</returns>
