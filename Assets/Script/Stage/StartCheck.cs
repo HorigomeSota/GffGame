@@ -37,7 +37,7 @@ public class StartCheck : MonoBehaviour
     {
         if (other.tag == PLAYERTAG)
         {
-            print("no");
+
             //タイマーリセット
             timer.TimerReset();
             timer.StageStart();

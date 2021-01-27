@@ -26,6 +26,7 @@ TagManager:
   - ResultTimer
   - GameCanvas
   - Goal
+  - StageCreate
   layers:
   - Default
   - TransparentFX

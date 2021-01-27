@@ -43,7 +43,6 @@ public class TestInput : MonoBehaviour,IInput
     }
 
 
-
     private void ObjectCheck(string name)
     {
         switch (name)
@@ -73,6 +72,12 @@ public class TestInput : MonoBehaviour,IInput
                 g_sceneNum = 3;
 
                 break;
+
+            case ("Escape"):
+
+                g_sceneNum = 4;
+
+                break;
         }
     }
 
@@ -98,24 +103,23 @@ public class TestInput : MonoBehaviour,IInput
 
                 //オブジェクト名を取得して変数に入れる
                 objectName = g_hitObj.name;
-
-                once = true;
             }
+            once = true;
         }
         if (Input.GetMouseButton(0))
         {
             // ベクトルの引き算を行い、現在のタッチ位置とその１フレーム前のタッチ位置との差分を方向として代入
             mouseDiff = Input.mousePosition - mousePos;
-            if(mouseDiff.y>tolerance&& once)
+
+            if (mouseDiff.y>tolerance&& once)
             {
+
                 g_jumpCheck = true;
                 once = false;
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
-
-
             if (mouseDiff.y <= tolerance)
             {
                 g_colorCheck = true;

@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PcInput : MonoBehaviour, IInput
-{ /// <summary>trueの時、ジャンプする </summary>
+{
+    Vector3 mouseDiff;
+
+    Vector3 mousePos;     // 最初にタッチ(左クリック)した地点の情報を入れる
+
+    private float tolerance = default;
+
+    /// <summary>trueの時、ジャンプする </summary>
     private bool g_jumpCheck = false;
 
     /// <summary>trueの時、色を変える</summary>
@@ -20,6 +27,13 @@ public class PcInput : MonoBehaviour, IInput
 
     private GameObject g_hitObj;
 
+    private string objectName = default;
+
+    private void Start()
+    {
+        tolerance = 25f;
+    }
+
     private void Update()
     {
         camera_object = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
@@ -27,6 +41,9 @@ public class PcInput : MonoBehaviour, IInput
         //マウスがクリックされたら
         if (Input.GetMouseButtonDown(0))
         {
+            // タッチした位置を代入
+            mousePos = Input.mousePosition;
+
             //マウスのポジションを取得してRayに代入
             Ray ray = camera_object.ScreenPointToRay(Input.mousePosition);
 
@@ -37,13 +54,22 @@ public class PcInput : MonoBehaviour, IInput
                 g_hitObj = m_hit.collider.gameObject;
 
                 //オブジェクト名を取得して変数に入れる
-                string objectName = g_hitObj.name;
-
-                ObjectCheck(objectName);
-
+                objectName = g_hitObj.name;
             }
 
 
+        }
+        if (Input.GetMouseButton(0))
+        {
+            // ベクトルの引き算を行い、現在のタッチ位置とその１フレーム前のタッチ位置との差分を方向として代入
+            mouseDiff = Input.mousePosition - mousePos;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (mouseDiff.x <= tolerance && mouseDiff.x >= -tolerance)
+            {
+                ObjectCheck(objectName);
+            }
         }
 
 
