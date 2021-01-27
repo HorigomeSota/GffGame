@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
         m_gamestarting = true;
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
-        print("ok");
+
         m_tim.TimerReset();
     }
 

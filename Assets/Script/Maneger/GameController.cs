@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
 
                 if ( m_gameSceneNum != m_beforeNum)
                 {
-                    print(m_input);
+
 
                     m_stageCreate.GetComponent<StageOrder>().SetFirstStage(m_input.ChoiceObj().GetComponent<StageSelectButton>().GetStageNumber());
 

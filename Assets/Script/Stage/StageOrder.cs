@@ -56,7 +56,7 @@ public class StageOrder : MonoBehaviour
     /// <param name="firstStage"></param>
     public void SetFirstStage(int firstStage)
     {
-        Debug.Log("firstStage" + firstStage);
+
 
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
@@ -78,7 +78,7 @@ public class StageOrder : MonoBehaviour
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
-            Debug.Log(g_nextStageNo + "g_nextStageNo");
+
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
