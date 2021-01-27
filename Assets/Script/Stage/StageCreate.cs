@@ -301,6 +301,7 @@ public class StageCreate : MonoBehaviour
     /// </summary>
     public void Generate()
     {
+        _stageOrder.NextStageColor();
         g_stage = _stageOrder.GetNextStage();
         if (!_firstStage && !_stageOrder.GetEndlessNow())
         {
@@ -308,7 +309,6 @@ public class StageCreate : MonoBehaviour
         }
         else { _firstStage = false; }
         CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth(), 0);
-        _stageOrder.NextStageColor();
     }
 
     public GameObject GetStartPosition()

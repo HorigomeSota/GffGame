@@ -78,6 +78,7 @@ public class StageOrder : MonoBehaviour
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
+            Debug.Log(g_nextStageNo + "g_nextStageNo");
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
@@ -123,7 +124,6 @@ public class StageOrder : MonoBehaviour
         }
     }
 
-
     public void SetStageOrder(string[] stargeOrder)
     {
         g_stageOrder = stargeOrder;
@@ -162,7 +162,7 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     public void NextStageColor()
     {
-        _stageColor.StageColorChangeNow(g_nextStageNo);
+        _stageColor.StageColorChangeNow(g_nextStageNo+1);
     }
 
     /// <summary>
@@ -180,4 +180,5 @@ public class StageOrder : MonoBehaviour
             _stageColor.StageColorChangeNow(g_nextStageNo + 1);
         }
     }
+
 }

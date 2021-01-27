@@ -105,7 +105,5 @@ public class StageColorChange : MonoBehaviour
     {
         _playerMatA.color = _matAColor;
         _playerMatB.color = _matBColor;
-        _colorChange.MaterialA = _playerMatA;
-        _colorChange.MaterialB = _playerMatB;
     }
 }

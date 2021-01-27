@@ -39,7 +39,7 @@ public class StageEndColorChange : MonoBehaviour
         if (transform.position.x - _playerObject.transform.position.x < _endPointDistance)
         {
             //プレイヤーの色を変更する処理を呼び出す
-            _stageColorChange.SetColorPlayer();
+            //_stageColorChange.SetColorPlayer();
         }
     }
 }
