@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/Prefab/Start.prefab.meta
 guid: 8f82e2c7b478fa7458587f2db712d222
 PrefabImporter:
+=======
+guid: a9746bf9cfe635e4285055753d857b86
+DefaultImporter:
+>>>>>>> 3a58e90736577a3e2bdf34d4e9991d40ad8ebade:Assets/StreamingAssets/Endless/Endless17.csv.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
