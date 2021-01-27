@@ -6799,7 +6799,7 @@ GameObject:
   - component: {fileID: 4949381909443661550}
   m_Layer: 0
   m_Name: StageCreate
-  m_TagString: Untagged
+  m_TagString: StageCreate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
