@@ -9,6 +9,7 @@ public class StageOrder : MonoBehaviour
 
     //次のステージ番号
     [SerializeField] private int g_nextStageNo;
+    [SerializeField] private int _nowStageNumber;
 
     //レベルに応じた確率の2次元配列
     int[,] g_endlessProbability;
@@ -61,6 +62,7 @@ public class StageOrder : MonoBehaviour
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
         g_nextStageNo = firstStage;
+        _nowStageNumber = firstStage;
         //ステージの色設定
         NextStageColor(true);
         _colorChange.SetColorPlayer();
@@ -78,7 +80,6 @@ public class StageOrder : MonoBehaviour
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
-            Debug.Log(g_nextStageNo + "g_nextStageNo");
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
@@ -162,7 +163,9 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     public void NextStageColor()
     {
-        _stageColor.StageColorChangeNow(g_nextStageNo+1);
+        Debug.Log(_nowStageNumber + "_nowStageNumber");
+        _stageColor.StageColorChangeNow(_nowStageNumber);
+        _nowStageNumber++;
     }
 
     /// <summary>
@@ -171,14 +174,7 @@ public class StageOrder : MonoBehaviour
     /// <param name="first"></param>
     public void NextStageColor(bool firstOrEnd)
     {
-        if (firstOrEnd)
-        {
-            _stageColor.StageColorChangeNow(g_nextStageNo + 2);
-        }
-        else
-        {
-            _stageColor.StageColorChangeNow(g_nextStageNo + 1);
-        }
+        _stageColor.StageColorChangeNow(_nowStageNumber);
     }
 
 }
