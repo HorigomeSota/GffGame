@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Particle/StageChangeParticle 1.prefab.meta
 guid: a6b108d6ee0b86f4b965fa866a37501b
 PrefabImporter:
+=======
+guid: 97ede85641ee94b4f9c70261742942df
+DefaultImporter:
+>>>>>>> 3a58e90736577a3e2bdf34d4e9991d40ad8ebade:Assets/StreamingAssets/Endless/Endless14.csv.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
