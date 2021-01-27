@@ -36,6 +36,14 @@ public class TimeData : MonoBehaviour
         m_stageOrder = GameObject.Find("StageCreate").transform.GetComponent<StageOrder>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)&&Application.isEditor)
+        {
+            ResetPlayerData();
+        }
+    }
+
     /// <summary>
     /// 記録比較用メソッド
     /// </summary>
@@ -106,11 +114,10 @@ public class TimeData : MonoBehaviour
     private void ResetPlayerData()
     {
         StreamWriter writer;
-        playerData.BestScore = _defaultBestTime;
         LoadPlayerData();
         for(int i=0;i<_numberOfStage; i++)
         {
-
+            playerData.saveBestTimes[i] = _defaultBestTime;
         }
         string jsonstr = JsonUtility.ToJson(playerData);
         writer = new StreamWriter(Application.dataPath + "/save" + ".json", false);
