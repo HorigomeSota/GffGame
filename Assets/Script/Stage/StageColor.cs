@@ -50,4 +50,12 @@ public class StageColor : MonoBehaviour
                 break;
         }
     }
+
+    /// <summary>
+    /// エンドレスの色
+    /// </summary>
+    public void StageColorChangeEndless()
+    {
+        _colorChange.SetColors((StageColorChange.Colors)_colorChange.EndlessAColor, (StageColorChange.Colors)_colorChange.EndlessBColor);
+    }
 }

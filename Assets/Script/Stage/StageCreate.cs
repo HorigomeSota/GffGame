@@ -304,7 +304,14 @@ public class StageCreate : MonoBehaviour
     /// </summary>
     public void Generate()
     {
-        _stageOrder.NextStageColor();
+        if (_stageOrder.GetEndlessNow())
+        {
+
+        }
+        else
+        {
+            _stageOrder.NextStageColor();
+        }
         g_stage = _stageOrder.GetNextStage();
         if (!_firstStage && _intervalSet)
         {

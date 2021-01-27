@@ -25,7 +25,7 @@ public class StageColorChange : MonoBehaviour
     [SerializeField]private Material[] _materials;
 
     /// <summary>
-    /// 色セットするステージのオブジェクトのレンダラー
+    /// 色セットするステージのオブジェクトのレンダラーと色
     /// </summary>
     [SerializeField] private Renderer _floorARenderer = default;
     [SerializeField] private Renderer _floorBRenderer = default;
@@ -41,6 +41,27 @@ public class StageColorChange : MonoBehaviour
     [SerializeField] private Material _playerMatB;
     [SerializeField] private Color _matAColor;
     [SerializeField] private Color _matBColor;
+    [SerializeField] private int _endlessmatAColor;
+    [SerializeField] private int _endlessmatBColor;
+
+    /// <summary>
+    /// エンドレスの色A
+    /// </summary>
+    public int EndlessAColor
+    {
+        get { return _endlessmatAColor; }
+        set { _endlessmatAColor = value;}
+    }
+
+    /// <summary>
+    /// エンドレスの色B
+    /// </summary>
+    public int EndlessBColor
+    {
+        get { return _endlessmatBColor; }
+        set { _endlessmatBColor = value;}
+    }
+
     private PlayerColorChange _colorChange;
 
     private void Awake()
@@ -69,6 +90,9 @@ public class StageColorChange : MonoBehaviour
         _enemyBRenderer = Resources.Load<GameObject>("Prefab/Enemy1").GetComponent<Renderer>();
         _panelARenderer = Resources.Load<GameObject>("Prefab/Panel0").transform.Find("Panel").GetComponentsInChildren<Renderer>();
         _panelBRenderer = Resources.Load<GameObject>("Prefab/Panel1").transform.Find("Panel").GetComponentsInChildren<Renderer>();
+
+        EndlessAColor = 0;
+        EndlessBColor = 1;
     }
 
     /// <summary>

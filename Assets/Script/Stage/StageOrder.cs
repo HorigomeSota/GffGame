@@ -64,7 +64,14 @@ public class StageOrder : MonoBehaviour
         g_nextStageNo = firstStage;
         _nowStageNumber = firstStage;
         //ステージの色設定
-        NextStageColor(true);
+        if (GetEndlessNow())
+        {
+
+        }
+        else
+        {
+            NextStageColor(true);
+        }
         _colorChange.SetColorPlayer();
     }
 
@@ -175,6 +182,14 @@ public class StageOrder : MonoBehaviour
     public void NextStageColor(bool firstOrEnd)
     {
         _stageColor.StageColorChangeNow(_nowStageNumber);
+    }
+
+    /// <summary>
+    /// エンドレスの時の色に変える
+    /// </summary>
+    public void EndlessStageColor()
+    {
+        _stageColor.StageColorChangeEndless();
     }
 
 }
