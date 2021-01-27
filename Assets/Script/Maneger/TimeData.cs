@@ -28,6 +28,8 @@ public class TimeData : MonoBehaviour
     private string datastr = "ScoreData";
     
     private float g_playingtime = 0;
+    private const float _defaultBestTime = 9999.0f;
+    private const int _numberOfStage = 12;
 
     private void Start()
     {
@@ -56,7 +58,6 @@ public class TimeData : MonoBehaviour
         {
             playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
         }
-
     }
 
     /// <summary>
@@ -83,7 +84,6 @@ public class TimeData : MonoBehaviour
         return g_playingtime;
     }
 
-
     /// <summary>
     /// ScoreDataを保存
     /// </summary>
@@ -94,13 +94,30 @@ public class TimeData : MonoBehaviour
         LoadPlayerData();
         TimeCompare();
         string jsonstr = JsonUtility.ToJson(playerData);
-        
         writer = new StreamWriter(Application.dataPath + "/save" +".json", false);
         writer.Write(jsonstr);
         writer.Flush();
         writer.Close();
     }
 
+    /// <summary>
+    /// ビルド前に走らせる用タイム初期化メソッド。必ず実行すること
+    /// </summary>
+    private void ResetPlayerData()
+    {
+        StreamWriter writer;
+        playerData.BestScore = _defaultBestTime;
+        LoadPlayerData();
+        for(int i=0;i<_numberOfStage; i++)
+        {
+
+        }
+        string jsonstr = JsonUtility.ToJson(playerData);
+        writer = new StreamWriter(Application.dataPath + "/save" + ".json", false);
+        writer.Write(jsonstr);
+        writer.Flush();
+        writer.Close();
+    }
 
     /// <summary>
     /// ScoreDataを読み込み

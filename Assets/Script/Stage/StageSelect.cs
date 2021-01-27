@@ -25,7 +25,6 @@ public class StageSelect : MonoBehaviour
         int m_a = 0;
         string m_stageNameTop=default;
 
-
         //エンドレスまでのステージ数を取得
         while (m_stageNameTop != "E")
         {
@@ -77,10 +76,14 @@ public class StageSelect : MonoBehaviour
                 m_bestComma = 99;
             }
             else
-            if (m_bestSeconds >= 60)
             {
-                m_bestMinutes = m_bestSeconds / 60;
-                m_bestSeconds = m_bestSeconds % 60;
+                if (m_bestSeconds >= 60)
+                {
+                    m_bestMinutes = m_bestSeconds / 60;
+                    m_bestSeconds = m_bestSeconds % 60;
+                    
+                    
+                }
                 m_bestComma = (int)(g_bestTime % 1 * 100);
             }
 

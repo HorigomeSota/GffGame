@@ -8,9 +8,7 @@ public class StageOrder : MonoBehaviour
     string[] g_stageOrder;
 
     //次のステージ番号
-    private int g_nextStageNo;
-
-    private int g_currentStageNo = default;
+    [SerializeField] private int g_nextStageNo;
 
     //レベルに応じた確率の2次元配列
     int[,] g_endlessProbability;
@@ -45,17 +43,11 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     StageColor _stageColor;
 
-    /// <summary>
-    ///ステージを生成するクラス 
-    /// </summary>
-    StageCreate stageCreate = default;
-
     private void Awake()
     {
         _stageColorObject = GameObject.FindGameObjectWithTag("StageColor");
         _colorChange = _stageColorObject.GetComponent<StageColorChange>();
         _stageColor = _stageColorObject.GetComponent<StageColor>();
-        stageCreate = GetComponent<StageCreate>();
     }
 
     /// <summary>
@@ -67,11 +59,7 @@ public class StageOrder : MonoBehaviour
         Debug.Log("firstStage" + firstStage);
 
         //エンドレスモードの確認
-        if (g_stageOrder[firstStage] == "Endless") 
-        {
-            g_endless = true;
-            stageCreate.SetIntervalSetOff();
-        }
+        if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
         g_nextStageNo = firstStage;
         //ステージの色設定
         NextStageColor(true);
@@ -90,7 +78,7 @@ public class StageOrder : MonoBehaviour
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
-            print(g_nextStageNo);
+            Debug.Log(g_nextStageNo + "g_nextStageNo");
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
@@ -136,7 +124,6 @@ public class StageOrder : MonoBehaviour
         }
     }
 
-
     public void SetStageOrder(string[] stargeOrder)
     {
         g_stageOrder = stargeOrder;
@@ -175,8 +162,7 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     public void NextStageColor()
     {
-        print("stagenamber"+ g_nextStageNo);
-        _stageColor.StageColorChangeNow(g_nextStageNo);
+        _stageColor.StageColorChangeNow(g_nextStageNo+1);
     }
 
     /// <summary>
@@ -187,13 +173,12 @@ public class StageOrder : MonoBehaviour
     {
         if (firstOrEnd)
         {
-            print("1");
             _stageColor.StageColorChangeNow(g_nextStageNo + 2);
         }
         else
         {
-            print("2");
             _stageColor.StageColorChangeNow(g_nextStageNo + 1);
         }
     }
+
 }

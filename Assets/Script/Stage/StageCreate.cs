@@ -110,8 +110,6 @@ public class StageCreate : MonoBehaviour
 
     private bool _firstStage = default;
 
-    private bool _intervalSet = default;
-
     /// <summary>
     /// ステージオーダースクリプト
     /// </summary>
@@ -140,7 +138,6 @@ public class StageCreate : MonoBehaviour
 
         _stageOrder = GetComponent<StageOrder>();
         _stageMapCSVread = GetComponent<StageMapCSVread>();
-        SetIntervalSetOn();
         _firstStage = true;
     }
 
@@ -304,29 +301,18 @@ public class StageCreate : MonoBehaviour
     /// </summary>
     public void Generate()
     {
-        print("generate");
+        _stageOrder.NextStageColor();
         g_stage = _stageOrder.GetNextStage();
-        if (!_firstStage&& _intervalSet)
+        if (!_firstStage && !_stageOrder.GetEndlessNow())
         {
             CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }
         else { _firstStage = false; }
         CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth(), 0);
-        _stageOrder.NextStageColor();
     }
 
     public GameObject GetStartPosition()
     {
         return startObj;
-    }
-
-    public void SetIntervalSetOff()
-    {
-        _intervalSet = false;
-    }
-
-    public void SetIntervalSetOn()
-    {
-        _intervalSet = true;
     }
 }
