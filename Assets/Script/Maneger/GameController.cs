@@ -28,6 +28,10 @@ public class GameController : MonoBehaviour
     /// 3
     /// </summary>
     const int m_retryNum = 3;
+    /// <summary>
+    /// 4
+    /// </summary>
+    const int m_escapeNum = 4;
 
     /// <summary>1フレーム前に取得した値 </summary>
     private int m_beforeNum=0; //初期化
@@ -100,10 +104,17 @@ public class GameController : MonoBehaviour
                     Retry();
                     m_beforeNum = m_retryNum;
                 }
-                
+                break;
+
+            case m_escapeNum:
+                if (m_escapeNum != m_beforeNum)
+                {
+                    Escape();
+                    m_beforeNum = m_escapeNum;
+                }
+                break;
                 
 
-                break;
         }
         
     }
@@ -145,6 +156,11 @@ public class GameController : MonoBehaviour
     }
 
     private void Retry()
+    {
+
+    }
+
+    private void Escape()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

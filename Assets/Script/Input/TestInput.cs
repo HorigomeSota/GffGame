@@ -43,7 +43,6 @@ public class TestInput : MonoBehaviour,IInput
     }
 
 
-
     private void ObjectCheck(string name)
     {
         switch (name)
@@ -71,6 +70,12 @@ public class TestInput : MonoBehaviour,IInput
             case ("Retry"):
 
                 g_sceneNum = 3;
+
+                break;
+
+            case ("Escape"):
+
+                g_sceneNum = 4;
 
                 break;
         }
