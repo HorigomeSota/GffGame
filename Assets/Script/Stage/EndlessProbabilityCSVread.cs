@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Networking;
 using System.IO;
-using UnityEngine.UI;
 
 public class EndlessProbabilityCSVread : MonoBehaviour
 {
@@ -129,7 +128,6 @@ public class EndlessProbabilityCSVread : MonoBehaviour
 
         DeviceType deviceType;
 
-
         deviceType = SystemInfo.deviceType;
 
 
@@ -142,11 +140,14 @@ public class EndlessProbabilityCSVread : MonoBehaviour
 
             path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
         }
+        UnityWebRequest unityWebRequest;
 
-        WWW www = new WWW(path);
-        yield return www;
+        unityWebRequest = UnityWebRequest.Get(path);
 
-        readCSVData(www.text, ref this.g_probabilityDataArrays);
+        yield return unityWebRequest.SendWebRequest();
+
+        print(unityWebRequest.downloadHandler.text);
+        readCSVData(unityWebRequest.downloadHandler.text, ref this.g_probabilityDataArrays);
         convert2DArrayType(ref this.g_probabilityDataArrays, ref this.g_probabilityDatas, this.g_height, this.g_width);
 
         yield break;

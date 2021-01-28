@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class StageOrderCSVread : MonoBehaviour
 {
@@ -82,16 +79,13 @@ public class StageOrderCSVread : MonoBehaviour
     /// </summary>
     IEnumerator ReadCsv()
     {
-        
         string textFileName = "Order.csv";
 
         string path = null;
 
         DeviceType deviceType;
 
-
         deviceType = SystemInfo.deviceType;
-
 
         if (deviceType == DeviceType.Desktop)
         {
@@ -102,20 +96,16 @@ public class StageOrderCSVread : MonoBehaviour
 
             path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
         }
+        UnityWebRequest unityWebRequest;
 
-        WWW www = new WWW(path);
-        yield return www;
+        unityWebRequest = UnityWebRequest.Get(path);
 
-       
+        yield return unityWebRequest.SendWebRequest();
 
-
-
-        readCSVData(www.text, ref this.g_oredrDataArrays);
+        readCSVData(unityWebRequest.downloadHandler.text, ref this.g_oredrDataArrays);
 
         GetComponent<StageOrder>().SetStageOrder(g_oredrDataArrays);
 
-
-        //GetComponent<StageMapCSVread>().MapCsvRead(GetComponent<StageOrder>().GetNextStage());
         yield break;
     }
 }
