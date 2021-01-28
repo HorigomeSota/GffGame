@@ -66,7 +66,7 @@ public class StageOrder : MonoBehaviour
         //ステージの色設定
         if (GetEndlessNow())
         {
-
+            EndlessStageColor();
         }
         else
         {
@@ -125,9 +125,7 @@ public class StageOrder : MonoBehaviour
                 }
                 else { m_stageNo++; }
             }
-
             g_endlessCount++;
-
             return "Endless/"+ g_stageOrder[g_nextStageNo + m_stageNo];
         }
     }

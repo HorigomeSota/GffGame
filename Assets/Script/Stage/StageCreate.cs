@@ -306,12 +306,10 @@ public class StageCreate : MonoBehaviour
     {
         if (_stageOrder.GetEndlessNow())
         {
+            _stageOrder.EndlessStageColor();
+        }
+        else _stageOrder.NextStageColor();
 
-        }
-        else
-        {
-            _stageOrder.NextStageColor();
-        }
         g_stage = _stageOrder.GetNextStage();
         if (!_firstStage && _intervalSet)
         {

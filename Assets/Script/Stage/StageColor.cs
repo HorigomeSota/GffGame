@@ -8,7 +8,7 @@ public class StageColor : MonoBehaviour
     {
         _colorChange = GetComponent<StageColorChange>();
     }
-
+    
     /// <summary>
     /// ステージごとに決められた色に変える
     /// </summary>

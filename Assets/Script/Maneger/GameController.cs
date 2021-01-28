@@ -40,13 +40,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-      
         m_GameRootObj.SetActive(false);
 
         m_StageRootObj.SetActive(false);
 
         m_input = m_inputObj.GetComponent<IInput>();
-
     }
     private void Update()
     {
@@ -60,8 +58,6 @@ public class GameController : MonoBehaviour
                     TitleObjOn();
                     m_beforeNum = m_titleSceneNum;
                 }
-                
-
                 break;
 
             case m_stageSerectSceneNum:
@@ -72,21 +68,17 @@ public class GameController : MonoBehaviour
                     m_beforeNum = m_stageSerectSceneNum;
                 }
                
-
                 break;
 
             case m_gameSceneNum:
 
                 if ( m_gameSceneNum != m_beforeNum)
                 {
-
-
                     m_stageCreate.GetComponent<StageOrder>().SetFirstStage(m_input.ChoiceObj().GetComponent<StageSelectButton>().GetStageNumber());
 
                     m_stageCreate.GetComponent<StageMapCSVread>().MapCsvRead(m_stageCreate.GetComponent<StageOrder>().GetNextStage());
 
                     m_beforeNum = m_gameSceneNum;
-
                 }
 
                 if (m_stageCreate.GetComponent<StageMapCSVread>().GetReadEndFlag() == true)
@@ -113,30 +105,16 @@ public class GameController : MonoBehaviour
                     m_beforeNum = m_escapeNum;
                 }
                 break;
-                
-
         }
-        
     }
-
-    
 
     private void GameObjOn()
     {
-       
-
         m_titleRootObj.SetActive(false);
-
         m_StageRootObj.SetActive(false);
-
         m_GameRootObj.SetActive(true);
-
         m_gameManager = GameObject.FindGameObjectWithTag("GameManager");
-
         m_gameManager.GetComponent<GameManager>().GameStart();
-
-
-
     }
     private void TitleObjOn()
     {
