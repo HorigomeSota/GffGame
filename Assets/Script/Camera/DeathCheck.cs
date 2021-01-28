@@ -15,5 +15,9 @@ public class DeathCheck : MonoBehaviour
         {
             gameOversceneObj.SetActive(true);
         }
+        else
+        {
+            gameOversceneObj.SetActive(false);
+        }
     }
 }

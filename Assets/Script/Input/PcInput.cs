@@ -118,6 +118,11 @@ public class PcInput : MonoBehaviour, IInput
         }
     }
 
+    public int ResetSceneNum()
+    {
+        g_sceneNum = -1;
+        return g_sceneNum;
+    }
 
     public int SceneCheck()
     {

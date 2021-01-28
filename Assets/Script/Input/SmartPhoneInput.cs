@@ -1,10 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SmartPhoneInput :MonoBehaviour,IInput
+public class SmartphoneInput : MonoBehaviour,IInput
 {
+    Vector3 mouseDiff;
+
+    Vector3 mousePos;     // 最初にタッチ(左クリック)した地点の情報を入れる
+
     /// <summary>trueの時、ジャンプする </summary>
     private bool g_jumpCheck = false;
 
@@ -13,7 +15,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
 
     /// <summary>Sceneナンバー</summary>
     private int g_sceneNum = 0;
-   
+
 
     /// <summary>カメラを取得</summary>
     private Camera camera_object;
@@ -23,52 +25,30 @@ public class SmartPhoneInput :MonoBehaviour,IInput
 
     private GameObject g_hitObj;
 
+    private float tolerance = default;
+
+    private bool once = default;
+
+    private string objectName = default;
+
+    private void Start()
+    {
+        tolerance = 25f;
+    }
+
     private void Update()
     {
-        camera_object = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-
-        //マウスがクリックされたら
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            //マウスのポジションを取得してRayに代入
-            Ray ray = camera_object.ScreenPointToRay(Input.mousePosition); 
-
-            //マウスのポジションからRayを投げて何かに当たったらhitに入れる
-            if (Physics.Raycast(ray, out m_hit)) 
-            {
-                //オブジェクトを取得して変数に入れる
-                g_hitObj = m_hit.collider.gameObject;
-
-                //オブジェクト名を取得して変数に入れる
-                string objectName = g_hitObj.name;
-
-                ObjectCheck(objectName);
-                
-            }
-
-
-        }
+        // Moveメソッドを常時呼び出す
+        Move();
     }
 
 
     private void ObjectCheck(string name)
     {
+        print(name);
         switch (name)
         {
-            //右側がタップされたとき　m_jumpCheck　をtrue
-            case ("RightTap"):
-
-                g_jumpCheck = true;
-
-                break;
-
-            //左側がタップされたとき　m_colorCheck　をtrue
-            case ("LeftTap"):
-
-                g_colorCheck = true;
-
-                break;
-                
+            
             case ("ToTitle"):
 
                 g_sceneNum = 0;
@@ -81,7 +61,7 @@ public class SmartPhoneInput :MonoBehaviour,IInput
 
                 break;
 
-           
+
             case ("ToGame(Clone)"):
 
                 g_sceneNum = 2;
@@ -93,10 +73,76 @@ public class SmartPhoneInput :MonoBehaviour,IInput
                 g_sceneNum = 3;
 
                 break;
+
+            case ("Escape"):
+
+                g_sceneNum = 4;
+
+                break;
+            default:
+                break;
         }
     }
 
-    
+    public int ResetSceneNum()
+    {
+        g_sceneNum = -1;
+        return g_sceneNum;
+    }
+
+    void Move()
+    {
+        camera_object = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+
+        // マウス左クリック(画面タッチ)が行われたら
+        if (Input.GetMouseButtonDown(0))
+        {
+            // タッチした位置を代入
+            mousePos = Input.mousePosition;
+
+            //マウスのポジションを取得してRayに代入
+            Ray ray = camera_object.ScreenPointToRay(Input.mousePosition);
+
+            //マウスのポジションからRayを投げて何かに当たったらhitに入れる
+            if (Physics.Raycast(ray, out m_hit))
+            {
+                //オブジェクトを取得して変数に入れる
+                g_hitObj = m_hit.collider.gameObject;
+
+                //オブジェクト名を取得して変数に入れる
+                objectName = g_hitObj.name;
+            }
+            else
+            {
+                objectName = null;
+            }
+            once = true;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            // ベクトルの引き算を行い、現在のタッチ位置とその１フレーム前のタッチ位置との差分を方向として代入
+            mouseDiff = Input.mousePosition - mousePos;
+
+            if (mouseDiff.y>tolerance&& once)
+            {
+
+                g_jumpCheck = true;
+                once = false;
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (mouseDiff.y <= tolerance)
+            {
+                g_colorCheck = true;
+            }
+
+            if (mouseDiff.x<=tolerance&& mouseDiff.x >= -tolerance)
+            {
+                ObjectCheck(objectName);
+            }
+        }
+    }
     public int SceneCheck()
     {
         return g_sceneNum;

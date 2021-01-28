@@ -44,11 +44,14 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     StageColor _stageColor;
 
+    StageCreate stageCreate;
+
     private void Awake()
     {
         _stageColorObject = GameObject.FindGameObjectWithTag("StageColor");
         _colorChange = _stageColorObject.GetComponent<StageColorChange>();
         _stageColor = _stageColorObject.GetComponent<StageColor>();
+        stageCreate = GetComponent<StageCreate>();
     }
 
     /// <summary>
@@ -61,6 +64,8 @@ public class StageOrder : MonoBehaviour
 
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
+
+        print(g_stageOrder[firstStage]);
         g_nextStageNo = firstStage;
         _nowStageNumber = firstStage;
         //ステージの色設定
@@ -93,6 +98,9 @@ public class StageOrder : MonoBehaviour
         //エンドレスモード時、確率によって生成ステージ決定
         else
         {
+            //ステージインターバルを表示しなくする
+            stageCreate.SetIntervalSetOff();
+
             int m_level=1;
             //現在のレベル確認（縦列）
             while (true)

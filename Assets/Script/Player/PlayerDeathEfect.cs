@@ -27,10 +27,15 @@ public class PlayerDeathEfect : MonoBehaviour
 
     private void Update()
     {
-        if (playerState.GetDeathFlag()&&efectOnece)
+        if (efectOnece && playerState.GetDeathFlag())
         {
             efectOnece = false;
             DeathEfect();
+        }
+
+        if (!playerState.GetDeathFlag())
+        {
+            efectOnece = true;
         }
     }
 
