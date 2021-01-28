@@ -15,16 +15,6 @@ public class TestColorChangeScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _colorChange.SetColors(StageColorChange.Colors.PinkPurple, StageColorChange.Colors.Yellow);
-            _colorChange.SetColorPlayer();
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            _colorChange.SetColors(StageColorChange.Colors.Blue, StageColorChange.Colors.Red);
-            _colorChange.SetColorPlayer();
-        }
+        
     }
 }

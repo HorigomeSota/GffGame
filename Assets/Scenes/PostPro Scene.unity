@@ -1154,6 +1154,8 @@ MonoBehaviour:
   _playerMatB: {fileID: 0}
   _matAColor: {r: 0, g: 0, b: 0, a: 0}
   _matBColor: {r: 0, g: 0, b: 0, a: 0}
+  _endlessmatAColor: 0
+  _endlessmatBColor: 0
 --- !u!4 &500988233
 Transform:
   m_ObjectHideFlags: 0
@@ -2960,6 +2962,8 @@ MonoBehaviour:
   _playerMatB: {fileID: 0}
   _matAColor: {r: 0, g: 0, b: 0, a: 0}
   _matBColor: {r: 0, g: 0, b: 0, a: 0}
+  _endlessmatAColor: 0
+  _endlessmatBColor: 0
 --- !u!114 &1331961605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6543,6 +6547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_nextStageNo: 0
+  _nowStageNumber: 0
 --- !u!114 &4949381909443661521
 MonoBehaviour:
   m_ObjectHideFlags: 0
