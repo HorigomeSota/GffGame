@@ -6,8 +6,6 @@ using UnityEngine.Networking;
 public class StageOrderCSVread : MonoBehaviour
 {
 
-
-
     private void Start()
     {
         StartCoroutine(ReadCsv());

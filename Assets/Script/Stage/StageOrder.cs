@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageOrder : MonoBehaviour
 {
     //ステージの順番とファイル名
-    string[] g_stageOrder;
+    string[] g_stageOrder=new string[20];
 
     //次のステージ番号
     [SerializeField] private int g_nextStageNo;
@@ -69,14 +69,7 @@ public class StageOrder : MonoBehaviour
         g_nextStageNo = firstStage;
         _nowStageNumber = firstStage;
         //ステージの色設定
-        if (GetEndlessNow())
-        {
-            EndlessStageColor();
-        }
-        else
-        {
-            NextStageColor(true);
-        }
+         NextStageColor(true);
         _colorChange.SetColorPlayer();
     }
 

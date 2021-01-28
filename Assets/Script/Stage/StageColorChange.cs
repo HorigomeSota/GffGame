@@ -10,13 +10,19 @@ public class StageColorChange : MonoBehaviour
     /// </summary>
     public enum Colors
     {
-        Blue = 0,
-        Red = 1,
-        Yellow = 2,
-        LightGreen = 3,
-        Orange = 4,
-        PinkPurple = 5,
-        LightBlue=6,
+        Blue1BFAFF = 0,
+        Green23FFB5 = 1,
+        Green23FF17 = 2,
+        YellowF8FF26 = 3,
+        YellowFFF021 = 4,
+        OrangeFFB530 = 5,
+        PinkFF1F91 = 6,
+        PinkFF21B2 = 7,
+        PurpleF215FF = 8,
+        PurpleAA1BFF = 9,
+        Purple761AFF = 10,
+        Blue6E1BFF = 11,
+        Blue4422FF = 12,
     }
 
     /// <summary>
@@ -72,13 +78,19 @@ public class StageColorChange : MonoBehaviour
         _materials = new Material[30];
 
         //Resources取得
-        _materials[0] = Resources.Load<Material>("Materials/Blue");
-        _materials[1] = Resources.Load<Material>("Materials/Red");
-        _materials[2] = Resources.Load<Material>("Materials/LemonYellowMat");
-        _materials[3] = Resources.Load<Material>("Materials/LightGreenMat");
-        _materials[4] = Resources.Load<Material>("Materials/OrangeMat");
-        _materials[5] = Resources.Load<Material>("Materials/PinkPurpleMat");
-        _materials[6] = Resources.Load<Material>("Materials/LightBlue");
+        _materials[0] = Resources.Load<Material>("Materials/1BFAFF");
+        _materials[1] = Resources.Load<Material>("Materials/23FFB5");
+        _materials[2] = Resources.Load<Material>("Materials/23FF17");
+        _materials[3] = Resources.Load<Material>("Materials/F8FF26");
+        _materials[4] = Resources.Load<Material>("Materials/FFF021");
+        _materials[5] = Resources.Load<Material>("Materials/FFB530");
+        _materials[6] = Resources.Load<Material>("Materials/FF1F91");
+        _materials[7] = Resources.Load<Material>("Materials/FF21B2");
+        _materials[8] = Resources.Load<Material>("Materials/F215FF");
+        _materials[9] = Resources.Load<Material>("Materials/AA1BFF");
+        _materials[10] = Resources.Load<Material>("Materials/761AFF");
+        _materials[11] = Resources.Load<Material>("Materials/6E1BFF");
+        _materials[12] = Resources.Load<Material>("Materials/4422FF");
         _playerMatA = Resources.Load<Material>("Materials/PlayerMatA");
         _playerMatB = Resources.Load<Material>("Materials/PlayerMatB");
 
