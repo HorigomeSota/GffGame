@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Networking;
 public class TimeData : MonoBehaviour
 {
     [System.Serializable]
@@ -99,11 +99,30 @@ public class TimeData : MonoBehaviour
     {
         StreamWriter writer;
         playerData.BestScore = g_playingtime;
-        LoadPlayerData();
+        StartCoroutine(LoadPlayerData());
         TimeCompare();
         string jsonstr = JsonUtility.ToJson(playerData);
-        writer = new StreamWriter(Application.dataPath + "/save" +".json", false);
+        string textFileName = "save.json";
+
+        string path = null;
+
+        DeviceType deviceType;
+
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+        writer = new StreamWriter(path, false);
         writer.Write(jsonstr);
+        print(jsonstr);
         writer.Flush();
         writer.Close();
     }
@@ -114,8 +133,8 @@ public class TimeData : MonoBehaviour
     private void ResetPlayerData()
     {
         StreamWriter writer;
-        LoadPlayerData();
-        for(int i=0;i<_numberOfStage; i++)
+        StartCoroutine(LoadPlayerData());
+        for (int i=0;i<_numberOfStage; i++)
         {
             playerData.saveBestTimes[i] = _defaultBestTime;
         }
@@ -129,35 +148,57 @@ public class TimeData : MonoBehaviour
     /// <summary>
     /// ScoreDataを読み込み
     /// </summary>
-    public void LoadPlayerData()
+    public  IEnumerator LoadPlayerData()
     {
-        
-        StreamReader reader;
+        string textFileName = "save.json";
 
-        reader = new StreamReader(Application.dataPath + "/save"  + ".json");
-        datastr = reader.ReadToEnd();
-        reader.Close();
-        playerData = JsonUtility.FromJson<PlayerData>(datastr); // ロードしたデータで上書き
+        string path = null;
+
+        DeviceType deviceType;
+
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+        UnityWebRequest unityWebRequest;
+
+        unityWebRequest = UnityWebRequest.Get(path);
+
+        yield return unityWebRequest.SendWebRequest();
+
+        print(unityWebRequest.downloadHandler.text);
+
+        playerData = JsonUtility.FromJson<PlayerData>(unityWebRequest.downloadHandler.text); // ロードしたデータで上書き
 
         g_stageBestTimes = playerData.saveBestTimes;
         g_bestScore = playerData.BestScore;
+
+        yield break;
     }
 
     public float GetBestTime(int stageNumber)
     {
-        LoadPlayerData();
+        StartCoroutine(LoadPlayerData());
         return playerData.saveBestTimes[stageNumber];
     }
 
     public float GetSecondTime(int stageNumber)
     {
-        LoadPlayerData();
+        StartCoroutine(LoadPlayerData());
         return playerData.saveSecondTimes[stageNumber];
     }
 
     public float GetThirdTime(int stageNumber)
     {
-        LoadPlayerData();
+        StartCoroutine(LoadPlayerData());
         return playerData.saveThirdTimes[stageNumber];
     }
 }

@@ -62,6 +62,8 @@ public class GoalCheck : MonoBehaviour
 
     void Start()
     {
+
+        print("");
         fireworkBluePrefab = Resources.Load<GameObject>(prefabFolderName+"/"+particlesFolderName+"/"+fireworkBlueName);
         fireworkYellowPrfab = Resources.Load<GameObject>(prefabFolderName + "/" + particlesFolderName + "/" + fireworkYellowClusterName);
         resultTimerText = GameObject.FindWithTag(resultTimerTextTag).GetComponent<Text>();
