@@ -21,7 +21,6 @@ public class Result : MonoBehaviour
     {
         if (m_gameOver)
         {
-            m_timeData.SavePlayerData();
             m_gameOver = false;
         }
     }

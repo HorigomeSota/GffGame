@@ -172,7 +172,6 @@ public class GameManager : MonoBehaviour
     public void GameEnd()
     {
         m_gamestarting = false;
-        m_timeData.SavePlayerData();
     }
 
     public void SetCheckPoint(GameObject startObj)

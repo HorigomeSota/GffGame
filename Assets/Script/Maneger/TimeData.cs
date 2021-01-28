@@ -18,8 +18,6 @@ public class TimeData : MonoBehaviour
     StageOrder m_stageOrder;
     [SerializeField] int m_saveStageNumber=default;
     [SerializeField] float m_saveTime;
-    private float[] g_stageThirdTimes;
-    private float[] g_stageSecondTimes;
     private float[] g_stageBestTimes;
     private float g_resultTime;
     private float g_bestScore;
@@ -31,9 +29,16 @@ public class TimeData : MonoBehaviour
     private const float _defaultBestTime = 9999.0f;
     private const int _numberOfStage = 12;
 
+    private const string textFileName = "save.json";
+    private string path = null;
+    DeviceType deviceType;
+
+    
+
     private void Start()
     {
         m_stageOrder = GameObject.Find("StageCreate").transform.GetComponent<StageOrder>();
+        deviceType = SystemInfo.deviceType;
     }
 
     private void Update()
@@ -51,20 +56,7 @@ public class TimeData : MonoBehaviour
     {
         if (g_playingtime < playerData.saveBestTimes[m_stageOrder.GetStageNumber()])//もしタイムが最高記録なら
         {
-            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
-            playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = playerData.saveBestTimes[m_stageOrder.GetStageNumber()];
-            playerData.saveBestTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
-        }
-        //二番目だったら
-        else if (playerData.saveBestTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveSecondTimes[m_stageOrder.GetStageNumber()])
-        {
-            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
-            playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
-        }
-        //三番目だったら
-        else if (playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveThirdTimes[m_stageOrder.GetStageNumber()])
-        {
-            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
+            playerData.saveBestTimes[m_stageOrder.GetStageNumber()-1] = g_playingtime;
         }
     }
 
@@ -102,22 +94,13 @@ public class TimeData : MonoBehaviour
         StartCoroutine(LoadPlayerData());
         TimeCompare();
         string jsonstr = JsonUtility.ToJson(playerData);
-        string textFileName = "save.json";
-
-        string path = null;
-
-        DeviceType deviceType;
-
-        deviceType = SystemInfo.deviceType;
-
-
+        
         if (deviceType == DeviceType.Desktop)
         {
             path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
         }
         else if (deviceType == DeviceType.Handheld)
         {
-
             path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
         }
         writer = new StreamWriter(path, false);
@@ -139,7 +122,16 @@ public class TimeData : MonoBehaviour
             playerData.saveBestTimes[i] = _defaultBestTime;
         }
         string jsonstr = JsonUtility.ToJson(playerData);
-        writer = new StreamWriter(Application.dataPath + "/save" + ".json", false);
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+        writer = new StreamWriter(path, false);
         writer.Write(jsonstr);
         writer.Flush();
         writer.Close();
@@ -188,17 +180,5 @@ public class TimeData : MonoBehaviour
     {
         StartCoroutine(LoadPlayerData());
         return playerData.saveBestTimes[stageNumber];
-    }
-
-    public float GetSecondTime(int stageNumber)
-    {
-        StartCoroutine(LoadPlayerData());
-        return playerData.saveSecondTimes[stageNumber];
-    }
-
-    public float GetThirdTime(int stageNumber)
-    {
-        StartCoroutine(LoadPlayerData());
-        return playerData.saveThirdTimes[stageNumber];
     }
 }

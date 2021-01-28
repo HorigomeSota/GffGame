@@ -65,17 +65,9 @@ public class StageSelect : MonoBehaviour
             yield return StartCoroutine(m_timeData.LoadPlayerData());//データ読み込み
 
             float g_bestTime = m_timeData.GetBestTime(i);
-            float g_secondTime = m_timeData.GetSecondTime(i);
-            float g_thirdTime = m_timeData.GetThirdTime(i);
             int m_bestMinutes = default;
-            int m_secondMinutes = default;
-            int m_thirdMinutes = default;
             int m_bestSeconds = (int)(g_bestTime - g_bestTime % 1);
-            int m_secondSeconds = (int)(g_secondTime - g_secondTime % 1);
-            int m_thirdSeconds = (int)(g_thirdTime - g_thirdTime % 1);
             int m_bestComma = default;
-            int m_secondComma = default;
-            int m_thirdComma = default;
             if (g_bestTime == 9999)
             {
                 m_bestMinutes = 99;
@@ -94,38 +86,8 @@ public class StageSelect : MonoBehaviour
                 m_bestComma = (int)(g_bestTime % 1 * 100);
             }
 
-            if (g_secondTime == 9999)
-            {
-                m_secondMinutes = 99;
-                m_secondSeconds = 99;
-                m_secondComma = 99;
-            }
-            else
-            if (m_secondSeconds >= 60)
-            {
-                m_secondMinutes = m_bestSeconds / 60;
-                m_secondSeconds = m_bestSeconds % 60;
-                m_secondComma = (int)(g_secondTime % 1 * 100);
-            }
-
-            if (g_thirdTime == 9999)
-            {
-                m_thirdMinutes = 99;
-                m_thirdSeconds = 99;
-                m_thirdComma = 99;
-            }
-            else
-            if (m_thirdSeconds >= 60)
-            {
-                m_thirdMinutes = m_bestSeconds / 60;
-                m_thirdSeconds = m_bestSeconds % 60;
-                m_thirdComma = (int)(g_thirdTime % 1 * 100);
-            }
-
 
             listButton.transform.Find("BestScore").GetComponent<Text>().text = m_bestMinutes.ToString("00") + ":" + m_bestSeconds.ToString("00") + ":" + m_bestComma.ToString("00");
-            listButton.transform.Find("SecondScore").GetComponent<Text>().text = m_secondMinutes.ToString("00") + ":" + m_secondSeconds.ToString("00") + ":" + m_secondComma.ToString("00");
-            listButton.transform.Find("ThirdScore").GetComponent<Text>().text = m_thirdMinutes.ToString("00") + ":" + m_thirdSeconds.ToString("00") + ":" + m_thirdComma.ToString("00");
             //以下、追加---------
             n = i;
         }
