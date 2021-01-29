@@ -36,6 +36,8 @@ public class GoalCheck : MonoBehaviour
     
     private StageColorChange _colorChange;
 
+    private TimeData _timeData;
+
     const int efectQuantity = 9;
 
     const string gameManagerTag = "GameManager";
@@ -45,6 +47,8 @@ public class GoalCheck : MonoBehaviour
     const string timerTextTag = "TextTimer";
 
     const string resultTimerTextTag = "ResultTimer";
+
+    const string timeDataTag = "Data";
 
     const string gameCanvasTag = "GameCanvas";
 
@@ -62,10 +66,13 @@ public class GoalCheck : MonoBehaviour
 
     void Start()
     {
+
+        print("");
         fireworkBluePrefab = Resources.Load<GameObject>(prefabFolderName+"/"+particlesFolderName+"/"+fireworkBlueName);
         fireworkYellowPrfab = Resources.Load<GameObject>(prefabFolderName + "/" + particlesFolderName + "/" + fireworkYellowClusterName);
         resultTimerText = GameObject.FindWithTag(resultTimerTextTag).GetComponent<Text>();
         timerText = GameObject.FindWithTag(timerTextTag).GetComponent<Text>();
+        _timeData = GameObject.FindGameObjectWithTag(timeDataTag).GetComponent<TimeData>();
         gameManager = GameObject.FindWithTag(gameManagerTag);
         gameSceneCanvas = GameObject.FindWithTag(gameCanvasTag);
         _colorChange = GameObject.FindGameObjectWithTag(stageColorTag).GetComponent<StageColorChange>();
@@ -82,9 +89,10 @@ public class GoalCheck : MonoBehaviour
                 stageCreate.SetIntervalSetOff();
             }
             StartCoroutine(Goal());
-            gameManager.GetComponent<GameManager>().timerStop = true;
+            gameManager.GetComponent<GameManager>().SetTimeStop(true);
+            _colorChange.SetColorPlayer();
+            _timeData.SavePlayerData();
         }
-        _colorChange.SetColorPlayer();
     }
 
     IEnumerator Goal()

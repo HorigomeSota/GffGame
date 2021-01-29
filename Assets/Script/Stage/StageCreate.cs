@@ -100,7 +100,9 @@ public class StageCreate : MonoBehaviour
 
     private GameObject goalObj = default;
     const int GOAL = 300;
-   
+
+    private GameObject lastGoalObj = default;
+    const int LASTGOAL = 400;
 
     GameObject panelBObj = default;
     GameObject panelAObj = default;
@@ -137,6 +139,7 @@ public class StageCreate : MonoBehaviour
         checkPointPfb = Resources.Load<GameObject>("Prefab/CheckPoint");
         startObj = Resources.Load<GameObject>("Prefab/Start");
         goalObj = Resources.Load<GameObject>("Prefab/Goal");
+        lastGoalObj= Resources.Load<GameObject>("Prefab/LastGoal");
 
         _stageOrder = GetComponent<StageOrder>();
         _stageMapCSVread = GetComponent<StageMapCSVread>();
@@ -288,6 +291,9 @@ public class StageCreate : MonoBehaviour
                     case GOAL:
                         Instantiate(goalObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
                         break;
+                    case LASTGOAL:
+                        Instantiate(lastGoalObj, new Vector3(prefabPositionX, prefabPositionY, transform.position.z), Quaternion.identity);
+                        break;
                 }
             }
         }
@@ -304,9 +310,18 @@ public class StageCreate : MonoBehaviour
     /// </summary>
     public void Generate()
     {
+        /*if (_stageOrder.GetEndlessNow())
+        {
+            _stageOrder.EndlessStageColor();
+        }
+        else */
         _stageOrder.NextStageColor();
+
         g_stage = _stageOrder.GetNextStage();
-        if (!_firstStage && _intervalSet)
+
+        print(_firstStage + " _firstStage");
+        print(_intervalSet + " _intervalSet");
+        if (_intervalSet)
         {
             CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }
@@ -320,11 +335,13 @@ public class StageCreate : MonoBehaviour
     }
     public void SetIntervalSetOff()
     {
+        print("オフ");
         _intervalSet = false;
     }
 
     public void SetIntervalSetOn()
     {
+        print("オン");
         _intervalSet = true;
     }
 }

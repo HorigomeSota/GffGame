@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Networking;
 public class TimeData : MonoBehaviour
 {
     [System.Serializable]
@@ -18,8 +18,6 @@ public class TimeData : MonoBehaviour
     StageOrder m_stageOrder;
     [SerializeField] int m_saveStageNumber=default;
     [SerializeField] float m_saveTime;
-    private float[] g_stageThirdTimes;
-    private float[] g_stageSecondTimes;
     private float[] g_stageBestTimes;
     private float g_resultTime;
     private float g_bestScore;
@@ -31,9 +29,24 @@ public class TimeData : MonoBehaviour
     private const float _defaultBestTime = 9999.0f;
     private const int _numberOfStage = 12;
 
+    private const string textFileName = "save.json";
+    private string path = null;
+    DeviceType deviceType;
+
+    
+
     private void Start()
     {
         m_stageOrder = GameObject.Find("StageCreate").transform.GetComponent<StageOrder>();
+        deviceType = SystemInfo.deviceType;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)&&Application.isEditor)
+        {
+            ResetPlayerData();
+        }
     }
 
     /// <summary>
@@ -43,20 +56,7 @@ public class TimeData : MonoBehaviour
     {
         if (g_playingtime < playerData.saveBestTimes[m_stageOrder.GetStageNumber()])//もしタイムが最高記録なら
         {
-            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
-            playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = playerData.saveBestTimes[m_stageOrder.GetStageNumber()];
-            playerData.saveBestTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
-        }
-        //二番目だったら
-        else if (playerData.saveBestTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveSecondTimes[m_stageOrder.GetStageNumber()])
-        {
-            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = playerData.saveSecondTimes[m_stageOrder.GetStageNumber()];
-            playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
-        }
-        //三番目だったら
-        else if (playerData.saveSecondTimes[m_stageOrder.GetStageNumber()] < g_playingtime || g_playingtime < playerData.saveThirdTimes[m_stageOrder.GetStageNumber()])
-        {
-            playerData.saveThirdTimes[m_stageOrder.GetStageNumber()] = g_playingtime;
+            playerData.saveBestTimes[m_stageOrder.GetStageNumber()-1] = g_playingtime;
         }
     }
 
@@ -91,11 +91,21 @@ public class TimeData : MonoBehaviour
     {
         StreamWriter writer;
         playerData.BestScore = g_playingtime;
-        LoadPlayerData();
+        StartCoroutine(LoadPlayerData());
         TimeCompare();
         string jsonstr = JsonUtility.ToJson(playerData);
-        writer = new StreamWriter(Application.dataPath + "/save" +".json", false);
+        
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+        writer = new StreamWriter(path, false);
         writer.Write(jsonstr);
+        print(jsonstr);
         writer.Flush();
         writer.Close();
     }
@@ -106,14 +116,22 @@ public class TimeData : MonoBehaviour
     private void ResetPlayerData()
     {
         StreamWriter writer;
-        playerData.BestScore = _defaultBestTime;
-        LoadPlayerData();
-        for(int i=0;i<_numberOfStage; i++)
+        StartCoroutine(LoadPlayerData());
+        for (int i=0;i<_numberOfStage; i++)
         {
-
+            playerData.saveBestTimes[i] = _defaultBestTime;
         }
         string jsonstr = JsonUtility.ToJson(playerData);
-        writer = new StreamWriter(Application.dataPath + "/save" + ".json", false);
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+        writer = new StreamWriter(path, false);
         writer.Write(jsonstr);
         writer.Flush();
         writer.Close();
@@ -122,35 +140,45 @@ public class TimeData : MonoBehaviour
     /// <summary>
     /// ScoreDataを読み込み
     /// </summary>
-    public void LoadPlayerData()
+    public  IEnumerator LoadPlayerData()
     {
-        
-        StreamReader reader;
+        string textFileName = "save.json";
 
-        reader = new StreamReader(Application.dataPath + "/save"  + ".json");
-        datastr = reader.ReadToEnd();
-        reader.Close();
-        playerData = JsonUtility.FromJson<PlayerData>(datastr); // ロードしたデータで上書き
+        string path = null;
+
+        DeviceType deviceType;
+
+        deviceType = SystemInfo.deviceType;
+
+
+        if (deviceType == DeviceType.Desktop)
+        {
+            path = Application.dataPath + "/StreamingAssets" + "/" + textFileName;
+        }
+        else if (deviceType == DeviceType.Handheld)
+        {
+
+            path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        }
+        UnityWebRequest unityWebRequest;
+
+        unityWebRequest = UnityWebRequest.Get(path);
+
+        yield return unityWebRequest.SendWebRequest();
+
+        print(unityWebRequest.downloadHandler.text);
+
+        playerData = JsonUtility.FromJson<PlayerData>(unityWebRequest.downloadHandler.text); // ロードしたデータで上書き
 
         g_stageBestTimes = playerData.saveBestTimes;
         g_bestScore = playerData.BestScore;
+
+        yield break;
     }
 
     public float GetBestTime(int stageNumber)
     {
-        LoadPlayerData();
+        StartCoroutine(LoadPlayerData());
         return playerData.saveBestTimes[stageNumber];
-    }
-
-    public float GetSecondTime(int stageNumber)
-    {
-        LoadPlayerData();
-        return playerData.saveSecondTimes[stageNumber];
-    }
-
-    public float GetThirdTime(int stageNumber)
-    {
-        LoadPlayerData();
-        return playerData.saveThirdTimes[stageNumber];
     }
 }

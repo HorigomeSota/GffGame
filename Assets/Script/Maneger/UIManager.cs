@@ -57,6 +57,11 @@ public class UIManager : MonoBehaviour
         return;
     }
 
+    public void ResetTimer()
+    {
+        timerText.GetComponent<Text>().text = "00:00:00";
+    }
+
     public int getSecond()
     {
         return m_seconds;

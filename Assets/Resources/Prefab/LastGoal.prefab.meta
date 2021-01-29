@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources/Prefab/LastGoal.prefab.meta
 guid: f6504f2035d72634faae6383a38cd0ac
 PrefabImporter:
+=======
+guid: 911ddfe3ecd35ac478c76a4406f35b0c
+DefaultImporter:
+>>>>>>> 3a58e90736577a3e2bdf34d4e9991d40ad8ebade:Assets/StreamingAssets/Endless/Endless16.csv.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

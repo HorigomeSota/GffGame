@@ -59,16 +59,20 @@ public class PlayerColorChange : MonoBehaviour
             //色情報取得
             if (m_playerState.GetColor() == 0)
             {
-                //Debug.Log("げっとからー"+m_playerState.GetColor());
                 //色（見た目）変える
                 m_renderer.material = _materialA;
             }
             else
             {
-                //Debug.Log("げっとからー" + m_playerState.GetColor());
                 //色（見た目）変える
                 m_renderer.material = _materialB;
             }
         }
+    }
+
+    public void ResetColor()
+    {
+        //色（見た目）変える
+        m_renderer.material = _materialA;
     }
 }

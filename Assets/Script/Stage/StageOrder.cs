@@ -5,10 +5,11 @@ using UnityEngine;
 public class StageOrder : MonoBehaviour
 {
     //ステージの順番とファイル名
-    string[] g_stageOrder;
+    string[] g_stageOrder=new string[20];
 
     //次のステージ番号
     [SerializeField] private int g_nextStageNo;
+    [SerializeField] private int _nowStageNumber;
 
     //レベルに応じた確率の2次元配列
     int[,] g_endlessProbability;
@@ -43,11 +44,14 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     StageColor _stageColor;
 
+    StageCreate stageCreate;
+
     private void Awake()
     {
         _stageColorObject = GameObject.FindGameObjectWithTag("StageColor");
         _colorChange = _stageColorObject.GetComponent<StageColorChange>();
         _stageColor = _stageColorObject.GetComponent<StageColor>();
+        stageCreate = GetComponent<StageCreate>();
     }
 
     /// <summary>
@@ -60,9 +64,12 @@ public class StageOrder : MonoBehaviour
 
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
+
+        print(g_stageOrder[firstStage]);
         g_nextStageNo = firstStage;
+        _nowStageNumber = firstStage;
         //ステージの色設定
-        NextStageColor(true);
+         NextStageColor(true);
         _colorChange.SetColorPlayer();
     }
 
@@ -78,13 +85,15 @@ public class StageOrder : MonoBehaviour
             string m_nextStage;
             m_nextStage = g_stageOrder[g_nextStageNo];
             g_nextStageNo += 1;
-            Debug.Log(g_nextStageNo + "g_nextStageNo");
             if (g_stageOrder[g_nextStageNo] == "Endless") { g_endless = true; }
             return m_nextStage;
         }
         //エンドレスモード時、確率によって生成ステージ決定
         else
         {
+            //ステージインターバルを表示しなくする
+            stageCreate.SetIntervalSetOff();
+
             int m_level=1;
             //現在のレベル確認（縦列）
             while (true)
@@ -117,9 +126,7 @@ public class StageOrder : MonoBehaviour
                 }
                 else { m_stageNo++; }
             }
-
             g_endlessCount++;
-
             return "Endless/"+ g_stageOrder[g_nextStageNo + m_stageNo];
         }
     }
@@ -162,7 +169,9 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     public void NextStageColor()
     {
-        _stageColor.StageColorChangeNow(g_nextStageNo+1);
+        Debug.Log(_nowStageNumber + "_nowStageNumber");
+        _stageColor.StageColorChangeNow(_nowStageNumber);
+        _nowStageNumber++;
     }
 
     /// <summary>
@@ -171,14 +180,15 @@ public class StageOrder : MonoBehaviour
     /// <param name="first"></param>
     public void NextStageColor(bool firstOrEnd)
     {
-        if (firstOrEnd)
-        {
-            _stageColor.StageColorChangeNow(g_nextStageNo + 2);
-        }
-        else
-        {
-            _stageColor.StageColorChangeNow(g_nextStageNo + 1);
-        }
+        _stageColor.StageColorChangeNow(_nowStageNumber);
+    }
+
+    /// <summary>
+    /// エンドレスの時の色に変える
+    /// </summary>
+    public void EndlessStageColor()
+    {
+        _stageColor.StageColorChangeEndless();
     }
 
 }
