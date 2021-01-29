@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool m_colorcheckinput = false;
 
+    private bool deathOnce = default;
+
     /// <summary>
     /// オーディオが再生中かどうか
     /// </summary>
@@ -98,7 +100,11 @@ public class GameManager : MonoBehaviour
 
     private Vector3 startPosition = new Vector3(0f, 25f, -0.4f);
 
+    private float startPositionX = default;
+
     private float startPositionY = default;
+
+    private PlayerColorChange playerColorChange = default;
 
     private void Awake()
     {
@@ -109,6 +115,7 @@ public class GameManager : MonoBehaviour
         m_inputObj=GameObject.FindGameObjectWithTag("Input");
         m_TimerObject =GameObject.FindGameObjectWithTag("Timer");
         playerObj= GameObject.FindGameObjectWithTag("Player");
+        playerColorChange = playerObj.GetComponent<PlayerColorChange>();
 
         //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
@@ -121,7 +128,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        startPositionY = 25f;
+        startPositionX = -15f;
+        startPositionY = 2f;
     }
 
     /// <summary>
@@ -168,7 +176,13 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (m_playerState.GetDeathFlag() == true) GameEnd();
+        if (m_playerState.GetDeathFlag() == true&& !deathOnce)
+        {
+            GameEnd();
+            playerColorChange.ResetColor();
+            deathOnce = true;
+            print("死んだよ");
+        }
     }
 
     /// <summary>
@@ -177,8 +191,10 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         m_gamestarting = true;
+        deathOnce = false;
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate(startPosition);
+        SetCheckPoint(playerObj);
 
     }
 
@@ -197,13 +213,15 @@ public class GameManager : MonoBehaviour
 
     public void PlayerReset()
     {
+        deathOnce = false;
         playerObj.GetComponent<SpriteRenderer>().enabled = true;
         Vector3 checkPointVec3 = checkPoint.transform.position;
-        startPosition = new Vector3 (checkPointVec3.x, startPositionY, checkPointVec3.z);
+        startPosition = new Vector3 (checkPointVec3.x+startPositionX, checkPointVec3.y+ startPositionY, checkPointVec3.z);
         m_gamestarting = true;
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().ReStart(startPosition);
-        m_tim.TimerReset();
+        SetTimeStop(true);
+        m_UIManager.ResetTimer();
     }
 
     public void SetTimeStop(bool Stop)

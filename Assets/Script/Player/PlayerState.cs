@@ -7,6 +7,12 @@ public class PlayerState : MonoBehaviour
     //ゲームがスタートしているかどうか
     private bool m_gameStart=false;
 
+    Rigidbody playerRig = default;
+
+    private void Awake()
+    {
+        playerRig = GetComponent<Rigidbody>();
+    }
 
     /// <summary>ゲームがスタートしたらオン</summary>
     public void SetGameStart()
@@ -14,6 +20,7 @@ public class PlayerState : MonoBehaviour
         m_gameStart = true;
         speed = default;
         g_triggerObject = default;
+        print("いいやつ");
         g_death = false;
         m_triggerFlore = false;
         g_jump = false;
@@ -33,6 +40,7 @@ public class PlayerState : MonoBehaviour
         //生きている間だけ色を変える
         if (!g_death && GetComponent<Rigidbody>().velocity.x != 0)
         {
+            print("1にする");
             if (color == 0) { color = 1; }
             else { color = 0; }
             g_colorChangeNow = true;
@@ -132,6 +140,7 @@ public class PlayerState : MonoBehaviour
     private bool g_colorChange = false;
     /// <summary>プレイヤーのカラーチェンジフラグをオンにする</summary>
     public void ColorChangeFlagOn() { if(!g_death)g_colorChange = true; }
+   
     /// <summary>プレイヤーのカラーチェンジフラグ取得</summary>
     /// <returns>true=カラーチェンジしたい</returns>
     public bool GetColorChangeFlag() { return g_colorChange; }

@@ -23,6 +23,7 @@ public class PlayerSpeedDown : MonoBehaviour
             {
                 //動きとめる
                 playerRigid.velocity = new Vector3(0f, playerRigid.velocity.y, playerRigid.velocity.z);
+                print("わるいやつ3");
                 //死ぬ処理送る
                 GetComponent<PlayerState>().DeathFlagOn();
             }

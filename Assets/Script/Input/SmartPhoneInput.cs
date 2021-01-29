@@ -31,6 +31,8 @@ public class SmartphoneInput : MonoBehaviour,IInput
 
     private string objectName = default;
 
+    private bool reswtNow = default;
+
     private void Start()
     {
         tolerance = 25f;
@@ -68,7 +70,7 @@ public class SmartphoneInput : MonoBehaviour,IInput
                 break;
 
             case ("Retry"):
-
+                Reset();
                 g_sceneNum = 3;
 
                 break;
@@ -133,11 +135,13 @@ public class SmartphoneInput : MonoBehaviour,IInput
         {
             if (mouseDiff.y <= tolerance)
             {
+                print("kara-chenge");
                 g_colorCheck = true;
             }
 
-            if (mouseDiff.x<=tolerance&& mouseDiff.x >= -tolerance)
+            if (mouseDiff.x <= tolerance && mouseDiff.x >= -tolerance)
             {
+                print("objectcgek");
                 ObjectCheck(objectName);
             }
         }
@@ -154,11 +158,13 @@ public class SmartphoneInput : MonoBehaviour,IInput
 
     public bool ColorCheck()
     {
+        print("yonnda");
         return g_colorCheck;
     }
 
     public void Reset()
     {
+        print("リセットでーす");
         g_colorCheck = false;
         g_jumpCheck = false;
     }
