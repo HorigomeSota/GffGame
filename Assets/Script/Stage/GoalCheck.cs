@@ -89,7 +89,7 @@ public class GoalCheck : MonoBehaviour
                 stageCreate.SetIntervalSetOff();
             }
             StartCoroutine(Goal());
-            gameManager.GetComponent<GameManager>().timerStop = true;
+            gameManager.GetComponent<GameManager>().SetTimeStop(true);
             _colorChange.SetColorPlayer();
             _timeData.SavePlayerData();
         }

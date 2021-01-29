@@ -321,7 +321,7 @@ public class StageCreate : MonoBehaviour
 
         print(_firstStage + " _firstStage");
         print(_intervalSet + " _intervalSet");
-        if (!_firstStage && _intervalSet)
+        if (_intervalSet)
         {
             CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }

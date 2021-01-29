@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool m_playAudio;
 
-    public bool timerStop=false;
+    private bool timerStop=true;
 
     /// <summary>
     /// タイマースクリプト
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         if (m_gamestarting)
         {
             //Inputのジャンプ呼び出し
-            m_jumpinput= m_input.JumpCheck();
+            m_jumpinput = m_input.JumpCheck();
 
             //Inputのカラーチェンジ呼び出し
             m_colorcheckinput = m_input.ColorCheck();
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
                 m_playerState.JumpFlagOn();
 
                 m_jumpinput = false;
-                
+
             }
             if (m_colorcheckinput)
             {
@@ -154,15 +154,18 @@ public class GameManager : MonoBehaviour
             m_input.Reset();
 
 
-            //タイマーカウント呼び出し
-            m_tim.TimerCount(Time.deltaTime);
+            
+
+
 
             if (!timerStop)
             {
+                //タイマーカウント呼び出し
+                m_tim.TimerCount(Time.deltaTime);
                 //UIManagerでタイマー表示
                 m_UIManager.TimerOutput();
             }
-            
+
         }
 
         if (m_playerState.GetDeathFlag() == true) GameEnd();
@@ -177,7 +180,6 @@ public class GameManager : MonoBehaviour
         m_playerState.SetGameStart();
         GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate(startPosition);
 
-        m_tim.TimerReset();
     }
 
     /// <summary>
@@ -204,4 +206,8 @@ public class GameManager : MonoBehaviour
         m_tim.TimerReset();
     }
 
+    public void SetTimeStop(bool Stop)
+    {
+        timerStop = Stop;
+    }
 }

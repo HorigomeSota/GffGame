@@ -45,7 +45,6 @@ public class SmartphoneInput : MonoBehaviour,IInput
 
     private void ObjectCheck(string name)
     {
-        print(name);
         switch (name)
         {
             

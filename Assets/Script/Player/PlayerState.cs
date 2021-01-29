@@ -21,6 +21,7 @@ public class PlayerState : MonoBehaviour
         g_boost = false;
         g_colorChangeNow = false;
         g_colorChange = false;
+        color = 0;
     }
 
     //現在の色
@@ -40,6 +41,7 @@ public class PlayerState : MonoBehaviour
 
         return false;
     }
+
     /// <summary>プレイヤーの色取得</summary>
     /// <returns>0か1</returns>
     public int GetColor() { return color; }
