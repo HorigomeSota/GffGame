@@ -14,6 +14,8 @@ public interface IInput
     /// <returns>0=title,1=stegeSelect,2=game,3=retry,4=escape</returns>
     int SceneCheck();
 
+    int ResetSceneNum();
+
     /// <summary>選択したオブジェクト取得 </summary>
     GameObject ChoiceObj();
 

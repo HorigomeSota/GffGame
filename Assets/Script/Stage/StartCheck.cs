@@ -37,11 +37,11 @@ public class StartCheck : MonoBehaviour
     {
         if (other.tag == PLAYERTAG)
         {
-
+            print("okokokk");
             //タイマーリセット
             timer.TimerReset();
             timer.StageStart();
-            gameManager.GetComponent<GameManager>().timerStop = false;
+            gameManager.GetComponent<GameManager>().SetTimeStop(false);
             //チェックポイント更新
             gameManager.GetComponent<GameManager>().SetCheckPoint(this.gameObject);
         }

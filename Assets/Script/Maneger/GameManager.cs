@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     private GameObject checkPoint = default;
 
     /// <summary>
+    /// playerのオブジェクト
+    /// </summary>
+    private GameObject playerObj = default;
+
+    /// <summary>
     /// Timer格納オブジェクト
     /// </summary>
     [SerializeField]
@@ -84,12 +89,16 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool m_playAudio;
 
-    public bool timerStop=false;
+    private bool timerStop=true;
 
     /// <summary>
     /// タイマースクリプト
     /// </summary>
     private TimeData m_timeData;
+
+    private Vector3 startPosition = new Vector3(0f, 25f, -0.4f);
+
+    private float startPositionY = default;
 
     private void Awake()
     {
@@ -99,6 +108,7 @@ public class GameManager : MonoBehaviour
         m_CanvasObject = GameObject.FindGameObjectWithTag("GameCanvas");
         m_inputObj=GameObject.FindGameObjectWithTag("Input");
         m_TimerObject =GameObject.FindGameObjectWithTag("Timer");
+        playerObj= GameObject.FindGameObjectWithTag("Player");
 
         //インスタンス化
         m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
@@ -109,6 +119,10 @@ public class GameManager : MonoBehaviour
         m_timeData = GameObject.FindGameObjectWithTag("Data").transform.GetComponent<TimeData>();
     }
 
+    private void Start()
+    {
+        startPositionY = 25f;
+    }
 
     /// <summary>
     /// 時間を計ってTimerに時間の加算を頼む、送られた時間をUIManagerへ
@@ -118,7 +132,7 @@ public class GameManager : MonoBehaviour
         if (m_gamestarting)
         {
             //Inputのジャンプ呼び出し
-            m_jumpinput= m_input.JumpCheck();
+            m_jumpinput = m_input.JumpCheck();
 
             //Inputのカラーチェンジ呼び出し
             m_colorcheckinput = m_input.ColorCheck();
@@ -129,7 +143,7 @@ public class GameManager : MonoBehaviour
                 m_playerState.JumpFlagOn();
 
                 m_jumpinput = false;
-                
+
             }
             if (m_colorcheckinput)
             {
@@ -140,15 +154,18 @@ public class GameManager : MonoBehaviour
             m_input.Reset();
 
 
-            //タイマーカウント呼び出し
-            m_tim.TimerCount(Time.deltaTime);
+            
+
+
 
             if (!timerStop)
             {
+                //タイマーカウント呼び出し
+                m_tim.TimerCount(Time.deltaTime);
                 //UIManagerでタイマー表示
                 m_UIManager.TimerOutput();
             }
-            
+
         }
 
         if (m_playerState.GetDeathFlag() == true) GameEnd();
@@ -161,9 +178,8 @@ public class GameManager : MonoBehaviour
     {
         m_gamestarting = true;
         m_playerState.SetGameStart();
-        GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate();
+        GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().StartCreate(startPosition);
 
-        m_tim.TimerReset();
     }
 
     /// <summary>
@@ -179,4 +195,19 @@ public class GameManager : MonoBehaviour
         checkPoint = startObj;
     }
 
+    public void PlayerReset()
+    {
+        playerObj.GetComponent<SpriteRenderer>().enabled = true;
+        Vector3 checkPointVec3 = checkPoint.transform.position;
+        startPosition = new Vector3 (checkPointVec3.x, startPositionY, checkPointVec3.z);
+        m_gamestarting = true;
+        m_playerState.SetGameStart();
+        GameObject.Find("StageCreate").GetComponent<CheckPointDistance>().ReStart(startPosition);
+        m_tim.TimerReset();
+    }
+
+    public void SetTimeStop(bool Stop)
+    {
+        timerStop = Stop;
+    }
 }
