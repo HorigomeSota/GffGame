@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SmartphoneInput : MonoBehaviour,IInput
+public class SmartphoneInput : MonoBehaviour, IInput
 {
     Vector3 mouseDiff;
 
@@ -49,7 +49,7 @@ public class SmartphoneInput : MonoBehaviour,IInput
     {
         switch (name)
         {
-            
+
             case ("ToTitle"):
 
                 g_sceneNum = 0;
@@ -124,7 +124,7 @@ public class SmartphoneInput : MonoBehaviour,IInput
             // ベクトルの引き算を行い、現在のタッチ位置とその１フレーム前のタッチ位置との差分を方向として代入
             mouseDiff = Input.mousePosition - mousePos;
 
-            if (mouseDiff.y>tolerance&& once)
+            if (mouseDiff.y > tolerance && once)
             {
 
                 g_jumpCheck = true;

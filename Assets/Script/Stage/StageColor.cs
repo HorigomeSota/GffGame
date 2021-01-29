@@ -23,7 +23,7 @@ public class StageColor : MonoBehaviour
                 break;
 
             case 1:
-                _colorChange.SetColors(global::StageColorChange.Colors.PurpleF215FF, global::StageColorChange.Colors.YellowF8FF26);
+                _colorChange.SetColors(global::StageColorChange.Colors.YellowF8FF26, global::StageColorChange.Colors.PinkFF21B2);
                 break;
 
             case 2:
@@ -31,7 +31,7 @@ public class StageColor : MonoBehaviour
                 break;
 
             case 3:
-                _colorChange.SetColors(global::StageColorChange.Colors.YellowF8FF26, global::StageColorChange.Colors.PinkFF21B2);
+                _colorChange.SetColors(global::StageColorChange.Colors.PurpleF215FF, global::StageColorChange.Colors.YellowF8FF26);
                 break;
 
             case 4:
