@@ -2,11 +2,15 @@
 
 public class PcInput : MonoBehaviour, IInput
 {
-    Vector3 mouseDiff;
+    /// <summary>
+    /// 1フレーム間の差分
+    /// </summary>
+    private Vector3 mouseDiff;
 
-    Vector3 mousePos;     // 最初にタッチ(左クリック)した地点の情報を入れる
-
-    private float tolerance = default;
+    /// <summary>
+    /// 最初にタッチ(左クリック)した地点の情報を入れる
+    /// </summary>
+    private Vector3 mousePos;
 
     /// <summary>trueの時、ジャンプする </summary>
     private bool g_jumpCheck = false;
@@ -17,6 +21,7 @@ public class PcInput : MonoBehaviour, IInput
     /// <summary>Sceneナンバー</summary>
     private int g_sceneNum = 0;
 
+
     /// <summary>カメラを取得</summary>
     private Camera camera_object;
 
@@ -24,6 +29,8 @@ public class PcInput : MonoBehaviour, IInput
     private RaycastHit m_hit;
 
     private GameObject g_hitObj;
+
+    private float tolerance = default;
 
     private string objectName = default;
 
@@ -34,12 +41,65 @@ public class PcInput : MonoBehaviour, IInput
 
     private void Update()
     {
+        // Moveメソッドを常時呼び出す
+        Move();
+    }
+
+
+    private void ObjectCheck(string name)
+    {
+        switch (name)
+        {
+
+            case ("ToTitle"):
+
+                g_sceneNum = 0;
+
+                break;
+
+            case ("ToStageSelect"):
+
+                g_sceneNum = 1;
+
+                break;
+
+
+            case ("ToGame(Clone)"):
+
+                g_sceneNum = 2;
+
+                break;
+
+            case ("Retry"):
+                Reset();
+                g_sceneNum = 3;
+
+                break;
+
+            case ("Escape"):
+
+                g_sceneNum = 4;
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    public int ResetSceneNum()
+    {
+        g_sceneNum = -1;
+        return g_sceneNum;
+    }
+
+    void Move()
+    {
         camera_object = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
-        //マウスがクリックされたら
+        // マウス左クリック(画面タッチ)が行われたら
         if (Input.GetMouseButtonDown(0))
         {
-            //タッチした位置を代入
+            // タッチした位置を代入
             mousePos = Input.mousePosition;
 
             //マウスのポジションを取得してRayに代入
@@ -54,67 +114,29 @@ public class PcInput : MonoBehaviour, IInput
                 //オブジェクト名を取得して変数に入れる
                 objectName = g_hitObj.name;
             }
-        }
-        if (Input.GetMouseButton(0))
-        {
-            // ベクトルの引き算を行い、現在のタッチ位置とその１フレーム前のタッチ位置との差分を方向として代入
-            mouseDiff = Input.mousePosition - mousePos;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (mouseDiff.x <= tolerance && mouseDiff.x >= -tolerance)
+            else
             {
-                ObjectCheck(objectName);
+                objectName = null;
             }
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             g_jumpCheck = true;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            g_colorCheck = true;
+            if (mouseDiff.y <= tolerance)
+            {
+                g_colorCheck = true;
+            }
+
+            if (mouseDiff.x <= tolerance && mouseDiff.x >= -tolerance)
+            {
+                ObjectCheck(objectName);
+            }
         }
     }
-
-    private void ObjectCheck(string name)
-    {
-        switch (name)
-        {
-            case ("ToTitle"):
-
-                g_sceneNum = 0;
-
-                break;
-
-            case ("ToStageSelect"):
-
-                g_sceneNum = 1;
-
-                break;
-
-            case ("ToGame(Clone)"):
-
-                g_sceneNum = 2;
-
-                break;
-
-            case ("Retry"):
-
-                g_sceneNum = 3;
-
-                break;
-        }
-    }
-
-    public int ResetSceneNum()
-    {
-        g_sceneNum = -1;
-        return g_sceneNum;
-    }
-
     public int SceneCheck()
     {
         return g_sceneNum;
