@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class Triggers : MonoBehaviour
 {
@@ -13,20 +11,10 @@ public class Triggers : MonoBehaviour
     [SerializeField] private GameObject m_player;//プレイヤー取得
     bool m_nullFrag = false;
 
-    bool g_triggerFlore=false;
-
-    [SerializeField]
-    private GameObject m_audioManagerObject;
-    AudioManager m_audioManager;
-
     PlayerState m_playerState;
     private void Start()
     {
-        //ゲームオブジェクトFind
-        m_audioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
-
         //インスタンス化
-        m_audioManager = m_audioManagerObject.GetComponent<AudioManager>();
         m_playerState = GetComponent<PlayerState>();
         m_priorityMax = 6;
         int loopCount = 5;
@@ -62,7 +50,6 @@ public class Triggers : MonoBehaviour
                 break;
             case "Floor":
                 m_priorityEnter = 5;
-                g_triggerFlore = true;
                 break;
             default:
                 return;
@@ -99,7 +86,6 @@ public class Triggers : MonoBehaviour
                 break;
             case "Floor":
                 m_priorityExit = 5;
-                g_triggerFlore = false;
                 break;
         }
         if (other.gameObject == m_triggerStays[m_priorityExit])//離れたオブジェクトと触れていたオブジェクトが一致していたら

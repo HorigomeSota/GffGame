@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PcInput : MonoBehaviour, IInput
 {
@@ -41,7 +39,7 @@ public class PcInput : MonoBehaviour, IInput
         //マウスがクリックされたら
         if (Input.GetMouseButtonDown(0))
         {
-            // タッチした位置を代入
+            //タッチした位置を代入
             mousePos = Input.mousePosition;
 
             //マウスのポジションを取得してRayに代入
@@ -56,8 +54,6 @@ public class PcInput : MonoBehaviour, IInput
                 //オブジェクト名を取得して変数に入れる
                 objectName = g_hitObj.name;
             }
-
-
         }
         if (Input.GetMouseButton(0))
         {
@@ -71,8 +67,6 @@ public class PcInput : MonoBehaviour, IInput
                 ObjectCheck(objectName);
             }
         }
-
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -89,8 +83,6 @@ public class PcInput : MonoBehaviour, IInput
     {
         switch (name)
         {
-           
-
             case ("ToTitle"):
 
                 g_sceneNum = 0;
@@ -102,7 +94,6 @@ public class PcInput : MonoBehaviour, IInput
                 g_sceneNum = 1;
 
                 break;
-
 
             case ("ToGame(Clone)"):
 

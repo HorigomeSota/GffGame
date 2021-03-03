@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -34,9 +32,6 @@ public class GameController : MonoBehaviour
     /// 4
     /// </summary>
     const int m_escapeNum = 4;
-
-    /// <summary>1フレーム前に取得した値 </summary>
-    private int m_beforeNum=0; //初期化
 
     IInput m_input;
 
@@ -139,7 +134,6 @@ public class GameController : MonoBehaviour
 
     private void Retry()
     {
-        print("ReTray");
         gameManager.PlayerReset();
     }
 

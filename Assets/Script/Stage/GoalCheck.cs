@@ -66,8 +66,6 @@ public class GoalCheck : MonoBehaviour
 
     void Start()
     {
-
-        print("");
         fireworkBluePrefab = Resources.Load<GameObject>(prefabFolderName+"/"+particlesFolderName+"/"+fireworkBlueName);
         fireworkYellowPrfab = Resources.Load<GameObject>(prefabFolderName + "/" + particlesFolderName + "/" + fireworkYellowClusterName);
         resultTimerText = GameObject.FindWithTag(resultTimerTextTag).GetComponent<Text>();
@@ -90,6 +88,7 @@ public class GoalCheck : MonoBehaviour
             }
             StartCoroutine(Goal());
             gameManager.GetComponent<GameManager>().SetTimeStop(true);
+            other.GetComponent<PlayerState>().ColorChangeFlagOn();
             _colorChange.SetColorPlayer();
             _timeData.SavePlayerData();
         }

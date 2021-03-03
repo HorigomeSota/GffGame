@@ -139,8 +139,8 @@ public class StageColorChange : MonoBehaviour
     /// <param name="colorsB">色2</param>
     public void SetColorPlayer()
     {
-        _playerMatA.color = _matAColor;
         _playerMatB.color = _matBColor;
+        _playerMatA.color = _matAColor;
     }
 
 }

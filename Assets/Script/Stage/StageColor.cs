@@ -15,7 +15,6 @@ public class StageColor : MonoBehaviour
     /// <param name="stageNumber">ステージ番号</param>
     public void StageColorChangeNow(int stageNumber)
     {
-        Debug.Log("stageNumber"+ stageNumber);
         switch (stageNumber)
         {
             case 0:

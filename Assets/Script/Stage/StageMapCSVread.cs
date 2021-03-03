@@ -2,8 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class StageMapCSVread : MonoBehaviour
 {
@@ -137,8 +136,6 @@ public class StageMapCSVread : MonoBehaviour
     /// </summary>
     IEnumerator ReadCsv(string textFileName)
     {
-
-
         Dictionary<string, string> systemInfo = new Dictionary<string, string>();
 
         string path=null;
@@ -159,13 +156,13 @@ public class StageMapCSVread : MonoBehaviour
             path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName + ".csv";
         }
 
+        UnityWebRequest unityWebRequest;
 
+        unityWebRequest = UnityWebRequest.Get(path);
 
-        WWW www = new WWW(path);
-        yield return www;
+        yield return unityWebRequest.SendWebRequest();
 
-
-        readCSVData(www.text, ref this.g_sdataArrays);
+        readCSVData(unityWebRequest.downloadHandler.text, ref this.g_sdataArrays);
 
         convert2DArrayType(ref this.g_sdataArrays, ref this.g_stageMapDatas, this.g_height, this.g_width);
 
@@ -220,8 +217,6 @@ public class StageMapCSVread : MonoBehaviour
     /// </summary>
     IEnumerator ReadIntervalCsv(string textFileName)
     {
-
-
         Dictionary<string, string> systemInfo = new Dictionary<string, string>();
 
         string path = null;
@@ -242,13 +237,13 @@ public class StageMapCSVread : MonoBehaviour
             path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName + ".csv";
         }
 
+        UnityWebRequest unityWebRequest;
 
+        unityWebRequest = UnityWebRequest.Get(path);
 
-        WWW www = new WWW(path);
-        yield return www;
+        yield return unityWebRequest.SendWebRequest();
 
-
-        readIntervalCSVData(www.text, ref this.g_intervaldataArrays);
+        readIntervalCSVData(unityWebRequest.downloadHandler.text, ref this.g_intervaldataArrays);
 
         convert2DArrayType(ref this.g_intervaldataArrays, ref this.g_intervalMapDatas, this.g_intervalHeight, this.g_intervalWidth);
 

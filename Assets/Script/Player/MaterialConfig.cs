@@ -19,9 +19,9 @@ public class MaterialConfig : MonoBehaviour
         White,
     }
 
-    [SerializeField]Material[] m_materials=new Material[10];
+    [SerializeField] Material[] m_materials = new Material[10];
 
-    [SerializeField] private MaterialState m_materialState;
+    [SerializeField] private MaterialState m_materialState = default;
     // Start is called before the first frame update
     void Start()
     {

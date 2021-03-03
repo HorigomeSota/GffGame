@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerFallDeath : MonoBehaviour
@@ -18,7 +16,6 @@ public class PlayerFallDeath : MonoBehaviour
     {
         if (transform.position.y <= -3)
         {
-            print("‚í‚é‚¢‚â‚Â‚P");
             m_playerState.DeathFlagOn();
         }
     }

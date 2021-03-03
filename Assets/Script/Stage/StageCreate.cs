@@ -110,8 +110,6 @@ public class StageCreate : MonoBehaviour
     const float prefabScaleX = 1f;
     const float prefabScaleY = 1f;
 
-    private bool _firstStage = default;
-
     private bool _intervalSet = default;
 
     /// <summary>
@@ -144,7 +142,6 @@ public class StageCreate : MonoBehaviour
         _stageOrder = GetComponent<StageOrder>();
         _stageMapCSVread = GetComponent<StageMapCSVread>();
         SetIntervalSetOn();
-        _firstStage = true;
     }
 
     //CSVの名前
@@ -319,13 +316,10 @@ public class StageCreate : MonoBehaviour
 
         g_stage = _stageOrder.GetNextStage();
 
-        print(_firstStage + " _firstStage");
-        print(_intervalSet + " _intervalSet");
         if (_intervalSet)
         {
             CreateMap(_stageMapCSVread.GetIntervalMapDatas(), _stageMapCSVread.GetIntervalHeight(), _stageMapCSVread.GetIntervalWidth(), 1);
         }
-        else { _firstStage = false; }
         CreateMap(_stageMapCSVread.GetStageMapDatas(), _stageMapCSVread.GetHeight(), _stageMapCSVread.GetWidth(), 0);
     }
 
@@ -335,13 +329,11 @@ public class StageCreate : MonoBehaviour
     }
     public void SetIntervalSetOff()
     {
-        print("オフ");
         _intervalSet = false;
     }
 
     public void SetIntervalSetOn()
     {
-        print("オン");
         _intervalSet = true;
     }
 }

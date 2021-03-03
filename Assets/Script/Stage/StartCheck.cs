@@ -10,10 +10,6 @@ public class StartCheck : MonoBehaviour
     /// Timer格納オブジェクト
     /// </summary>
     GameObject timerObject;
-    /// <summary>
-    /// ゲーム画面のキャンバス
-    /// </summary>
-    private GameObject gameSceneCanvas;
 
     private Timer timer = default;
 
@@ -21,15 +17,12 @@ public class StartCheck : MonoBehaviour
 
     const string timerTag = "Timer";
 
-    const string gameCanvasTag = "GameCanvas";
-
     const string PLAYERTAG = "Player";
 
     private void Start()
     {
         timerObject = GameObject.FindGameObjectWithTag(timerTag);
         gameManager = GameObject.FindWithTag(gameManagerTag);
-        gameSceneCanvas = GameObject.FindWithTag(gameCanvasTag);
         timer = timerObject.GetComponent<Timer>();
     }
 
@@ -37,13 +30,12 @@ public class StartCheck : MonoBehaviour
     {
         if (other.tag == PLAYERTAG)
         {
-            print("okokokk");
             //タイマーリセット
             timer.TimerReset();
             timer.StageStart();
             gameManager.GetComponent<GameManager>().SetTimeStop(false);
             //チェックポイント更新
-            gameManager.GetComponent<GameManager>().SetCheckPoint(this.gameObject);
+            gameManager.GetComponent<GameManager>().SetCheckPoint(gameObject);
         }
     }
 }

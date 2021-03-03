@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SmartphoneInput : MonoBehaviour, IInput
+public class SmartPhoneInput : MonoBehaviour, IInput
 {
     Vector3 mouseDiff;
 
@@ -30,8 +30,6 @@ public class SmartphoneInput : MonoBehaviour, IInput
     private bool once = default;
 
     private string objectName = default;
-
-    private bool reswtNow = default;
 
     private void Start()
     {
@@ -135,13 +133,11 @@ public class SmartphoneInput : MonoBehaviour, IInput
         {
             if (mouseDiff.y <= tolerance)
             {
-                print("kara-chenge");
                 g_colorCheck = true;
             }
 
             if (mouseDiff.x <= tolerance && mouseDiff.x >= -tolerance)
             {
-                print("objectcgek");
                 ObjectCheck(objectName);
             }
         }
@@ -158,13 +154,11 @@ public class SmartphoneInput : MonoBehaviour, IInput
 
     public bool ColorCheck()
     {
-        print("yonnda");
         return g_colorCheck;
     }
 
     public void Reset()
     {
-        print("リセットでーす");
         g_colorCheck = false;
         g_jumpCheck = false;
     }

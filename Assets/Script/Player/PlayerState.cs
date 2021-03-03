@@ -1,18 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
     //ゲームがスタートしているかどうか
     private bool m_gameStart=false;
-
-    Rigidbody playerRig = default;
-
-    private void Awake()
-    {
-        playerRig = GetComponent<Rigidbody>();
-    }
 
     /// <summary>ゲームがスタートしたらオン</summary>
     public void SetGameStart()
@@ -20,7 +11,6 @@ public class PlayerState : MonoBehaviour
         m_gameStart = true;
         speed = default;
         g_triggerObject = default;
-        print("いいやつ");
         g_death = false;
         m_triggerFlore = false;
         g_jump = false;
@@ -40,7 +30,6 @@ public class PlayerState : MonoBehaviour
         //生きている間だけ色を変える
         if (!g_death && GetComponent<Rigidbody>().velocity.x != 0)
         {
-            print("1にする");
             if (color == 0) { color = 1; }
             else { color = 0; }
             g_colorChangeNow = true;
@@ -90,7 +79,6 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] private bool m_triggerFlore=false;
 
-    
     public void FloreFlagON() { m_triggerFlore = true;}
     public void FloreFlagOFF() { m_triggerFlore = false;}
 
@@ -98,7 +86,6 @@ public class PlayerState : MonoBehaviour
 
     //ジャンプフラグ
     private bool g_jump = false;
-
 
     /// <summary>プレイヤーのジャンプフラグをオンにする</summary>
     public void JumpFlagOn()

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerTriggerColorCheck : MonoBehaviour
 {
@@ -55,7 +53,6 @@ public class PlayerTriggerColorCheck : MonoBehaviour
             switch (m_triggerObj.tag)
             {
                 case "FallDeath":
-                    print("わるいやつ4");
                     GetComponent<PlayerState>().DeathFlagOn();
                     break;
 
@@ -67,7 +64,6 @@ public class PlayerTriggerColorCheck : MonoBehaviour
                     }
                     else
                     {
-                        print("わるいやつ２");
                         GetComponent<PlayerState>().DeathFlagOn();
                     }//ステイトをデスにする
 

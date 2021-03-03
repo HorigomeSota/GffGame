@@ -16,15 +16,8 @@ public class TimeData : MonoBehaviour
 
     [SerializeField]
     StageOrder m_stageOrder;
-    [SerializeField] int m_saveStageNumber=default;
     [SerializeField] float m_saveTime;
-    private float[] g_stageBestTimes;
-    private float g_resultTime;
-    private float g_bestScore;
-    private float g_scoreResult;
 
-    private string datastr = "ScoreData";
-    
     private float g_playingtime = 0;
     private const float _defaultBestTime = 9999.0f;
     private const int _numberOfStage = 12;
@@ -105,7 +98,6 @@ public class TimeData : MonoBehaviour
         }
         writer = new StreamWriter(path, false);
         writer.Write(jsonstr);
-        print(jsonstr);
         writer.Flush();
         writer.Close();
     }
@@ -166,12 +158,7 @@ public class TimeData : MonoBehaviour
 
         yield return unityWebRequest.SendWebRequest();
 
-        print(unityWebRequest.downloadHandler.text);
-
         playerData = JsonUtility.FromJson<PlayerData>(unityWebRequest.downloadHandler.text); // ロードしたデータで上書き
-
-        g_stageBestTimes = playerData.saveBestTimes;
-        g_bestScore = playerData.BestScore;
 
         yield break;
     }

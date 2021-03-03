@@ -923,12 +923,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 856365191234717131, guid: 4579e810bd8ccf4468858596f183e7e3,
+    - target: {fileID: -4861924686910468554, guid: 4579e810bd8ccf4468858596f183e7e3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9411f651ad35db047a0ed38011e8869b, type: 2}
-    - target: {fileID: -4861924686910468554, guid: 4579e810bd8ccf4468858596f183e7e3,
+    - target: {fileID: 856365191234717131, guid: 4579e810bd8ccf4468858596f183e7e3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

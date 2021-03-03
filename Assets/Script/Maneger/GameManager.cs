@@ -161,11 +161,6 @@ public class GameManager : MonoBehaviour
             //リセット
             m_input.Reset();
 
-
-            
-
-
-
             if (!timerStop)
             {
                 //タイマーカウント呼び出し
@@ -181,7 +176,6 @@ public class GameManager : MonoBehaviour
             GameEnd();
             playerColorChange.ResetColor();
             deathOnce = true;
-            print("死んだよ");
         }
     }
 

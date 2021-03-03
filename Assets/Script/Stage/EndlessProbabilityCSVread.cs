@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using UnityEngine.Networking;
-using System.IO;
 
 public class EndlessProbabilityCSVread : MonoBehaviour
 {
@@ -146,7 +145,6 @@ public class EndlessProbabilityCSVread : MonoBehaviour
 
         yield return unityWebRequest.SendWebRequest();
 
-        print(unityWebRequest.downloadHandler.text);
         readCSVData(unityWebRequest.downloadHandler.text, ref this.g_probabilityDataArrays);
         convert2DArrayType(ref this.g_probabilityDataArrays, ref this.g_probabilityDatas, this.g_height, this.g_width);
 

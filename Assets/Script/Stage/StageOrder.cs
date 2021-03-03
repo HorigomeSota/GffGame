@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StageOrder : MonoBehaviour
 {
@@ -60,12 +58,9 @@ public class StageOrder : MonoBehaviour
     /// <param name="firstStage"></param>
     public void SetFirstStage(int firstStage)
     {
-        Debug.Log("firstStage" + firstStage);
-
         //エンドレスモードの確認
         if (g_stageOrder[firstStage] == "Endless") { g_endless = true; }
 
-        print(g_stageOrder[firstStage]);
         g_nextStageNo = firstStage;
         _nowStageNumber = firstStage;
         //ステージの色設定
@@ -169,7 +164,6 @@ public class StageOrder : MonoBehaviour
     /// </summary>
     public void NextStageColor()
     {
-        Debug.Log(_nowStageNumber + "_nowStageNumber");
         _stageColor.StageColorChangeNow(_nowStageNumber);
         _nowStageNumber++;
     }
