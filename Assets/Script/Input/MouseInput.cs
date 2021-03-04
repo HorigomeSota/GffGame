@@ -5,18 +5,18 @@ public class MouseInput : MonoBehaviour, IInput
     /// <summary>
     /// 1フレーム間の差分
     /// </summary>
-    private Vector3 mouseDiff;
+    private Vector3 mouseDiff = default;
 
     /// <summary>
     /// 最初にタッチ(左クリック)した地点の情報を入れる
     /// </summary>
-    private Vector3 mousePos;
+    private Vector3 mousePos = default;
 
     /// <summary>trueの時、ジャンプする </summary>
-    private bool g_jumpCheck = false;
+    private bool g_jumpCheck = default;
 
     /// <summary>trueの時、色を変える</summary>
-    private bool g_colorCheck = false;
+    private bool g_colorCheck = default;
 
     /// <summary>Sceneナンバー</summary>
     private int g_sceneNum = 0;
@@ -32,6 +32,7 @@ public class MouseInput : MonoBehaviour, IInput
 
     private float tolerance = default;
 
+    /// <summary>一度だけ処理する用</summary>
     private bool once = default;
 
     private string objectName = default;

@@ -1,26 +1,23 @@
 ﻿using UnityEngine;
 
-public class PcInput : MonoBehaviour, IInput
+public class ControllerInput : MonoBehaviour, IInput
 {
     /// <summary>
     /// 1フレーム間の差分
     /// </summary>
-    private Vector3 mouseDiff;
-
-    /// <summary>
-    /// 最初にタッチ(左クリック)した地点の情報を入れる
-    /// </summary>
-    private Vector3 mousePos;
+    private Vector3 mouseDiff=default;
 
     /// <summary>trueの時、ジャンプする </summary>
-    private bool g_jumpCheck = false;
+    private bool g_jumpCheck = default;
 
     /// <summary>trueの時、色を変える</summary>
-    private bool g_colorCheck = false;
+    private bool g_colorCheck = true;
 
     /// <summary>Sceneナンバー</summary>
     private int g_sceneNum = 0;
 
+    /// <summary>一度だけ処理する用</summary>
+    private bool once = true;
 
     /// <summary>カメラを取得</summary>
     private Camera camera_object;
@@ -99,9 +96,6 @@ public class PcInput : MonoBehaviour, IInput
         // マウス左クリック(画面タッチ)が行われたら
         if (Input.GetMouseButtonDown(0))
         {
-            // タッチした位置を代入
-            mousePos = Input.mousePosition;
-
             //マウスのポジションを取得してRayに代入
             Ray ray = camera_object.ScreenPointToRay(Input.mousePosition);
 
@@ -119,18 +113,22 @@ public class PcInput : MonoBehaviour, IInput
                 objectName = null;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
+            g_colorCheck = true;
+        }
+        if (Input.GetAxis("D_Pad_V") > 0&& once)
+        {
+            once = false;
             g_jumpCheck = true;
+        }
+        else if(Input.GetAxis("D_Pad_V")<=0)
+        {
+            once = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (mouseDiff.y <= tolerance)
-            {
-                g_colorCheck = true;
-            }
-
             if (mouseDiff.x <= tolerance && mouseDiff.x >= -tolerance)
             {
                 ObjectCheck(objectName);
